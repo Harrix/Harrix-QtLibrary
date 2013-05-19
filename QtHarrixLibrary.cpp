@@ -1,3 +1,7 @@
+//Сборник функций для Qt. Версия v.2.0.
+//https://github.com/Harrix/QtHarrixLibrary
+//Библиотека распространяется по лицензии Apache License, Version 2.0.
+
 #include "QtHarrixLibrary.h"
 
 QString HQt_ReadFile(QString filename)
@@ -13,6 +17,7 @@ QString HQt_ReadFile(QString filename)
     QString line="";
     if(!file.exists()){
         qDebug() << "Не существует "<<filename;
+        return line;
     }else{
         qDebug() << filename<<" загружается...";
     }
@@ -21,6 +26,7 @@ QString HQt_ReadFile(QString filename)
     file.close();
     return line;
 }
+//---------------------------------------------------------------------------
 
 void HQt_SaveFile(QString line, QString filename)
 {
@@ -36,10 +42,12 @@ void HQt_SaveFile(QString line, QString filename)
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         QTextStream stream(&file);
+        stream.setCodec(QTextCodec::codecForName("UTF-8"));
         stream << line;
     }
     file.close();
 }
+//---------------------------------------------------------------------------
 
 QString HQt_ListFilesInDir(QString path)
 {
@@ -67,6 +75,25 @@ QString HQt_ListFilesInDir(QString path)
     }
     return line;
 }
+//---------------------------------------------------------------------------
+
+QStringList HQt_ListFilesInDirQStringList(QString path)
+{
+    /*
+    Функция считывает список файлов (включая скрытые) в директории в QStringList.
+    Входные параметры:
+     path - путь к папке.
+    Возвращаемое значение:
+     Список строк файлов в директории в алфавитном порядке.
+    */
+    QString line;
+    line=HQt_ListFilesInDir(path);
+
+    QStringList lines = HQt_QStringToQStringList(line);
+
+    return lines;
+}
+//---------------------------------------------------------------------------
 
 QString HQt_ListDirsInDir(QString path)
 {
@@ -94,6 +121,25 @@ QString HQt_ListDirsInDir(QString path)
     }
     return line;
 }
+//---------------------------------------------------------------------------
+
+QStringList HQt_ListDirsInDirQStringList(QString path)
+{
+    /*
+    Функция считывает список директорий в директории в QStringList.
+    Входные параметры:
+     path - путь к папке.
+    Возвращаемое значение:
+     Список строк со списком директорий в директории в алфавитном порядке.
+    */
+    QString line;
+    line=HQt_ListDirsInDir(path);
+
+    QStringList lines = HQt_QStringToQStringList(line);
+
+    return lines;
+}
+//---------------------------------------------------------------------------
 
 QString HQt_GetExpFromFilename(QString filename)
 {
@@ -109,3 +155,128 @@ QString HQt_GetExpFromFilename(QString filename)
     exp=exp.toLower();
     return exp;
 }
+//---------------------------------------------------------------------------
+
+QStringList HQt_QStringToQStringList(QString line)
+{
+    /*
+    Функция переводит QString в QStringList.
+    Входные параметры:
+     line - строка.
+    Возвращаемое значение:
+     Список строк.
+    */
+    QStringList lines = line.split( "\n", QString::SkipEmptyParts );
+
+    return lines;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_QStringListToQString(QStringList lines)
+{
+    /*
+    Функция переводит QStringList в QString.
+    Входные параметры:
+     lines - список строк.
+    Возвращаемое значение:
+     Строка с разделениями \n.
+    */
+    QString line = lines.join('\n');
+
+    return line;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_FileExists(QString filename)
+{
+    /*
+    Функция проверяет сущестование файла.
+    Входные параметры:
+     filename - имя файла.
+    Возвращаемое значение:
+     false - если файл не существует,
+     true - если файл существует
+    */
+    QFile file(filename);
+    if(!file.exists()){
+        file.close();
+        return false;
+    }else{
+        file.close();
+        return true;
+    }
+}
+//---------------------------------------------------------------------------
+
+QString HQt_GetNameFromFilename(QString filename)
+{
+    /*
+    Функция получает имя файла без расширения по его имени.
+    Входные параметры:
+     filename - имя файла (можно и с полным путем).
+    Возвращаемое значение:
+     Строка с именем файла без расширения.
+    */
+    QString name="";
+    name=HQt_GetFilenameFromFullFilename(filename).mid(0,filename.lastIndexOf("."));
+    return name;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_CopyFile(QString filename, QString dir)
+{
+    /*
+    Функция копирует файл filename в папку dir.
+    Входные параметры:
+     filename - имя файла (с полным путем),
+     dir - путь к папке, куда нужно скопировать файл.
+    Возвращаемое значение:
+     true - если скопировалось удачно,
+     false - если скопировалось неудачно.
+    */
+    QFileInfo fileInfo(filename);
+    QString destinationFile = dir + QDir::separator() + fileInfo.fileName();
+    bool result = QFile::copy(filename, destinationFile);
+    return result;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_CopyFile(QString filename, QString dir, bool overwrite)
+{
+    /*
+    Функция копирует файл filename в папку dir, с возможносью перезаписи.
+    Входные параметры:
+     filename - имя файла (с полным путем),
+     dir - путь к папке, куда нужно скопировать файл.
+     overwrite - если true, то перезаписывать, если false, то не перезаписывать
+    Возвращаемое значение:
+     true - если скопировалось удачно,
+     false - если скопировалось неудачно.
+    */
+    QFileInfo fileInfo(filename);
+    QString destinationFile = dir + QDir::separator() + fileInfo.fileName();
+
+    if ((QFile::exists(destinationFile))&&(overwrite==true))
+    {
+        QFile::remove(destinationFile);
+    }
+
+    bool result = QFile::copy(filename, destinationFile);
+    return result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_GetFilenameFromFullFilename(QString filename)
+{
+    /*
+    Функция получает имя файла по полному пути.
+    Входные параметры:
+     filename - имя файла с путем.
+    Возвращаемое значение:
+     Строка с именем файла.
+    */
+    QString name="";
+    name=filename.mid(filename.lastIndexOf(QDir::separator())+1);
+    return name;
+}
+//---------------------------------------------------------------------------
