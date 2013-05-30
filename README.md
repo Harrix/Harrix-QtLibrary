@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.0.
+Сборник функций для Qt. Версия v.2.1.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -66,6 +66,9 @@ template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QSt
 
 template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);  
 Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
+
+QString **HQt_WriteTime**(int t)
+Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
 
 Контакты
 ---------------

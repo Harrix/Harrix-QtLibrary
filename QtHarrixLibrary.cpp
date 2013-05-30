@@ -280,3 +280,34 @@ QString HQt_GetFilenameFromFullFilename(QString filename)
     return name;
 }
 //---------------------------------------------------------------------------
+
+QString HQt_WriteTime(int t)
+{
+    /*
+    Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
+    Входные параметры:
+     t - миллисекунды.
+    Возвращаемое значение:
+     Строка в виде текста - сколько секунд, минут и так далее было.
+    */
+    int sec=t/1000;
+    int min=t/(1000*60);
+    int hour=t/(1000*60*60);
+    int day=t/(1000*60*60*24);
+
+    int Hour=hour-day*24;
+    int Min=min-hour*60;
+    int Sec=sec-min*60;
+    int Millisec=t-sec*1000;
+
+    QString A;
+
+    if (day!=0) A+=QString::number(day)+" дн. ";
+    if (Hour!=0) A+=QString::number(Hour)+" ч. ";
+    if (Min!=0) A+=QString::number(Min)+" мин. ";
+    if (Sec!=0) A+=QString::number(Sec)+" сек. ";
+    if (Millisec!=0) A+=QString::number(Millisec)+" миллисек.";
+
+    return A;
+}
+//---------------------------------------------------------------------------
