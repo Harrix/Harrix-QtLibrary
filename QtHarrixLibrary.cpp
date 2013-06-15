@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.0.
+//Сборник функций для Qt. Версия v.2.2.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -311,3 +311,83 @@ QString HQt_WriteTime(int t)
     return A;
 }
 //---------------------------------------------------------------------------
+
+QString HQt_UniqueName ()
+{
+    /*
+    Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
+    Собирается из "HQt_" + текущеее время.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Уникальная строка.
+    */
+    return "HQt_"+QDateTime::currentDateTime().toString("ddMMyyyyhhmmss");
+}
+//---------------------------------------------------------------------------
+
+//Функции для получения HTML кода для вывода в webView
+
+QString HQt_ShowText (QString TitleX)
+{
+    /*
+    Функция возвращает строку с выводом некотороq строки с HTML кодами. Для добавление в html файл.
+    Входные параметры:
+     TitleX - непосредственно выводимая строка.
+    Возвращаемое значение:
+     Строка с HTML кодами с выводимым числом.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result="<p><b>"+TitleX+":</b><br>";
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_BeginHtml ()
+{
+    /*
+    Функция возвращает строку с началом HTML файла, в который другими функциями
+    добавляются иные данные. Для добавление в html файл.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Строка с началом HTML файла.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result+="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n";
+    VMHL_Result+="<html>\n";
+    VMHL_Result+="<head>\n";
+    VMHL_Result+="<meta name=\"qrichtext\" content=\"1\" />\n";
+    VMHL_Result+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n\n";
+    VMHL_Result+="<style type=\"text/css\">\n";
+    VMHL_Result+="p, li { white-space: pre-wrap; }\n";
+    VMHL_Result+="body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; }\n";
+    VMHL_Result+="</style>\n\n";
+    VMHL_Result+="</head>\n\n";
+    VMHL_Result+="<body>\n";
+
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+QString HQt_EndHtml ()
+{
+    /*
+    Функция возвращает строку с концовкой HTML файла, в который другими функциями
+    добавляются иные данные. Для добавление в html файл.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Строка с концовкой HTML файла.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result="</body>\n</html>";
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+

@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QTextCodec>
 #include <QTextEdit>
+#include <QDateTime>
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ОБЪЯВЛЕНИЯ ФУНКЦИЙ
@@ -28,6 +29,11 @@ bool HQt_CopyFile(QString filename, QString dir);//Функция копируе
 bool HQt_CopyFile(QString filename, QString dir, bool overwrite);//Функция копирует файл filename в папку dir, с возможносью перезаписи.
 QString HQt_GetFilenameFromFullFilename(QString filename);//Функция получает имя файла по полному пути.
 
+
+//Для отображения HTML текста
+QString HQt_BeginHtml (); //Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
+QString HQt_EndHtml (); //Функция возвращает строку с концовкой HTML файла, в который другими функциями добавляются иные данные.
+QString HQt_ShowText (QString TitleX);
 template <class T> QString THQt_ShowNumber (T VMHL_X, QString TitleX, QString NameX);//Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
 template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 template <class T> QString THQt_NumberToText (T VMHL_X);//Функция выводит число VMHL_X в строку.
@@ -35,11 +41,15 @@ template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString
 template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);//Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 
 QString HQt_WriteTime(int t);//Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
+QString HQt_UniqueName ();//Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//Функции для получения HTML кода для вывода в webView
+
 template <class T> QString THQt_ShowNumber (T VMHL_X, QString TitleX, QString NameX)
 {
     /*
