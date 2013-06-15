@@ -316,13 +316,86 @@ QString HQt_UniqueName ()
 {
     /*
     Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
-    Собирается из "HQt_" + текущеее время.
+    Собирается из "HQt_" + текущее время.
     Входные параметры:
      Отсутствуют.
     Возвращаемое значение:
      Уникальная строка.
     */
     return "HQt_"+QDateTime::currentDateTime().toString("ddMMyyyyhhmmss");
+}
+//---------------------------------------------------------------------------
+
+QString HQt_UniqueName (QString BeginString)
+{
+    /*
+    Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
+    Собирается из BeginString+"_" + текущее время.
+    Входные параметры:
+     BeginString - Приставка вначале строки.
+    Возвращаемое значение:
+     Уникальная строка.
+    */
+    return BeginString+"_"+QDateTime::currentDateTime().toString("ddMMyyyyhhmmss");
+}
+//---------------------------------------------------------------------------
+QString HQt_UniqueNameOnlyNumbers ()
+{
+    /*
+    Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры.
+    Собирается из текущего времени.
+    Входные параметры:
+     Отсутствуют.
+    Возвращаемое значение:
+     Уникальная строка.
+    */
+    return QDateTime::currentDateTime().toString("ddMMyyyyhhmmss");
+}
+//---------------------------------------------------------------------------
+void HQt_Delay(int MSecs)
+{
+    /*
+    Функция делает задержку в MSecs миллисекунд.
+    Входные параметры:
+     MSecs - миллисекунды, сколько надо подержать работу Qt. Не меньше пяти миллисекунд должно быть.
+    Возвращаемое значение:
+     Отсутствуют.
+    */
+    QTime dieTime= QTime::currentTime().addMSecs(MSecs);
+    while( QTime::currentTime() < dieTime )
+    QGuiApplication::processEvents(QEventLoop::AllEvents, 100);
+}
+//---------------------------------------------------------------------------
+
+QString HQt_RandomString(int Length)
+{
+    /*
+    Функция генерирует случайную строку из английских больших и малых букв.
+
+    Входные параметры:
+     Length - длина строки, которую надо сгенерировать.
+    Возвращаемое значение:
+     Случайная строка.
+    */
+    QString VMHL_Result;
+    static const char alphanum[] =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    char *s=new char[Length];
+
+    for (int i=0; i<Length; ++i)
+    {
+        s[i] = alphanum[qrand() % (sizeof(alphanum) - 1)];
+    }
+
+    s[Length] = 0;
+
+    VMHL_Result = QString(s);
+
+    delete [] s;
+
+    return VMHL_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -366,6 +439,12 @@ QString HQt_BeginHtml ()
     VMHL_Result+="p, li { white-space: pre-wrap; }\n";
     VMHL_Result+="body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; }\n";
     VMHL_Result+="</style>\n\n";
+
+    //Подключение двух файлов для отображения графиков
+    //https://github.com/jsxgraph/jsxgraph
+    VMHL_Result+="<link rel=\"stylesheet\" type=\"text/css\" href=\"jsxgraph.css\" />\n";
+    VMHL_Result+="<script type=\"text/javascript\" src=\"jsxgraphcore.js\"></script>";
+
     VMHL_Result+="</head>\n\n";
     VMHL_Result+="<body>\n";
 
@@ -390,4 +469,3 @@ QString HQt_EndHtml ()
     return VMHL_Result;
 }
 //---------------------------------------------------------------------------
-
