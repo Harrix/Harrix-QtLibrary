@@ -35,6 +35,8 @@ QString HQt_UniqueName (QString BeginString);//Функция возвращае
 QString HQt_UniqueNameOnlyNumbers ();//Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры.
 void HQt_Delay(int MSecs);//Функция делает задержку в MSecs миллисекунд.
 QString HQt_RandomString(int Length);//Функция генерирует случайную строку из английских больших и малых букв.
+int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);//Функция определяет сколько дней между двумя датами.
+int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);//Функция определяет сколько дней между двумя датами.
 
 //Для отображения HTML текста
 QString HQt_BeginHtml (); //Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
@@ -45,7 +47,7 @@ template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString 
 template <class T> QString THQt_NumberToText (T VMHL_X);//Функция выводит число VMHL_X в строку.
 template <class T> QString THQt_ShowVectorT (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
 template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);//Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowPoints=true,bool ShowArea=true);//Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine=true,bool ShowPoints=true,bool ShowArea=true,bool ShowSpecPoints=true);//Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
@@ -257,7 +259,7 @@ template <class T> QString THQt_ShowMatrix (T *VMHL_Matrix, int VMHL_N, int VMHL
     return VMHL_Result;
 }
 //---------------------------------------------------------------------------
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowPoints=true,bool ShowArea=true)
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine=true,bool ShowPoints=true,bool ShowArea=true,bool ShowSpecPoints=true)
 {
     /*
     Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
@@ -268,9 +270,17 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
      VMHL_N - количество точек;
      TitleChart - заголовок графика;
      NameVectorX - название оси Ox;
-     NameVectorY - название оси Oy.
+     NameVectorY - название оси Oy;
+     ShowLine - показывать ли линию;
+     ShowPoints - показывать ли точки;
+     ShowArea - показывать ли закрашенную ошбласть под кривой;
+     ShowSpecPoints - показывать ли специальные точки.
     Возвращаемое значение:
      Строка с HTML кодами с выводимым графиком.
+    Примечание:
+     Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand.
+     Рекомендую так:
+     qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
     Пример использования:
 
     ///////////////////////////////
@@ -309,6 +319,7 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
     //цвета
     QString Color="#97bbcd";
     QString HighlightColor="#3c7693";
+    QString CoordinateColor="#88969c";
 
     //посчитаем гарницы изменения параметров
     T MinX=VMHL_VectorX[0];
@@ -336,9 +347,9 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
 
     //посчитаем область графика, в которой все будет рисоваться
     T LeftXBoundingBox=MinX-LengthX/10.;
-    T LeftYBoundingBox=MinY-LengthY/10.;
-    T RightXBoundingBox=MaxX+LengthX/10.;
-    T RightYBoundingBox=MaxY+LengthY/10.;
+    T LeftYBoundingBox=MinY-LengthY/5.;
+    T RightXBoundingBox=MaxX+LengthX/5.;
+    T RightYBoundingBox=MaxY+LengthY/5.;
     QString SLeftXBoundingBox=QString::number(LeftXBoundingBox);
     QString SLeftYBoundingBox=QString::number(LeftYBoundingBox);
     QString SRightXBoundingBox=QString::number(RightXBoundingBox);
@@ -362,6 +373,8 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
 
     VMHL_Result+="<!--Вывод графика-->\n";
 
+    VMHL_Result+="<h2>"+TitleChart+"</h2>";
+
     //имена объектов в графике
     //QString UniqueName=HQt_UniqueNameOnlyNumbers();
     QString UniqueName=HQt_RandomString(6);
@@ -379,9 +392,9 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
     //рисуем область графика и оси
     VMHL_Result+="<div id=\""+NameBox+"\" class=\"jxgbox\" style=\"width:600px; height:300px;\"></div>\n";
     VMHL_Result+="<script type=\"text/javascript\">\n";
-    VMHL_Result+="var "+NameBoard+" = JXG.JSXGraph.initBoard('"+NameBox+"', {boundingbox: ["+SLeftXBoundingBox+", "+SRightYBoundingBox+", "+SRightXBoundingBox+", "+SLeftYBoundingBox+"], axis:false,keepaspectratio: false,showcopyright: false, zoom: {wheel: true}});\n";
-    VMHL_Result+="var "+NameAxisX+" = "+NameBoard+".create('axis', [["+SBeginXAxis+", "+SBeginYAxis+"], ["+SUpXAxis+", "+SBeginYAxis+"]]);\n";
-    VMHL_Result+="var "+NameAxisY+" = "+NameBoard+".create('axis', [["+SBeginXAxis+", "+SBeginYAxis+"], ["+SBeginXAxis+", "+SUpYAxis+"]]);\n";
+    VMHL_Result+="var "+NameBoard+" = JXG.JSXGraph.initBoard('"+NameBox+"', {boundingbox: ["+SLeftXBoundingBox+", "+SRightYBoundingBox+", "+SRightXBoundingBox+", "+SLeftYBoundingBox+"], axis:false,keepaspectratio: false,showcopyright: false,showNavigation: false, zoom: {wheel: true}});\n";
+    VMHL_Result+="var "+NameAxisX+" = "+NameBoard+".create('axis', [["+SBeginXAxis+", "+SBeginYAxis+"], ["+SUpXAxis+", "+SBeginYAxis+"]],{withLabel: true, name: '"+NameVectorX+"',label: {position:'lft',offset:[10,-21]}});\n";
+    VMHL_Result+="var "+NameAxisY+" = "+NameBoard+".create('axis', [["+SBeginXAxis+", "+SBeginYAxis+"], ["+SBeginXAxis+", "+SUpYAxis+"]],{withLabel: true, name: '"+NameVectorY+"',label: { position:'lrt',offset: [20,0]}});\n";
 
     //копируем во временный массив наши массивы, чтобы их не потревожить
     T *Temp_VMHL_VectorX=new T[VMHL_N];
@@ -417,7 +430,7 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
     VMHL_Result+="var "+NameDataX+" = ["+SDataX+"];\n";
     VMHL_Result+="var "+NameDataY+" = ["+SDataY+"];\n";
 
-    if (ShowPoints)
+    if ((ShowPoints)&&(ShowLine))
     {
         //Нарисуем график
         VMHL_Result+="var "+NameChart+"= "+NameBoard+".createElement('chart', ["+NameDataX+","+NameDataY+"], {chartStyle:'line,point'});\n";
@@ -427,7 +440,17 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
         VMHL_Result+="    "+NameChart+"[1][i].setProperty({strokeColor:'"+Color+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});\n";
         VMHL_Result+="    }\n";
     }
-    else
+    if ((ShowPoints)&&(!ShowLine))
+    {
+        //Нарисуем график
+        VMHL_Result+="var "+NameChart+"= "+NameBoard+".createElement('chart', ["+NameDataX+","+NameDataY+"], {chartStyle:'line,point'});\n";
+        VMHL_Result+=NameChart+"[0].setProperty('strokeColor:"+Color+"','highlightStrokeColor:"+HighlightColor+"','strokeWidth:0');\n";
+        VMHL_Result+="for(var i=0; i<"+QString::number(VMHL_N)+";i++) \n";
+        VMHL_Result+="    {\n";
+        VMHL_Result+="    "+NameChart+"[1][i].setProperty({strokeColor:'"+Color+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',face:'o', size:2, strokeWidth:'2pt'});\n";
+        VMHL_Result+="    }\n";
+    }
+    if ((!ShowPoints)&&(ShowLine))
     {
         VMHL_Result+="var "+NameChart+"= "+NameBoard+".createElement('chart', ["+NameDataX+","+NameDataY+"], {chartStyle:'line'});\n";
         VMHL_Result+=NameChart+"[0].setProperty('strokeColor:"+Color+"','highlightStrokeColor:"+HighlightColor+"','strokeWidth:2');\n";
@@ -446,7 +469,18 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
         VMHL_Result+=NameBoard+".create('curve', ["+NameDataXArea+","+NameDataYArea+"],{strokeColor:'"+Color+"',highlightStrokeColor:'"+Color+"',strokeWidth:0,highlightStrokeWidth:0,dash:0, fillColor:'"+Color+"',highlightFillColor:'"+Color+"',fillOpacity:0.5,highlightFillOpacity:0.5});\n";
     }
 
-            VMHL_Result+="</script>\n";
+    if (ShowSpecPoints)
+    {
+        //Теперь проставим точки
+        //Нулевая точка
+        VMHL_Result+=NameBoard+".create('point',["+SBeginXAxis+","+SBeginYAxis+"], {strokeColor:'"+CoordinateColor+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'O("+SBeginXAxis+","+SBeginYAxis+")',label:{fontsize:10}});\n";
+        //Максимальная по Y
+        VMHL_Result+=NameBoard+".create('point',["+SBeginXAxis+","+QString::number(MaxY)+"], {strokeColor:'"+CoordinateColor+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub>="+QString::number(MaxY)+"',label:{fontsize:10}});\n";
+        //Максимальная по X
+        VMHL_Result+=NameBoard+".create('point',["+QString::number(MaxX)+","+SBeginYAxis+"], {strokeColor:'"+CoordinateColor+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>x</sub>="+QString::number(MaxX)+"',label:{fontsize:10}});\n";
+    }
+
+    VMHL_Result+="</script>\n";
 
     delete [] Temp_VMHL_VectorX;
     delete [] Temp_VMHL_VectorY;

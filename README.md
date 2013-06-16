@@ -70,6 +70,12 @@ void HQt_Delay(int MSecs);
 QString HQt_RandomString(int Length);  
 Функция генерирует случайную строку из английских больших и малых букв.
 
+int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);  
+Функция определяет сколько дней между двумя датами.
+
+int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);  
+Функция определяет сколько дней между двумя датами.
+
 Функции для получения HTML кода для вывода в webView
 ---------------
 
@@ -127,6 +133,14 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.4.**
+
+**[+]** Добавлена функция int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate).
+
+**[+]** Добавлена функция-перезагрузка int HQt_DaysBetweenDates(QString BeginDate, QString EndDate).
+
+**[*]** Обновлены некоторые функции.
 
 **2.3.**
 

@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.2.
+//Сборник функций для Qt. Версия v.2.4.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -371,11 +371,14 @@ QString HQt_RandomString(int Length)
 {
     /*
     Функция генерирует случайную строку из английских больших и малых букв.
-
     Входные параметры:
      Length - длина строки, которую надо сгенерировать.
     Возвращаемое значение:
      Случайная строка.
+    Примечание:
+     Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand.
+     Рекомендую так:
+     qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
     */
     QString VMHL_Result;
     static const char alphanum[] =
@@ -396,6 +399,34 @@ QString HQt_RandomString(int Length)
     delete [] s;
 
     return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate)
+{
+    /*
+    Функция определяет сколько дней между двумя датами.
+    Входные параметры:
+     BeginDate - первая дата.
+     EndDate - вторая дата.
+    Возвращаемое значение:
+     Число дней между датами.
+    */
+    return abs(BeginDate.daysTo(EndDate));
+}
+//---------------------------------------------------------------------------
+int HQt_DaysBetweenDates(QString BeginDate, QString EndDate)
+{
+    /*
+    Функция определяет сколько дней между двумя датами.
+    Входные параметры:
+     BeginDate - первая дата в виде строки в формате 2013.06.16.
+     EndDate - вторая дата в виде строки в формате 2012.06.16.
+    Возвращаемое значение:
+     Число дней между датами.
+    */
+    QDate DBeginDate(QDate::fromString(BeginDate, "yyyy.MM.dd"));
+    QDate DEndDate(QDate::fromString(EndDate, "yyyy.MM.dd"));
+    return abs(DBeginDate.daysTo(DEndDate));
 }
 //---------------------------------------------------------------------------
 
@@ -437,6 +468,9 @@ QString HQt_BeginHtml ()
     VMHL_Result+="<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n\n";
     VMHL_Result+="<style type=\"text/css\">\n";
     VMHL_Result+="p, li { white-space: pre-wrap; }\n";
+    VMHL_Result+="h1 { font-size:140% }\n";
+    VMHL_Result+="h2 { font-size:120% }\n";
+    VMHL_Result+="h3,h4,h5,h6 { font-size:110% }\n";
     VMHL_Result+="body { font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal; }\n";
     VMHL_Result+="</style>\n\n";
 
