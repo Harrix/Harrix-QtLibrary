@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.3.
+Сборник функций для Qt. Версия v.2.5.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -12,6 +12,9 @@ https://github.com/Harrix/QtHarrixLibrary
 
 QString **HQt_ReadFile**(QString filename);  
 Функция считывает текстовой файл в QString.
+
+QStringList HQt_ReadFileToQStringList(QString filename);  
+Функция считывает текстовой файл в QStringList.
 
 void **HQt_SaveFile**(QString line, QString filename);  
 Функция сохраняет QString в текстовой файл.
@@ -64,17 +67,33 @@ QString **HQt_UniqueName** (QString BeginString);
 QString **HQt_UniqueNameOnlyNumbers** ();  
 Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры.
 
-void HQt_Delay(int MSecs);  
+void **HQt_Delay**(int MSecs);  
 Функция делает задержку в MSecs миллисекунд.
 
-QString HQt_RandomString(int Length);  
+QString **HQt_RandomString**(int Length);  
 Функция генерирует случайную строку из английских больших и малых букв.
 
-int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);  
+int **HQt_DaysBetweenDates**(QDate BeginDate, QDate EndDate);  
 Функция определяет сколько дней между двумя датами.
 
-int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);  
+int **HQt_DaysBetweenDates**(QString BeginDate, QString EndDate);  
 Функция определяет сколько дней между двумя датами.
+
+int **HQt_SizeMatrixOrVectorFromQStringList**(QStringList QStringListFromFile, int* VMHL_Result_M);  
+Функция подсчитывает сколько строк и столбцов в текстовом файле, который скопировали в QStringListFromFile.
+
+int **HQt_SizeMatrixOrVectorFromQStringList**(QStringList QStringListFromFile);  
+Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);  
+Функция считывает числа из QStringList в вектор.
+
+template <class T, class T2> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, T2 *VMHL_VectorResult2);  
+Функция считывает данные из QStringList в два вектора.
+
+template <class T> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);  
+Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
+
 
 Функции для получения HTML кода для вывода в webView
 ---------------
@@ -103,7 +122,7 @@ template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QSt
 template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);  
 Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowPoints=true,bool ShowArea=true);  
+template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine=true,bool ShowPoints=true,bool ShowArea=true,bool ShowSpecPoints=true)  
 Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
 
 
@@ -133,6 +152,20 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.5.**
+
+**[+]** Добавлена функция QStringList HQt_ReadFileToQStringList(QString filename); 
+
+**[+]** Добавлена функция int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* VMHL_Result_M);
+
+**[+]** Добавлена функция int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile);
+
+**[+]** Добавлена функция template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult); 
+
+**[+]** Добавлена функция template <class T, class T2> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T2 *VMHL_VectorResult2).
+
+**[+]** Добавлена функция template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2).
 
 **2.4.**
 

@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.4.
+//Сборник функций для Qt. Версия v.2.5.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -25,6 +25,21 @@ QString HQt_ReadFile(QString filename)
         line=file.readAll();
     file.close();
     return line;
+}
+//---------------------------------------------------------------------------
+
+QStringList HQt_ReadFileToQStringList(QString filename)
+{
+    /*
+    Функция считывает текстовой файл в QStringList.
+    Входные параметры:
+     filename - имя файла.
+    Возвращаемое значение:
+     QStringList со всем содержимым текстового файла.
+    */
+    QString Temp=HQt_ReadFile(filename);
+
+    return HQt_QStringToQStringList(Temp);
 }
 //---------------------------------------------------------------------------
 
@@ -427,6 +442,50 @@ int HQt_DaysBetweenDates(QString BeginDate, QString EndDate)
     QDate DBeginDate(QDate::fromString(BeginDate, "yyyy.MM.dd"));
     QDate DEndDate(QDate::fromString(EndDate, "yyyy.MM.dd"));
     return abs(DBeginDate.daysTo(DEndDate));
+}
+//---------------------------------------------------------------------------
+
+int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* VMHL_Result_M)
+{
+    /*
+    Функция подсчитывает сколько строк и столбцов в текстовом файле, который скопировали в QStringListFromFile.
+    Считается, что файл правильный, ошибки не проверяются. в строке числа разделяются через табуляцию \t,
+    а десятичные числа используют точку, а не запятую.
+    Входные параметры:
+     QStringListFromFile - непосредственно сам файл;
+     VMHL_Result_M - сюда будем записывать число столбцов в матрице (число знаков табуляции + 1).
+    Возвращаемое значение:
+     Число строк.
+    Пример содержимого QStringListFromFile:
+1	2.2
+2.8	9
+    */
+    int VMHL_Result_N=QStringListFromFile.count();
+
+    QString A=QStringListFromFile.at(0);
+
+    *VMHL_Result_M=A.count("\t")+1;
+
+    return VMHL_Result_N;
+}
+//---------------------------------------------------------------------------
+int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile)
+{
+    /*
+    Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+    Считается, что файл правильный, ошибки не проверяются. в строке числа разделяются через табуляцию \t,
+    а десятичные числа используют точку, а не запятую.
+    Входные параметры:
+     QStringListFromFile - непосредственно сам файл.
+    Возвращаемое значение:
+     Число строк.
+    Пример содержимого QStringListFromFile:
+1
+2.8
+    */
+    int VMHL_Result_N=QStringListFromFile.count();
+
+    return VMHL_Result_N;
 }
 //---------------------------------------------------------------------------
 

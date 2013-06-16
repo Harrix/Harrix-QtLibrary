@@ -10,12 +10,14 @@
 #include <QTextEdit>
 #include <QDateTime>
 #include <QApplication>
+#include <typeinfo>
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ОБЪЯВЛЕНИЯ ФУНКЦИЙ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 QString HQt_ReadFile(QString filename);//Функция считывает текстовой файл в QString.
+QStringList HQt_ReadFileToQStringList(QString filename);//Функция считывает текстовой файл в QStringList.
 void HQt_SaveFile(QString line, QString filename);//Функция сохраняет QString в текстовой файл.
 QString HQt_ListFilesInDir(QString path);//Функция считывает список файлов (включая скрытые) в директории в QString.
 QStringList HQt_ListFilesInDirQStringList(QString path);//Функция считывает список файлов (включая скрытые) в директории в QStringList.
@@ -37,6 +39,12 @@ void HQt_Delay(int MSecs);//Функция делает задержку в MSec
 QString HQt_RandomString(int Length);//Функция генерирует случайную строку из английских больших и малых букв.
 int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);//Функция определяет сколько дней между двумя датами.
 int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);//Функция определяет сколько дней между двумя датами.
+int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* VMHL_Result_M);//Функция подсчитывает сколько строк и столбцов в текстовом файле, который скопировали в QStringListFromFile.
+int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);//Функция считывает данные из QStringList в вектор.
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора.
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
+
 
 //Для отображения HTML текста
 QString HQt_BeginHtml (); //Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
@@ -52,6 +60,148 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult)
+{
+    /*
+    Функция считывает данные из QStringList в вектор.
+    Входные параметры:
+     QStringListFromFile - отсюда берем информацию;
+     VMHL_VectorResult - сюда будем записывать результат.
+    Возвращаемое значение:
+     Отсуствует.
+    Примечание:
+     Десятичные числа должны разделяться точкой.
+    Пример содержимого VMHL_VectorResult.
+1
+52
+6.45
+    Пример использования:
+///////////////////////////////////
+
+QStrin DS=QDir::separator();
+QStrin path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+int N;
+double *y;
+QStringList List = HQt_ReadFileToQStringList(path+"1.txt");
+N=HQt_SizeMatrixOrVectorFromQStringList(List);
+y=new double [N];
+
+THQt_ReadVectorFromQStringList(List,y);//считываем
+
+delete [] y;
+///////////////////////////////////
+    */
+    int i;
+    int N=QStringListFromFile.count();
+    QString A;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        VMHL_VectorResult[i]=A.toDouble();
+    }
+}
+//---------------------------------------------------------------------------
+
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2)
+{
+    /*
+    Функция считывает данные из QStringList в два вектора.
+    Входные параметры:
+     QStringListFromFile - отсюда берем информацию;
+     VMHL_VectorResult1 - сюда будем записывать результат первого вектора;
+     VMHL_VectorResult2 - сюда будем записывать результат второго вектора.
+    Возвращаемое значение:
+     Отсуствует.
+    Примечание:
+     Десятичные числа должны разделяться точкой.
+    Пример содержимого VMHL_VectorResult.
+1	2
+52	3
+6.4	7
+    Пример использования:
+///////////////////////////////////
+
+QStrin DS=QDir::separator();
+QStrin path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+int N;
+double *x,*y;
+QStringList List = HQt_ReadFileToQStringList(path+"2.txt");
+N=HQt_SizeMatrixOrVectorFromQStringList(List);
+x=new double [N];
+y=new double [N];
+
+THQt_ReadTwoVectorFromQStringList(List,x,y);
+
+delete [] y;
+delete [] x;
+///////////////////////////////////
+    */
+    int i;
+    int N=QStringListFromFile.count();
+    QString A,X1,X2;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        X1=A;
+        X2=A;
+        X1=X1.mid(0,X1.lastIndexOf("\t"));
+        X2=X2.mid(X2.lastIndexOf("\t"));
+
+        VMHL_VectorResult1[i]=X1.toDouble();
+        VMHL_VectorResult2[i]=X2.toDouble();
+    }
+}
+//---------------------------------------------------------------------------
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2)
+{
+    /*
+    Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
+    Входные параметры:
+     VMHL_VectorResult1 - сюда будем записывать результат первого вектора;
+     VMHL_VectorResult2 - сюда будем записывать результат второго вектора (даты).
+    Возвращаемое значение:
+     Отсуствует.
+    Примечание:
+     Десятичные числа должны разделяться точкой.
+    Пример содержимого VMHL_VectorResult.
+33	21.08.2012
+32	24.07.2012
+31	20.06.2012
+    */
+    int i;
+    int N=QStringListFromFile.count();
+    QString A,X1,X2;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        X1=A;
+        X2=A;
+        X1=X1.mid(0,X1.lastIndexOf("\t"));
+        X2=X2.mid(X2.lastIndexOf("\t"));
+        X2=X2.trimmed();
+
+        VMHL_VectorResult1[i]=X1.toDouble();
+
+        int p1=X2.lastIndexOf(".");
+        int p2=X2.indexOf(".");
+
+        QDate DBeginDate;
+        if ((p1==2)&&(p2==5))
+            DBeginDate=QDate::fromString(X2, "yyyy.MM.dd");
+        else
+            DBeginDate=QDate::fromString(X2, "dd.MM.yyyy");
+
+        VMHL_VectorResult2[i]=DBeginDate;
+    }
+}
+//---------------------------------------------------------------------------
 
 //Функции для получения HTML кода для вывода в webView
 
@@ -473,7 +623,7 @@ template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY
     {
         //Теперь проставим точки
         //Нулевая точка
-        VMHL_Result+=NameBoard+".create('point',["+SBeginXAxis+","+SBeginYAxis+"], {strokeColor:'"+CoordinateColor+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'O("+SBeginXAxis+","+SBeginYAxis+")',label:{fontsize:10}});\n";
+        VMHL_Result+=NameBoard+".create('point',["+SBeginXAxis+","+SBeginYAxis+"], {strokeColor:'"+CoordinateColor+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Min<sub>x</sub>="+SBeginXAxis+", Min<sub>y</sub>="+SBeginYAxis+"',label:{fontsize:10}});\n";
         //Максимальная по Y
         VMHL_Result+=NameBoard+".create('point',["+SBeginXAxis+","+QString::number(MaxY)+"], {strokeColor:'"+CoordinateColor+"',highlightStrokeColor:'"+HighlightColor+"',fillColor:'white',highlightFillColor:'white',strokeWidth:'2pt',face:'o', size:1, name:'Max<sub>y</sub>="+QString::number(MaxY)+"',label:{fontsize:10}});\n";
         //Максимальная по X
