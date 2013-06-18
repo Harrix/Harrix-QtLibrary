@@ -44,7 +44,9 @@ int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile);//Ф�
 template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);//Функция считывает данные из QStringList в вектор.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
-
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);//Функция считывает данные из QStringList в матрицу.
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);//Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);//Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
 
 //Для отображения HTML текста
 QString HQt_BeginHtml (); //Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
@@ -79,8 +81,8 @@ template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFr
     Пример использования:
 ///////////////////////////////////
 
-QStrin DS=QDir::separator();
-QStrin path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
 int N;
 double *y;
 QStringList List = HQt_ReadFileToQStringList(path+"1.txt");
@@ -124,8 +126,8 @@ template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringLis
     Пример использования:
 ///////////////////////////////////
 
-QStrin DS=QDir::separator();
-QStrin path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
 int N;
 double *x,*y;
 QStringList List = HQt_ReadFileToQStringList(path+"2.txt");
@@ -157,6 +159,7 @@ delete [] x;
     }
 }
 //---------------------------------------------------------------------------
+
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2)
 {
     /*
@@ -199,6 +202,116 @@ template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringLis
             DBeginDate=QDate::fromString(X2, "dd.MM.yyyy");
 
         VMHL_VectorResult2[i]=DBeginDate;
+    }
+}
+//---------------------------------------------------------------------------
+
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult)
+{
+    /*
+    Функция считывает данные из QStringList в матрицу.
+    Входные параметры:
+     QStringListFromFile - отсюда берем информацию;
+     VMHL_MatrixResult - сюда будем записывать результат считывания матрицы.
+    Возвращаемое значение:
+     Отсуствует.
+    Примечание:
+     Десятичные числа должны разделяться точкой.
+    Пример содержимого VMHL_VectorResult.
+1	2	6
+52	3	96
+6.4	7	4
+    Пример использования:
+///////////////////////////////////
+
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
+
+int N,M;
+N=HQt_SizeMatrixOrVectorFromQStringList(List,&M);
+
+double **X;
+X=new double*[N];
+for (int i=0;i<N;i++) X[i]=new double[M];
+
+THQt_ReadMatrixFromQStringList(List, X);
+
+for (int i=0;i<N;i++) delete [] X[i];
+delete [] X;
+///////////////////////////////////
+    */
+    int i,j;
+    int N,M;
+    N = HQt_SizeMatrixOrVectorFromQStringList(QStringListFromFile,&M);
+    QString A,X;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        for (j=0;j<M;j++)
+        {
+            X=A.mid(0,A.indexOf("\t"));
+            A=A.mid(A.indexOf("\t")+1);
+            A=A.trimmed();
+            VMHL_MatrixResult[i][j]=X.toDouble();
+        }
+    }
+}
+//---------------------------------------------------------------------------
+
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult)
+{
+    /*
+    Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+    Входные параметры:
+     QStringListFromFile - отсюда берем информацию;
+     k - номер столбца, начиная с нуля, который считываем;
+     VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
+    Возвращаемое значение:
+     Отсуствует.
+    Примечание:
+     Десятичные числа должны разделяться точкой.
+    Пример содержимого VMHL_VectorResult.
+1	2	6
+52	3	96
+6.4	7	4
+    Пример использования:
+///////////////////////////////////
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
+int N;
+N=HQt_SizeMatrixOrVectorFromQStringList(List);
+
+double *X;
+X=new double[N];
+
+int k=2;//номер столбца
+
+THQt_ReadColFromQStringList(List, k, X);
+
+delete [] X;
+///////////////////////////////////
+    */
+    int i,j;
+    int N,M;
+    N = HQt_SizeMatrixOrVectorFromQStringList(QStringListFromFile,&M);
+    QString A,X;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        for (j=0;j<k;j++)
+        {
+            A=A.mid(A.indexOf("\t")+1);
+            A=A.trimmed();
+        }
+            X=A.mid(0,A.indexOf("\t"));
+            VMHL_VectorResult[i]=X.toDouble();
     }
 }
 //---------------------------------------------------------------------------

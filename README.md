@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.5.
+Сборник функций для Qt. Версия v.2.6.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -85,7 +85,7 @@ int **HQt_SizeMatrixOrVectorFromQStringList**(QStringList QStringListFromFile, i
 int **HQt_SizeMatrixOrVectorFromQStringList**(QStringList QStringListFromFile);  
 Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
 
-template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);  
+template <class T> void **THQt_ReadVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult);  
 Функция считывает числа из QStringList в вектор.
 
 template <class T, class T2> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, T2 *VMHL_VectorResult2);  
@@ -93,6 +93,15 @@ template <class T, class T2> void **THQt_ReadTwoVectorFromQStringList**(QStringL
 
 template <class T> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);  
 Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
+
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);  
+Функция считывает данные из QStringList в матрицу.
+
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);  
+Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);  
+Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы
 
 
 Функции для получения HTML кода для вывода в webView
@@ -122,7 +131,7 @@ template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QSt
 template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);  
 Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine=true,bool ShowPoints=true,bool ShowArea=true,bool ShowSpecPoints=true)  
+template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine=true,bool ShowPoints=true,bool ShowArea=true,bool ShowSpecPoints=true)  
 Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
 
 
@@ -152,6 +161,14 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.6.**
+
+**[+]** Добавлена функция template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult).
+
+**[+]** Добавлена функция template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult).
+
+**[+]** Добавлена функция void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult).
 
 **2.5.**
 
