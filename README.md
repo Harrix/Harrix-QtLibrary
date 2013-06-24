@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.7.
+Сборник функций для Qt. Версия v.2.8.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -41,7 +41,7 @@ QString **HQt_QStringListToQString**(QStringList lines);
 Функция переводит QStringList в QString.
 
 bool **HQt_FileExists**(QString filename);  
-Функция проверяет сущестование файла.
+Функция проверяет существование файла.
 
 QString **HQt_GetNameFromFilename**(QString filename);  
 Функция получает имя файла без расширения по его имени.
@@ -50,7 +50,7 @@ bool **HQt_CopyFile**(QString filename, QString dir);
 Функция копирует файл filename в папку dir.
 
 bool **HQt_CopyFile**(QString filename, QString dir, bool overwrite);  
-Функция копирует файл filename в папку dir, с возможносью перезаписи.
+Функция копирует файл filename в папку dir, с возможностью перезаписи.
 
 QString **HQt_GetFilenameFromFullFilename**(QString filename);  
 Функция получает имя файла по полному пути.
@@ -79,29 +79,35 @@ int **HQt_DaysBetweenDates**(QDate BeginDate, QDate EndDate);
 int **HQt_DaysBetweenDates**(QString BeginDate, QString EndDate);  
 Функция определяет сколько дней между двумя датами.
 
-int **HQt_SizeMatrixOrVectorFromQStringList**(QStringList QStringListFromFile, int* VMHL_Result_M);  
-Функция подсчитывает сколько строк и столбцов в текстовом файле, который скопировали в QStringListFromFile.
-
-int **HQt_SizeMatrixOrVectorFromQStringList**(QStringList QStringListFromFile);  
-Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
-
 template <class T> void **THQt_ReadVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult);  
-Функция считывает числа из QStringList в вектор.
+Функция считывает данные из QStringList в вектор.
 
-template <class T, class T2> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, T2 *VMHL_VectorResult2);  
+template <class T> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);  
 Функция считывает данные из QStringList в два вектора.
 
 template <class T> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);  
 Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
 
-template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);  
+template <class T> void **THQt_ReadMatrixFromQStringList**(QStringList QStringListFromFile, T **VMHL_MatrixResult);  
 Функция считывает данные из QStringList в матрицу.
 
-template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);  
+template <class T> void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);  
 Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
 
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);  
-Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы
+void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);  
+Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+
+int **HQt_CountOfColsFromQStringList**(QStringList QStringListFromFile);  
+Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+
+int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile);  
+Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+
+int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile, int k);  
+Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
+
+int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile, int *VMHL_ResultVector);  
+Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
 
 
 Функции для получения HTML кода для вывода в webView
@@ -117,7 +123,7 @@ template <class T> QString **THQt_NumberToText** (T VMHL_X);
 Функция выводит число VMHL_X в строку.
 
 QString **HQt_ShowText** (QString TitleX);
-Функция возвращает строку с выводом некотороq строки с HTML кодами. Для добавление в html файл.
+Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
 
 template <class T> QString **THQt_ShowNumber** (T VMHL_X, QString TitleX, QString NameX);  
 Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
@@ -126,33 +132,33 @@ template <class T> QString **THQt_ShowVector** (T *VMHL_Vector, int VMHL_N, QStr
 Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 
 template <class T> QString **THQt_ShowVectorT** (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);  
-Функция возвращает строку с выводом некоторый вектора VMHL_Vector в траснпонированном виде с HTML кодами.
+Функция возвращает строку с выводом некоторый вектора VMHL_Vector в транспонированном виде с HTML кодами.
 
 template <class T> QString **THQt_ShowMatrix** (T *VMHL_Matrix, int VMHL_N, int VMHL_M, QString TitleMatrix, QString NameMatrix);  
 Функция возвращает строку с выводом некоторой матрицы VMHL_Matrix с HTML кодами.
 
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
-Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл.
+template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
+Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в HTML файл.
 
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
-Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функцией отсутствием параметра NameLine(название первого графика (для легенды)).
+template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
+Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Для добавление в HTML файл. Отличается от основной функцией отсутствием параметра NameLine(название первого графика (для легенды)).
 
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);  
+template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);  
 Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Отличается от основной функцией отсутствием булевских параметров в конце - все по умолчанию делается.
 
-template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N);  
+template <class T> QString **THQt_ShowChartOfLine** (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N);  
 Функция возвращает строку с выводом некоторого графика по точкам с HTML кодами. Отличается от основной функцией отсутствием булевских параметров в конце и названий осей и графиков - для быстрого отображения графика без лишних телодвижений.
 
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
-Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Для добавление в html файл.
+template <class T> QString **THQt_ShowTwoChartsOfLine** (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Для добавление в HTML файл.
 
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
-Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Отличается отсуствием параметров NameLine1 и NameLine2. То есть нет легенды у графика.
+template <class T> QString **THQt_ShowTwoChartsOfLine** (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Отличается отсутствием параметров NameLine1 и NameLine2. То есть нет легенды у графика.
 
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);  
-Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевских переменных - все по умолчанию.
+template <class T> QString **THQt_ShowTwoChartsOfLine** (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY,QString NameLine1, QString NameLine2);  
+Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Для добавление в HTML файл. Отличается от основной функции отсутствием булевских переменных - все по умолчанию.
 
-template <class T> QString THQt_ShowTwoChartsOfLine (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N);  
+template <class T> QString **THQt_ShowTwoChartsOfLine** (T *VMHL_VectorX,T *VMHL_VectorY1,T *VMHL_VectorY2, int VMHL_N);  
 Функция возвращает строку с выводом некоторого двух графиков по точкам с HTML кодами. Отличается от основной функции отсутствием булевских переменных и названий графика, осей, линий - все по умолчанию.
 
 
@@ -183,9 +189,25 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 
 **[*]** разное
 
+**2.8.**
+
+**[+]** Добавлена функция int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile).
+
+**[+]** Добавлена функция int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile).
+
+**[+]** Добавлена функция int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k).
+
+**[+]** Добавлена функция int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector).
+
+**[*]** Обновлены некоторые функции.
+
+**[-]** Удалена функция int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* VMHL_Result_M);
+
+**[-]** Удалена функция int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile);
+
 **2.7.**
 
-**[+]** Обновлена функция template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine).
+**[*]** Обновлена функция template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine).
 
 **[+]** Добавлена функция template <class T> QString THQt_ShowChartOfLine (T *VMHL_VectorX,T *VMHL_VectorY, int VMHL_N, QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine).
 

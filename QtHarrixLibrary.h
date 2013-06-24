@@ -39,8 +39,12 @@ void HQt_Delay(int MSecs);//Функция делает задержку в MSec
 QString HQt_RandomString(int Length);//Функция генерирует случайную строку из английских больших и малых букв.
 int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);//Функция определяет сколько дней между двумя датами.
 int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);//Функция определяет сколько дней между двумя датами.
-int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* VMHL_Result_M);//Функция подсчитывает сколько строк и столбцов в текстовом файле, который скопировали в QStringListFromFile.
-int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+
+int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);//Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);//Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
+
 template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);//Функция считывает данные из QStringList в вектор.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
@@ -93,7 +97,7 @@ QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
 int N;
 double *y;
 QStringList List = HQt_ReadFileToQStringList(path+"1.txt");
-N=HQt_SizeMatrixOrVectorFromQStringList(List);
+N=HQt_CountOfRowsFromQStringList(List);
 y=new double [N];
 
 THQt_ReadVectorFromQStringList(List,y);//считываем
@@ -138,7 +142,7 @@ QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
 int N;
 double *x,*y;
 QStringList List = HQt_ReadFileToQStringList(path+"2.txt");
-N=HQt_SizeMatrixOrVectorFromQStringList(List);
+N=HQt_CountOfRowsFromQStringList(List);
 x=new double [N];
 y=new double [N];
 
@@ -228,6 +232,10 @@ template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFr
 1	2	6
 52	3	96
 6.4	7	4
+    Второй пример содержимого VMHL_VectorResult.
+1	2	6	5
+52	3	96	5
+-	-	4   2
     Пример использования:
 ///////////////////////////////////
 
@@ -236,7 +244,8 @@ QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
 QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
 
 int N,M;
-N=HQt_SizeMatrixOrVectorFromQStringList(List,&M);
+M=HQt_CountOfColsFromQStringList(List);
+N=HQt_CountOfRowsFromQStringList(List);
 
 double **X;
 X=new double*[N];
@@ -250,8 +259,13 @@ delete [] X;
     */
     int i,j;
     int N,M;
-    N = HQt_SizeMatrixOrVectorFromQStringList(QStringListFromFile,&M);
+    M=HQt_CountOfColsFromQStringList(QStringListFromFile);
+    N=HQt_CountOfRowsFromQStringList(QStringListFromFile);
     QString A,X;
+
+    for (i=0;i<N;i++)
+        for (j=0;j<M;j++)
+            VMHL_MatrixResult[i][j]=0;
 
     for (i=0;i<N;i++)
     {
@@ -277,13 +291,17 @@ template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromF
      k - номер столбца, начиная с нуля, который считываем;
      VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
     Возвращаемое значение:
-     Отсуствует.
+     Количество элементов в столбце. Как только встречает вместо числа символ "-", то функция считает, что вектор закончился.
     Примечание:
      Десятичные числа должны разделяться точкой.
     Пример содержимого VMHL_VectorResult.
 1	2	6
 52	3	96
 6.4	7	4
+    Второй пример содержимого VMHL_VectorResult.
+1	2	6	5
+52	3	96	5
+-	-	4   2
     Пример использования:
 ///////////////////////////////////
 QString DS=QDir::separator();
@@ -291,7 +309,7 @@ QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
 
 QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
 int N;
-N=HQt_SizeMatrixOrVectorFromQStringList(List);
+N=HQt_CountOfRowsFromQStringList(List,k);
 
 double *X;
 X=new double[N];
@@ -304,8 +322,8 @@ delete [] X;
 ///////////////////////////////////
     */
     int i,j;
-    int N,M;
-    N = HQt_SizeMatrixOrVectorFromQStringList(QStringListFromFile,&M);
+    int N;
+    N = HQt_CountOfRowsFromQStringList(QStringListFromFile,k);
     QString A,X;
 
     for (i=0;i<N;i++)
@@ -318,6 +336,7 @@ delete [] X;
             A=A.trimmed();
         }
         X=A.mid(0,A.indexOf("\t"));
+        X=X.trimmed();
         VMHL_VectorResult[i]=X.toDouble();
     }
 }

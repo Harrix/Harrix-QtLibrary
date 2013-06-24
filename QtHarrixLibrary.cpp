@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.7.
+//Сборник функций для Qt. Версия v.2.8.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -445,15 +445,40 @@ int HQt_DaysBetweenDates(QString BeginDate, QString EndDate)
 }
 //---------------------------------------------------------------------------
 
-int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* VMHL_Result_M)
+int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile)
 {
     /*
-    Функция подсчитывает сколько строк и столбцов в текстовом файле, который скопировали в QStringListFromFile.
-    Считается, что файл правильный, ошибки не проверяются. в строке числа разделяются через табуляцию \t,
-    а десятичные числа используют точку, а не запятую.
+    Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+    Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию \t,
+    а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов.
+    Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих
+    элементов ставнится знак "-".
     Входные параметры:
-     QStringListFromFile - непосредственно сам файл;
-     VMHL_Result_M - сюда будем записывать число столбцов в матрице (число знаков табуляции + 1).
+     QStringListFromFile - непосредственно сам файл.
+    Возвращаемое значение:
+     Число столбцов (по первой строке).
+    Пример содержимого QStringListFromFile:
+1	2.2
+2.8	9
+    */
+    QString A=QStringListFromFile.at(0);
+
+    int VMHL_Result_M=A.count("\t")+1;
+
+    return VMHL_Result_M;
+}
+//---------------------------------------------------------------------------
+
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile)
+{
+    /*
+    Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+    Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию \t,
+    а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов.
+    Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих
+    элементов ставнится знак "-".
+    Входные параметры:
+     QStringListFromFile - непосредственно сам файл.
     Возвращаемое значение:
      Число строк.
     Пример содержимого QStringListFromFile:
@@ -462,30 +487,103 @@ int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile, int* 
     */
     int VMHL_Result_N=QStringListFromFile.count();
 
-    QString A=QStringListFromFile.at(0);
+    return VMHL_Result_N;
+}
+//---------------------------------------------------------------------------
 
-    *VMHL_Result_M=A.count("\t")+1;
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k)
+{
+    /*
+    Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
+    Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию \t,
+    а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов.
+    Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих
+    элементов ставнится знак "-".
+    Входные параметры:
+     QStringListFromFile - непосредственно сам файл.
+    Возвращаемое значение:
+     Число строк в столбце.
+    Пример содержимого QStringListFromFile:
+1	2.2
+2.8	9
+    */
+    int N = HQt_CountOfRowsFromQStringList(QStringListFromFile);
+    QString A,X;
+    int i,j;
+
+    for (i=0;(i<N)&&(X!="-");i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        for (j=0;j<k;j++)
+        {
+            A=A.mid(A.indexOf("\t")+1);
+            A=A.trimmed();
+        }
+        X=A.mid(0,A.indexOf("\t"));
+        X=X.trimmed();
+    }
+
+    int VMHL_Result_N;
+        if (X=="-")
+        VMHL_Result_N=i-1;
+        else
+            VMHL_Result_N=i;
 
     return VMHL_Result_N;
 }
 //---------------------------------------------------------------------------
-int HQt_SizeMatrixOrVectorFromQStringList(QStringList QStringListFromFile)
+
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector)
 {
     /*
-    Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
-    Считается, что файл правильный, ошибки не проверяются. в строке числа разделяются через табуляцию \t,
-    а десятичные числа используют точку, а не запятую.
+    Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
+    Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию \t,
+    а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов.
+    Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих
+    элементов ставнится знак "-".
     Входные параметры:
-     QStringListFromFile - непосредственно сам файл.
+     QStringListFromFile - непосредственно сам файл;
+     VMHL_ResultVector - сюда количество стро заносится.
     Возвращаемое значение:
-     Число строк.
+     Число строк в QStringListFromFile (в правильном файле это число равно максимальному числу строк в каком-нибудь столбце).
     Пример содержимого QStringListFromFile:
-1
-2.8
+1	2.2
+2.8	9
     */
-    int VMHL_Result_N=QStringListFromFile.count();
+    int i,j;
+    QString A,X;
+    int M=HQt_CountOfColsFromQStringList(QStringListFromFile);
+    int N=QStringListFromFile.count();
 
-    return VMHL_Result_N;
+    for (j=0;j<M;j++) VMHL_ResultVector[j]=0;
+
+    int *Stop=new int[M];
+    for (j=0;j<M;j++) Stop[j]=0;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        for (j=0;j<M;j++)
+        {
+            X=A.mid(0,A.indexOf("\t"));
+            A=A.mid(A.indexOf("\t")+1);
+            A=A.trimmed();
+            if ((X!="-")&&(Stop[j]==0))
+            {
+                VMHL_ResultVector[j]++;
+            }
+            if ((X=="-"))
+            {
+                     Stop[j]=1;
+            }
+        }
+    }
+
+    delete[] Stop;
+
+    return N;
 }
 //---------------------------------------------------------------------------
 
@@ -505,8 +603,8 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *
 6.4	2013.01.15	4
     */
     int i,j;
-    int N,M;
-    N = HQt_SizeMatrixOrVectorFromQStringList(QStringListFromFile,&M);
+    int N;
+    N = HQt_CountOfRowsFromQStringList(QStringListFromFile,k);
     QString A,X;
 
     for (i=0;i<N;i++)
