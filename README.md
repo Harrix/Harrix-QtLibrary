@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.9.
+Сборник функций для Qt. Версия v.2.8.
 
 https://github.com/Harrix/QtHarrixLibrary
 
