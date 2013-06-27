@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.9.
+//Сборник функций для Qt. Версия v.2.10.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -378,7 +378,7 @@ void HQt_Delay(int MSecs)
     */
     QTime dieTime= QTime::currentTime().addMSecs(MSecs);
     while( QTime::currentTime() < dieTime )
-    QGuiApplication::processEvents(QEventLoop::AllEvents, 100);
+        QGuiApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 //---------------------------------------------------------------------------
 
@@ -397,8 +397,8 @@ QString HQt_RandomString(int Length)
     */
     QString VMHL_Result;
     static const char alphanum[] =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz";
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
 
     char *s=new char[Length];
 
@@ -525,10 +525,10 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k)
     }
 
     int VMHL_Result_N;
-        if (X=="-")
+    if (X=="-")
         VMHL_Result_N=i-1;
-        else
-            VMHL_Result_N=i;
+    else
+        VMHL_Result_N=i;
 
     return VMHL_Result_N;
 }
@@ -576,7 +576,7 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_Re
             }
             if ((X=="-"))
             {
-                     Stop[j]=1;
+                Stop[j]=1;
             }
         }
     }
@@ -616,18 +616,202 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *
             A=A.mid(A.indexOf("\t")+1);
             A=A.trimmed();
         }
-            X=A.mid(0,A.indexOf("\t"));
+        X=A.mid(0,A.indexOf("\t"));
 
-            int p1=X.lastIndexOf(".");
-            int p2=X.indexOf(".");
+        int p1=X.lastIndexOf(".");
+        int p2=X.indexOf(".");
 
-            QDate DBeginDate;
-            if ((p1==2)&&(p2==5))
-                DBeginDate=QDate::fromString(X, "yyyy.MM.dd");
-            else
-                DBeginDate=QDate::fromString(X, "dd.MM.yyyy");
-            VMHL_VectorResult[i]=DBeginDate;
+        QDate DBeginDate;
+        if ((p1==2)&&(p2==5))
+            DBeginDate=QDate::fromString(X, "yyyy.MM.dd");
+        else
+            DBeginDate=QDate::fromString(X, "dd.MM.yyyy");
+        VMHL_VectorResult[i]=DBeginDate;
     }
+}
+//---------------------------------------------------------------------------
+
+QString THQt_ThreeNumbersToRGBString(int R, int G, int B)
+{
+    /*
+    Функция переводит три числа в строку RGB типа #25ffb5, как в Photoshop или HTML.
+    Входные параметры:
+     int R - число от 0 до 255 включительно означающее красный цвет;
+     int G - число от 0 до 255 включительно означающее зеленый цвет;
+     int B - число от 0 до 255 включительно означающее синий цвет.
+    Возвращаемое значение:
+     Строка содержащая код цвета, например: #25ffb5.
+    */
+    if (R<0) R=0;
+    if (R>255) R=255;
+    if (G<0) G=0;
+    if (G>255) G=255;
+    if (B<0) B=0;
+    if (B>255) B=255;
+
+    QString RR=QString::number(R, 16);
+    QString GG=QString::number(G, 16);
+    QString BB=QString::number(B, 16);
+
+    if (RR.length()==1) RR="0"+RR;
+    if (GG.length()==1) GG="0"+GG;
+    if (BB.length()==1) BB="0"+BB;
+
+    QString RGB="#"+RR+GG+BB;
+
+    return RGB;
+}
+//---------------------------------------------------------------------------
+void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B)
+{
+    /*
+    Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255,
+    которые кодируют  цвета.
+    Входные параметры:
+     RGB - строка, которая содержит код RGB цвета вида: #25ffb5.
+     R - число от 0 до 255 включительно означающее красный цвет;
+     G - число от 0 до 255 включительно означающее зеленый цвет;
+     B - число от 0 до 255 включительно означающее синий цвет.
+    Возвращаемое значение:
+     Строка содержащая код цвета, например: #25ffb5.
+    */
+    *R=0;
+    *G=0;
+    *B=0;
+
+    if (RGB.length()==7)
+    {
+        RGB=RGB.mid(1);
+
+        QString RR=RGB.mid(0,2);
+        QString GG=RGB.mid(2,2);
+        QString BB=RGB.mid(4,2);
+
+        bool ok;
+
+        *R=RR.toInt(&ok,16);
+        *G=GG.toInt(&ok,16);
+        *B=BB.toInt(&ok,16);
+    }
+}
+//---------------------------------------------------------------------------
+
+QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB)
+{
+    /*
+    Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
+    Входные параметры:
+     position - позиция из интервала [0;1], которая говорит какой цвет выдать из градиента;
+     FirstRGB - строка RGB кода первого цвета градиента, например: #63ddb2;
+     SecondRGB - строка RGB кода последнего цвета градиента, например: #5845da.
+    Возвращаемое значение:
+     Строка содержащая код цвета, например: #25ffb5.
+    */
+    int R,G,B;
+    int R1,G1,B1;
+    int R2,G2,B2;
+
+    THQt_RGBStringToThreeNumbers(FirstRGB, &R1, &G1, &B1);
+    THQt_RGBStringToThreeNumbers(SecondRGB, &R2, &G2, &B2);
+
+    R=R1+position*(R2-R1);
+    G=G1+position*(G2-G1);
+    B=B1+position*(B2-B1);
+
+    return THQt_ThreeNumbersToRGBString(R, G, B);
+}
+//---------------------------------------------------------------------------
+
+QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB)
+{
+    /*
+    Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+    Входные параметры:
+     alpha - прозрачность второго накладываемого цвета из интервала [0;1];
+     FirstRGB - строка RGB кода первого цвета градиента, например: #63ddb2;
+     SecondRGB - строка RGB кода последнего цвета градиента, например: #5845da.
+    Возвращаемое значение:
+     Строка содержащая код цвета, например: #25ffb5.
+    */
+    int R,G,B;
+    int R1,G1,B1;
+    int R2,G2,B2;
+
+    THQt_RGBStringToThreeNumbers(FirstRGB, &R1, &G1, &B1);
+    THQt_RGBStringToThreeNumbers(SecondRGB, &R2, &G2, &B2);
+
+    R=alpha*R2+(1-alpha)*R1;
+    G=alpha*G2+(1-alpha)*G1;
+    B=alpha*B2+(1-alpha)*B1;
+
+    return THQt_ThreeNumbersToRGBString(R, G, B);
+}
+//---------------------------------------------------------------------------
+
+QString THQt_GiveRainbowColorRGB(double position)
+{
+    /*
+    Функция выдает код RGB из градиента радуги для любой позиции от 0 до 1 из этого градиента.
+    То есть это перевод числа в RGB (из радуги).
+    Входные параметры:
+     position - позиция из интервала [0;1], которая говорит какой цвет выдать из радуги.
+    Возвращаемое значение:
+     Строка содержащая код цвета, например: #25ffb5.
+    */
+    if (position<0) position=0;
+    if (position>1) position=1;
+
+    int R=0, G=0, B=0;//
+
+    int nmax=6;// number of color bars
+    double m=nmax* position;
+    int n=int(m); // integer of m
+    double f=m-n;  // fraction of m
+    int t=int(f*255);
+
+    switch( n){
+    case 0: {
+        R = 255;
+        G = t;
+        B = 0;
+        break;
+    };
+    case 1: {
+        R = 255 - t;
+        G = 255;
+        B = 0;
+        break;
+    };
+    case 2: {
+        R = 0;
+        G = 255;
+        B = t;
+        break;
+    };
+    case 3: {
+        R = 0;
+        G = 255 - t;
+        B = 255;
+        break;
+    };
+    case 4: {
+        R = t;
+        G = 0;
+        B = 255;
+        break;
+    };
+    case 5: {
+        R = 255;
+        G = 0;
+        B = 255 - t;
+        break;
+    };
+
+    }; // case
+
+    QString RGB=THQt_ThreeNumbersToRGBString(R,G,B);
+
+    return RGB;
 }
 //---------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.9.
+Сборник функций для Qt. Версия v.2.10.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -13,7 +13,7 @@ https://github.com/Harrix/QtHarrixLibrary
 QString **HQt_ReadFile**(QString filename);  
 Функция считывает текстовой файл в QString.
 
-QStringList HQt_ReadFileToQStringList(QString filename);  
+QStringList **HQt_ReadFileToQStringList**(QString filename);  
 Функция считывает текстовой файл в QStringList.
 
 void **HQt_SaveFile**(QString line, QString filename);  
@@ -109,6 +109,21 @@ int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile, int k);
 int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile, int *VMHL_ResultVector);  
 Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
 
+QString **THQt_ThreeNumbersToRGBString**(int R, int G, int B);  
+Функция переводит три числа в строку RGB типа #25ffb5, как в Photoshop или HTML.
+
+void **THQt_RGBStringToThreeNumbers**(QString RGB, int *R, int *G, int *B);  
+Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
+
+QString **THQt_GiveRainbowColorRGB**(double position);  
+Функция выдает код RGB из градиента радуги для любой позиции от 0 до 1 из этого градиента.
+
+QString **THQt_ColorFromGradient**(double position, QString FirstRGB, QString SecondRGB);  
+Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
+
+QString **THQt_AlphaBlendingColorToColor**(double alpha, QString FirstRGB, QString SecondRGB);  
+Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+
 
 Функции для получения HTML кода для вывода в webView
 ---------------
@@ -171,8 +186,18 @@ template <class T> QString **THQt_ShowTwoIndependentChartsOfLine** (T *VMHL_Vect
 Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Отличается от основной функции отсутствием булевых параметров - все по умолчанию.
 
 template <class T> QString **THQt_ShowTwoIndependentChartsOfLine** (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);  
-/Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами.Отличается от основной функции отсутствием булевых параметров и подписей - все по умолчанию.
+Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами.Отличается от основной функции отсутствием булевых параметров и подписей - все по умолчанию.
 
+template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Первый столбец - это значения вектора X, одинакового для всех графиков. Все остальные столбцы - значения векторов Y для графиков. Число графиков равно числу этих столбцов.
+
+template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Первый столбец - это значения вектора X, одинакового для всех графиков. Все остальные столбцы - значения векторов Y для графиков. Число графиков равно числу этих столбцов. Отличается от основной библиотеки отсутствием легенды (нет параметра NewLine).
+
+template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);//Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевых переменных - все по умолчанию.
+
+template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевых переменных и названий осей, графиков - все по умолчанию.
 
 
 Пример использования функция вывода в HTML файл
@@ -201,6 +226,27 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.10.**
+
+**[+]** Добавлена функция QString THQt_ThreeNumbersToRGBString(int R, int G, int B).
+
+**[+]** Добавлена функция QString THQt_GiveRainbowColorRGB(double position).
+
+**[+]** Добавлена функция void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B).
+
+**[+]** Добавлена функция QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB).
+
+**[+]** Добавлена функция QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowChartsOfLineFromMatrix (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M).
+
 
 **2.9.**
 
