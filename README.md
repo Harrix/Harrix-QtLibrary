@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.10.
+Сборник функций для Qt. Версия v.2.11.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -188,16 +188,28 @@ template <class T> QString **THQt_ShowTwoIndependentChartsOfLine** (T *VMHL_Vect
 template <class T> QString **THQt_ShowTwoIndependentChartsOfLine** (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);  
 Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами.Отличается от основной функции отсутствием булевых параметров и подписей - все по умолчанию.
 
-template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+template <class T> QString **THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
 Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Первый столбец - это значения вектора X, одинакового для всех графиков. Все остальные столбцы - значения векторов Y для графиков. Число графиков равно числу этих столбцов.
 
-template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+template <class T> QString **THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
 Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Первый столбец - это значения вектора X, одинакового для всех графиков. Все остальные столбцы - значения векторов Y для графиков. Число графиков равно числу этих столбцов. Отличается от основной библиотеки отсутствием легенды (нет параметра NewLine).
 
-template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);//Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевых переменных - все по умолчанию.
+template <class T> QString **THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);//Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевых переменных - все по умолчанию.
 
-template <class T> **QString THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M);  
+template <class T> QString **THQt_ShowChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int VMHL_N,int VMHL_M);  
 Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевых переменных и названий осей, графиков - все по умолчанию.
+
+template <class T> QString **THQt_ShowIndependentChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Нечетные столбцы - это значения координат X графиков. Следующие за ними четные столбцы - соответствующие значения Y. То есть графики друг от друга независимы. Количество графиков равно половине столбцов в матрице.
+
+template <class T> QString **THQt_ShowIndependentChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Отличается от основной функции отсутствием легенды на графике.
+
+template <class T> QString **THQt_ShowIndependentChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Для добавление в html файл. Отличается от основной функции отсутствием булевых переменных - все по умолчанию.
+
+template <class T> QString **THQt_ShowIndependentChartsOfLineFromMatrix** (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M);  
+Функция возвращает строку с выводом графиков из матрицы по точкам с HTML кодами. Отличается от основной функции отсутствием булевых переменных, названий осей, графиков - все по умолчанию.
 
 
 Пример использования функция вывода в HTML файл
@@ -226,6 +238,20 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.11.**
+
+**[-]** изменения по выводу цифр в html в функциях.
+
+**[-]** исправлен случай, когда по какой-нибудь оси все значения одинаковы - тогда график просто не показывался.
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine, bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,bool ShowLine,bool ShowPoints,bool ShowArea,bool ShowSpecPoints).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M, QString TitleChart, QString NameVectorX, QString NameVectorY,QString *NameLine).
+
+**[+]** Добавлена функция template <class T> QString THQt_ShowIndependentChartsOfLineFromMatrix (T **VMHL_MatrixXY,int *VMHL_N_EveryCol,int VMHL_M).
 
 **2.10.**
 
