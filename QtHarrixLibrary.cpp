@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.12.
+//Сборник функций для Qt. Версия v.2.13.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -631,6 +631,42 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *
 }
 //---------------------------------------------------------------------------
 
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult)
+{
+    /*
+    Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Для строк.
+    Входные параметры:
+     QStringListFromFile - отсюда берем информацию;
+     k - номер столбца, начиная с нуля, который считываем;
+     VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
+    Возвращаемое значение:
+     Отсуствует.
+    Пример содержимого VMHL_VectorResult.
+1	2013.04.05	6
+52	2013.02.25	96
+6.4	2013.01.15	4
+    */
+    int i,j;
+    int N;
+    N = HQt_CountOfRowsFromQStringList(QStringListFromFile,k);
+    QString A,X;
+
+    for (i=0;i<N;i++)
+    {
+        A=QStringListFromFile.at(i);
+        A=A.trimmed();
+        for (j=0;j<k;j++)
+        {
+            A=A.mid(A.indexOf("\t")+1);
+            A=A.trimmed();
+        }
+        X=A.mid(0,A.indexOf("\t"));
+
+        VMHL_VectorResult[i]=X;
+    }
+}
+//---------------------------------------------------------------------------
+
 QString THQt_ThreeNumbersToRGBString(int R, int G, int B)
 {
     /*
@@ -812,6 +848,46 @@ QString THQt_GiveRainbowColorRGB(double position)
     QString RGB=THQt_ThreeNumbersToRGBString(R,G,B);
 
     return RGB;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_TextBeforeEqualSign (QString String)
+{
+    /*
+    Функция возвращает текст строки до первого знака =.
+    Входные параметры:
+     String - строка вида:
+     Title = Пример
+    Возвращаемое значение:
+     Текст строки до первого знака =.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result=String.mid(String.indexOf("=")+1);
+
+    VMHL_Result=VMHL_Result.trimmed();
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_TextAfterEqualSign (QString String)
+{
+    /*
+    Функция возвращает текст строки после первого знака =.
+    Входные параметры:
+     String - строка вида:
+     Title = Пример
+    Возвращаемое значение:
+     Текст строки после первого знака =.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result=String.mid(0,String.indexOf("="));
+
+    VMHL_Result=VMHL_Result.trimmed();
+
+    return VMHL_Result;
 }
 //---------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.12.
+Сборник функций для Qt. Версия v.2.13.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -97,6 +97,9 @@ template <class T> void **THQt_ReadColFromQStringList**(QStringList QStringListF
 void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);  
 Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
 
+void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);  
+Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+
 int **HQt_CountOfColsFromQStringList**(QStringList QStringListFromFile);  
 Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
 
@@ -123,6 +126,12 @@ QString **THQt_ColorFromGradient**(double position, QString FirstRGB, QString Se
 
 QString **THQt_AlphaBlendingColorToColor**(double alpha, QString FirstRGB, QString SecondRGB);  
 Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+
+QString HQt_TextBeforeEqualSign (QString String);  
+Функция возвращает текст строки до первого знака =.
+
+QString HQt_TextAfterEqualSign (QString String);  
+Функция возвращает текст строки после первого знака =.
 
 Функции для получения HTML кода для вывода в webView
 ---------------
@@ -249,6 +258,14 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.13*
+
+**[+]** Добавлена функция void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult).
+
+**[+]** Добавлена функция QString HQt_TextBeforeEqualSign (QString String).
+
+**[+]** Добавлена функция QString HQt_TextAfterEqualSign (QString String).
 
 **2.12.**
 
@@ -403,9 +420,6 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 
 Автор: Сергиенко Антон Борисович.
 
-С автором можно связаться по адресу sergienkoanton@mail.ru или  http:  
-vk.com/harrix .
+С автором можно связаться по адресу sergienkoanton@mail.ru или  http://vk.com/harrix .
 
-Сайт автора, где публикуются последние новости: http:  
-blog.harrix.org, а проекты располагаются по адресу http:  
-harrix.org .
+Сайт автора, где публикуются последние новости: http://blog.harrix.org, а проекты располагаются по адресу http://harrix.org .

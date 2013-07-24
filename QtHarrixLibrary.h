@@ -46,18 +46,19 @@ QString THQt_GiveRainbowColorRGB(double position);//Функция выдает 
 void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B);//Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
 QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB);//Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
 QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB);//Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
-
 int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);//Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);//Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);//Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
-
 template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);//Функция считывает данные из QStringList в вектор.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора.
 template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);//Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
 template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);//Функция считывает данные из QStringList в матрицу.
 template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);//Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
 void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);//Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);//Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+QString HQt_TextBeforeEqualSign (QString String);//Функция возвращает текст строки до первого знака =.
+QString HQt_TextAfterEqualSign (QString String);//Функция возвращает текст строки после первого знака =.
 
 //Для отображения HTML текста
 QString HQt_BeginHtml (); //Функция возвращает строку с началом HTML файла, в который другими функциями добавляются иные данные.
@@ -4946,4 +4947,5 @@ template <class T> QString THQt_ShowTwoIndependentChartsOfPointsAndLine (T *VMHL
     return THQt_ShowTwoIndependentChartsOfPointsAndLine (VMHL_VectorX1,VMHL_VectorY1,VMHL_N1,VMHL_VectorX2,VMHL_VectorY2, VMHL_N2, "", "x", "y","", "",true,false,false,true);
 }
 //---------------------------------------------------------------------------
+
 #endif // QTHARRIXLIBRARY_H
