@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.2.13.
+//Сборник функций для Qt. Версия v.2.14.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -863,7 +863,7 @@ QString HQt_TextBeforeEqualSign (QString String)
     */
     QString VMHL_Result;
 
-    VMHL_Result=String.mid(String.indexOf("=")+1);
+    VMHL_Result=String.mid(0,String.indexOf("="));
 
     VMHL_Result=VMHL_Result.trimmed();
 
@@ -883,7 +883,7 @@ QString HQt_TextAfterEqualSign (QString String)
     */
     QString VMHL_Result;
 
-    VMHL_Result=String.mid(0,String.indexOf("="));
+    VMHL_Result=String.mid(String.indexOf("=")+1);
 
     VMHL_Result=VMHL_Result.trimmed();
 
@@ -896,7 +896,7 @@ QString HQt_TextAfterEqualSign (QString String)
 QString HQt_ShowText (QString TitleX)
 {
     /*
-    Функция возвращает строку с выводом некотороq строки с HTML кодами. Для добавление в html файл.
+    Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
     Входные параметры:
      TitleX - непосредственно выводимая строка.
     Возвращаемое значение:
@@ -904,7 +904,24 @@ QString HQt_ShowText (QString TitleX)
     */
     QString VMHL_Result;
 
-    VMHL_Result="<p><b>"+TitleX+":</b><br>";
+    VMHL_Result="<p><b>"+TitleX+":</b></p>";
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_ShowSimpleText (QString String)
+{
+    /*
+    Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишевства. Для добавление в html файл.
+    Входные параметры:
+     String - непосредственно выводимая строка.
+    Возвращаемое значение:
+     Строка с HTML кодами с выводимым числом.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result="<p>"+String+"</p>";
 
     return VMHL_Result;
 }
@@ -960,6 +977,275 @@ QString HQt_EndHtml ()
     QString VMHL_Result;
 
     VMHL_Result="</body>\n</html>";
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+QString HQt_ReadHdataToHtmlChart (QString filename)
+{
+    /*
+    Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata
+    версии Harrix Data 1.0. Для добавление в html файл.
+    Входные параметры:
+     filename - имя файла.
+    Возвращаемое значение:
+     Строка с HTML кодом.
+    */
+    QString VMHL_Result;
+
+    try
+    {
+    if (HQt_GetExpFromFilename(filename)!="hdata") return VMHL_Result;// расширение не то
+    if (!HQt_FileExists(filename)) return VMHL_Result;// файла нет
+
+    QStringList List = HQt_ReadFileToQStringList(filename);
+
+    if (List.isEmpty()) return VMHL_Result;// файл пустой
+
+    QString String;
+
+    String=List.at(0);
+
+    if (HQt_TextBeforeEqualSign (String)!="HarrixFileFormat") return VMHL_Result;// это не формат HarrixFileFormat
+    if (HQt_TextAfterEqualSign (String)!="Harrix Data 1.0") return VMHL_Result;// это не версия Harrix Data 1.0
+
+    List.removeFirst();
+    String=List.at(0);
+
+    if (HQt_TextBeforeEqualSign (String)!="Site") return VMHL_Result;// нет второй строчки в виде ссылки на сайт
+    if (HQt_TextAfterEqualSign (String)!="https://github.com/Harrix/HarrixFileFormats") return VMHL_Result;// сайт указан неверно
+
+    //параметры по умолчанию
+    QString Type="SeveralLines";
+    QString Title;
+    QString AxisX;
+    QString AxisY;
+    bool ShowLine=false;
+    bool ShowPoints=false;
+    bool ShowArea=false;
+    bool ShowSpecPoints=false;
+
+    //предварительные переменные
+    QString TempType;
+    QString TempTitle;
+    QString TempAxisX;
+    QString TempAxisY;
+    QString TempParameters;
+
+    QString After;
+    QString Before;
+
+    List.removeFirst();
+
+    //проанализируем строчки на наличие тех переменных, которые могут быть необязательными
+    int i=0;
+    int n=List.count();
+    while ((i<n)&&(String!="BeginNamesOfCharts")&&(String!="BeginData"))
+    {
+        String = List.at(i);
+        Before = HQt_TextBeforeEqualSign (String);
+        After  = HQt_TextAfterEqualSign (String);
+
+        if (Before=="Type") TempType=After;
+        if (Before=="Title") TempTitle=After;
+        if (Before=="AxisX") TempAxisX=After;
+        if (Before=="AxisY") TempAxisY=After;
+        if (Before=="Parameters") TempParameters=After;
+        i++;
+    }
+
+    for (int j=0;j<i-1;j++) List.removeFirst();//удалим строчки, которые проанализировали
+
+    //А теперь сами переменные проанализируем
+    Title=TempTitle;
+    AxisX=TempAxisX;
+    AxisY=TempAxisY;
+
+    if (TempType=="Line") Type="Line";
+    if (TempType=="TwoLines") Type="TwoLines";
+    if (TempType=="TwoIndependentLines") Type="TwoIndependentLines";
+    if (TempType=="SeveralIndependentLines") Type="SeveralIndependentLines";
+    if (TempType=="SeveralLines") Type="SeveralLines";
+    if (TempType=="PointsAndLine") Type="PointsAndLine";
+
+    QStringList ListParameters = TempParameters.split( ",", QString::SkipEmptyParts );
+    for (int j=0;j<ListParameters.count();j++)
+    {
+        String=ListParameters.at(j);
+        String=String.trimmed();
+        if (String=="ShowLine") ShowLine=true;
+        if (String=="ShowPoints") ShowPoints=true;
+        if (String=="ShowArea") ShowArea=true;
+        if (String=="ShowSpecPoints") ShowSpecPoints=true;
+    }
+
+    if ((ShowLine==false)&&(ShowPoints==false)) ShowLine=true;
+
+
+    //Теперь пытаемся поискать и обработать названия столбцов
+    QStringList ListNamesOfCharts;
+    String=List.at(0);
+    i=0;
+    if (String=="BeginNamesOfCharts")
+    {
+        int n=List.count();
+        while ((i<n)&&(String!="EndNamesOfCharts")&&(String!="BeginData"))
+        {
+            String = List.at(i);
+
+            if ((String!="BeginNamesOfCharts")&&(String!="EndNamesOfCharts")&&(String!="BeginData")&&(String!="EndData"))
+                ListNamesOfCharts << String;
+
+            i++;
+        }
+    }
+
+    for (int j=0;j<i;j++) List.removeFirst();//удалим строчки, которые проанализировали
+
+    //Заберем данные непосредственно
+    String=List.at(0);
+    if (String=="BeginData")
+    {
+
+        if (List.at(List.count()-1)!="EndData") return VMHL_Result;// файл с ошибкой
+        List.removeFirst();
+        List.removeLast();
+        //теперь в List находитсz только нормальный объем данных
+    }
+
+    //Теперь можем наконец работать с выводом графиков согласно типу
+    if (Type=="Line")
+    {
+        int N=HQt_CountOfRowsFromQStringList(List);
+        double *dataX=new double [N];
+        double *dataY=new double [N];
+        THQt_ReadTwoVectorFromQStringList(List,dataX,dataY);
+
+        VMHL_Result += THQt_ShowChartOfLine (dataX,dataY,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ShowLine,ShowPoints,ShowArea,ShowSpecPoints,false);
+
+        delete []dataX;
+        delete []dataY;
+    }
+    if (Type=="TwoLines")
+    {
+        int N=HQt_CountOfRowsFromQStringList(List);
+        double *dataX=new double [N];
+        double *dataY1=new double [N];
+        double *dataY2=new double [N];
+
+        THQt_ReadColFromQStringList(List,0,dataX);
+        THQt_ReadColFromQStringList(List,1,dataY1);
+        THQt_ReadColFromQStringList(List,2,dataY2);
+
+        VMHL_Result += THQt_ShowTwoChartsOfLine (dataX,dataY1,dataY2,N,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+
+        delete []dataX;
+        delete []dataY1;
+        delete []dataY2;
+    }
+    if (Type=="TwoIndependentLines")
+    {
+        int NX1=HQt_CountOfRowsFromQStringList(List,0);
+        int NY1=HQt_CountOfRowsFromQStringList(List,1);
+        int NX2=HQt_CountOfRowsFromQStringList(List,2);
+        int NY2=HQt_CountOfRowsFromQStringList(List,3);
+        double *dataX1=new double [NX1];
+        double *dataY1=new double [NY1];
+        double *dataX2=new double [NX2];
+        double *dataY2=new double [NY2];
+
+        THQt_ReadColFromQStringList(List,0,dataX1);
+        THQt_ReadColFromQStringList(List,1,dataY1);
+        THQt_ReadColFromQStringList(List,2,dataX2);
+        THQt_ReadColFromQStringList(List,3,dataY2);
+
+        VMHL_Result += THQt_ShowTwoIndependentChartsOfLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+
+        delete []dataX1;
+        delete []dataX2;
+        delete []dataY1;
+        delete []dataY2;
+    }
+    if (Type=="SeveralLines")
+    {
+        int N,M;
+
+        M=HQt_CountOfColsFromQStringList(List);
+
+        int *N_EveryCol=new int[M];
+
+        N=HQt_CountOfRowsFromQStringList(List,N_EveryCol);
+
+        double **X;
+        X=new double*[N];
+        for (int i=0;i<N;i++) X[i]=new double[M];
+
+        THQt_ReadMatrixFromQStringList(List, X);
+
+        QString *NameLine=new QString[M-1];
+        for (int i=0;i<M-1;i++)NameLine[i]=ListNamesOfCharts.at(i);
+
+        VMHL_Result += THQt_ShowChartsOfLineFromMatrix (X,N,M,Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+
+        for (int i=0;i<N;i++) delete [] X[i];
+        delete [] X;
+        delete [] N_EveryCol;
+        delete [] NameLine;
+    }
+    if (Type=="SeveralIndependentLines")
+    {
+        int N,M;
+
+        M=HQt_CountOfColsFromQStringList(List);
+
+        int *N_EveryCol=new int[M];
+
+        N=HQt_CountOfRowsFromQStringList(List,N_EveryCol);
+
+        double **X;
+        X=new double*[N];
+        for (int i=0;i<N;i++) X[i]=new double[M];
+
+        THQt_ReadMatrixFromQStringList(List, X);
+
+        QString *NameLine=new QString[M/2];
+        for (int i=0;i<M/2;i++)NameLine[i]=ListNamesOfCharts.at(i);
+
+        VMHL_Result += THQt_ShowIndependentChartsOfLineFromMatrix (X,N_EveryCol,M, Title,AxisX,AxisY,NameLine,ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+
+        for (int i=0;i<N;i++) delete [] X[i];
+        delete [] X;
+        delete [] N_EveryCol;
+        delete [] NameLine;
+    }
+    if (Type=="PointsAndLine")
+    {
+        int NX1=HQt_CountOfRowsFromQStringList(List,0);
+        int NY1=HQt_CountOfRowsFromQStringList(List,1);
+        int NX2=HQt_CountOfRowsFromQStringList(List,2);
+        int NY2=HQt_CountOfRowsFromQStringList(List,3);
+        double *dataX1=new double [NX1];
+        double *dataY1=new double [NY1];
+        double *dataX2=new double [NX2];
+        double *dataY2=new double [NY2];
+
+        THQt_ReadColFromQStringList(List,0,dataX1);
+        THQt_ReadColFromQStringList(List,1,dataY1);
+        THQt_ReadColFromQStringList(List,2,dataX2);
+        THQt_ReadColFromQStringList(List,3,dataY2);
+
+        VMHL_Result += THQt_ShowTwoIndependentChartsOfPointsAndLine (dataX1,dataY1,NX1,dataX2,dataY2,NX2,Title,AxisX,AxisY,ListNamesOfCharts.at(0),ListNamesOfCharts.at(1),ShowLine,ShowPoints,ShowArea,ShowSpecPoints);
+
+        delete []dataX1;
+        delete []dataX2;
+        delete []dataY1;
+        delete []dataY2;
+    }
+    }
+    catch(...)
+    {
+        VMHL_Result="";
+    }
 
     return VMHL_Result;
 }

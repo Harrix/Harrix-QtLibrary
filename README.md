@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.13.
+Сборник функций для Qt. Версия v.2.14.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -127,10 +127,10 @@ QString **THQt_ColorFromGradient**(double position, QString FirstRGB, QString Se
 QString **THQt_AlphaBlendingColorToColor**(double alpha, QString FirstRGB, QString SecondRGB);  
 Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
 
-QString HQt_TextBeforeEqualSign (QString String);  
+QString **HQt_TextBeforeEqualSign** (QString String);  
 Функция возвращает текст строки до первого знака =.
 
-QString HQt_TextAfterEqualSign (QString String);  
+QString **HQt_TextAfterEqualSign** (QString String);  
 Функция возвращает текст строки после первого знака =.
 
 Функции для получения HTML кода для вывода в webView
@@ -147,6 +147,9 @@ template <class T> QString **THQt_NumberToText** (T VMHL_X);
 
 QString **HQt_ShowText** (QString TitleX);
 Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
+
+QString **HQt_ShowSimpleText** (QString String);  
+Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишевства. Для добавление в html файл.
 
 template <class T> QString **THQt_ShowNumber** (T VMHL_X, QString TitleX, QString NameX);  
 Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
@@ -231,6 +234,9 @@ template <class T> QString **THQt_ShowTwoIndependentChartsOfPointsAndLine** (T *
 template <class T> QString **THQt_ShowTwoIndependentChartsOfPointsAndLine** (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);  
 Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. Отличается от основной функции отсутствием булевых параметров и подписей - все по умолчанию.
 
+QString HQt_ReadHdataToHtmlChart (QString filename);  
+Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata. Для добавление в html файл.
+
 
 Пример использования функция вывода в HTML файл
 ---------------
@@ -258,6 +264,14 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.14*
+
+**[-]** HQt_TextBeforeEqualSign и HQt_TextAfterEqualSign работали наоборот. Исправил
+
+**[+]** Добавлена функция QString HQt_ShowSimpleText (QString String).
+
+**[+]** Добавлена функция QString HQt_ReadHdataToHtmlChart (QString filename).
 
 **2.13*
 
