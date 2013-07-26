@@ -65,6 +65,7 @@ QString HQt_BeginHtml (); //Функция возвращает строку с 
 QString HQt_EndHtml (); //Функция возвращает строку с концовкой HTML файла, в который другими функциями добавляются иные данные.
 QString HQt_ShowText (QString TitleX);//Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
 QString HQt_ShowSimpleText (QString String);//Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишевства. Для добавление в html файл.
+QString HQt_ShowAlert (QString String);//Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
 template <class T> QString THQt_ShowNumber (T VMHL_X, QString TitleX, QString NameX);//Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
 template <class T> QString THQt_ShowVector (T *VMHL_Vector, int VMHL_N, QString TitleVector, QString NameVector);//Функция возвращает строку с выводом некоторый вектора VMHL_Vector с HTML кодами.
 template <class T> QString THQt_NumberToText (T VMHL_X);//Функция выводит число VMHL_X в строку.

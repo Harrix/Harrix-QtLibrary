@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.14.
+Сборник функций для Qt. Версия v.2.15.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -149,7 +149,10 @@ QString **HQt_ShowText** (QString TitleX);
 Функция возвращает строку с выводом некоторой строки с HTML кодами. Для добавление в html файл.
 
 QString **HQt_ShowSimpleText** (QString String);  
-Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишевства. Для добавление в html файл.
+Функция возвращает строку с выводом некоторой строки с HTML кодами без всякого излишеств. Для добавление в html файл.
+
+QString **HQt_ShowAlert** (QString String);  
+Функция возвращает строку с выводом некоторого предупреждения. Для добавление в html файл.
 
 template <class T> QString **THQt_ShowNumber** (T VMHL_X, QString TitleX, QString NameX);  
 Функция возвращает строку с выводом некоторого числа VMHL_X с HTML кодами.
@@ -264,6 +267,14 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.15*
+
+**[-]** Некоторые функции дополнены.
+
+**[*]** Добавлена папка с изображениями.
+
+**[+]** Добавлена функция QString **HQt_ShowAlert** (QString String).
 
 **2.14*
 
