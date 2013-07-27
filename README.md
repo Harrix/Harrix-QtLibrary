@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.15.
+Сборник функций для Qt. Версия v.2.156.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -237,7 +237,7 @@ template <class T> QString **THQt_ShowTwoIndependentChartsOfPointsAndLine** (T *
 template <class T> QString **THQt_ShowTwoIndependentChartsOfPointsAndLine** (T *VMHL_VectorX1,T *VMHL_VectorY1,int VMHL_N1,T *VMHL_VectorX2,T *VMHL_VectorY2, int VMHL_N2);  
 Функция возвращает строку с выводом некоторого двух независимых графиков по точкам с HTML кодами. Один график выводится в виде точек, а второй в виде линии. Удобно для отображения регрессий. Отличается от основной функции отсутствием булевых параметров и подписей - все по умолчанию.
 
-QString HQt_ReadHdataToHtmlChart (QString filename);  
+QString **HQt_ReadHdataToHtmlChart** (QString filename);  
 Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata. Для добавление в html файл.
 
 
@@ -268,13 +268,17 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 
 **[*]** разное
 
+**2.16*
+
+**[-]** Исправление в функциях показа двух графиков.
+
 **2.15*
 
 **[-]** Некоторые функции дополнены.
 
 **[*]** Добавлена папка с изображениями.
 
-**[+]** Добавлена функция QString **HQt_ShowAlert** (QString String).
+**[+]** Добавлена функция QString HQt_ShowAlert (QString String).
 
 **2.14*
 
