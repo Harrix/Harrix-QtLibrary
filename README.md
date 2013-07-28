@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.2.156.
+Сборник функций для Qt. Версия v.2.17.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -240,6 +240,17 @@ template <class T> QString **THQt_ShowTwoIndependentChartsOfPointsAndLine** (T *
 QString **HQt_ReadHdataToHtmlChart** (QString filename);  
 Функция возвращает строку с HTML кодом графика в результате считывания информации из *.hdata. Для добавление в html файл.
 
+QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
+Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл.
+
+QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine);  
+Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл. Отличается от основной функцией отсутствием параметра NameLine(название графика (для легенды)).
+
+QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine);  
+Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл. Отличается от основной функцией отсутствием булевских параметров в конце - все по умолчанию делается.
+
+QString **HQt_DrawLine** (double Left, double Right, double h, double (*Function)(double));  
+Функция возвращает строку с HTML кодом отрисовки линии по функции Function. Для добавление в html файл. Отличается от основной функцией отсутствием булевских параметров в конце и названий осей и графиков - для быстрого отображения графика без лишних телодвижений.
 
 Пример использования функция вывода в HTML файл
 ---------------
@@ -267,6 +278,16 @@ ui->webView->setUrl(QUrl::fromLocalFile(path+"temp.html"));
 **[+]** добавление
 
 **[*]** разное
+
+**2.17*
+
+**[+]** Добавлена функция QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine).
+
+**[+]** Добавлена функция QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, bool ShowLine, bool ShowPoints, bool ShowArea, bool ShowSpecPoints, bool RedLine).
+
+**[+]** Добавлена функция QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double), QString TitleChart, QString NameVectorX, QString NameVectorY, QString NameLine).
+
+**[+]** Добавлена функция QString HQt_DrawLine (double Left, double Right, double h, double (*Function)(double)).
 
 **2.16*
 
