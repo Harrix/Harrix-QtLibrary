@@ -596,7 +596,7 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *
      k - номер столбца, начиная с нуля, который считываем;
      VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
     Пример содержимого VMHL_VectorResult.
 1	2013.04.05	6
 52	2013.02.25	96
@@ -640,7 +640,7 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString
      k - номер столбца, начиная с нуля, который считываем;
      VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
     Пример содержимого VMHL_VectorResult.
 1	2013.04.05	6
 52	2013.02.25	96

@@ -72,7 +72,7 @@ template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFr
      QStringListFromFile - отсюда берем информацию;
      VMHL_VectorResult - сюда будем записывать результат.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
     Пример содержимого VMHL_VectorResult.
@@ -117,7 +117,7 @@ template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringLis
      VMHL_VectorResult1 - сюда будем записывать результат первого вектора;
      VMHL_VectorResult2 - сюда будем записывать результат второго вектора.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
     Пример содержимого VMHL_VectorResult.
@@ -169,7 +169,7 @@ template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringLis
      VMHL_VectorResult1 - сюда будем записывать результат первого вектора;
      VMHL_VectorResult2 - сюда будем записывать результат второго вектора (даты).
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
     Пример содержимого VMHL_VectorResult.
@@ -215,7 +215,7 @@ template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFr
      QStringListFromFile - отсюда берем информацию;
      VMHL_MatrixResult - сюда будем записывать результат считывания матрицы.
     Возвращаемое значение:
-     Отсуствует.
+     Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
     Пример содержимого VMHL_VectorResult.

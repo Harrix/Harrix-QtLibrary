@@ -147,6 +147,8 @@ QString **HQt_TextAfterEqualSign** (QString String);
 
 **[*]** Из библиотеки убраны функции (и сопутствующие файлы) для отображения информации в QWebView. Все эти функции перенесены в отдельную библиотеку QtHarrixLibraryForQWebView, которую можно найти по адресу: https://github.com/Harrix/QtHarrixLibraryForQWebView
 
+**[+]** В библиотеке теперь 41  функция.
+
 Контакты
 ---------------
 
