@@ -904,7 +904,7 @@ QString HQt_ShowText (QString TitleX)
     */
     QString VMHL_Result;
 
-    VMHL_Result="<p><b>"+TitleX+":</b></p>\n";
+    VMHL_Result="<p><b>"+TitleX+".</b></p>\n";
 
     return VMHL_Result;
 }
