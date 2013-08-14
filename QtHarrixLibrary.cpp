@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.0.
+//Сборник функций для Qt. Версия v.3.1.
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -250,7 +250,13 @@ bool HQt_CopyFile(QString filename, QString dir)
      false - если скопировалось неудачно.
     */
     QFileInfo fileInfo(filename);
-    QString destinationFile = dir + QDir::separator() + fileInfo.fileName();
+
+    QString Separator;
+    if (filename.contains(QDir::separator())) Separator=QDir::separator();
+    if (filename.contains("\\")) Separator="\\";
+    if (filename.contains("/")) Separator="/";
+
+    QString destinationFile = dir + Separator + fileInfo.fileName();
     bool result = QFile::copy(filename, destinationFile);
     return result;
 }
@@ -269,7 +275,13 @@ bool HQt_CopyFile(QString filename, QString dir, bool overwrite)
      false - если скопировалось неудачно.
     */
     QFileInfo fileInfo(filename);
-    QString destinationFile = dir + QDir::separator() + fileInfo.fileName();
+
+    QString Separator;
+    if (filename.contains(QDir::separator())) Separator=QDir::separator();
+    if (filename.contains("\\")) Separator="\\";
+    if (filename.contains("/")) Separator="/";
+
+    QString destinationFile = dir + Separator + fileInfo.fileName();
 
     if ((QFile::exists(destinationFile))&&(overwrite==true))
     {
@@ -290,8 +302,14 @@ QString HQt_GetFilenameFromFullFilename(QString filename)
     Возвращаемое значение:
      Строка с именем файла.
     */
-    QString name="";
-    name=filename.mid(filename.lastIndexOf(QDir::separator())+1);
+    QString name;
+
+    QString Separator;
+    if (filename.contains(QDir::separator())) Separator=QDir::separator();
+    if (filename.contains("\\")) Separator="\\";
+    if (filename.contains("/")) Separator="/";
+
+    name=filename.mid(filename.lastIndexOf(Separator)+1);
     return name;
 }
 //---------------------------------------------------------------------------

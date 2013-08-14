@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.0.
+Сборник функций для Qt. Версия v.3.1.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -143,7 +143,11 @@ QString **HQt_TextAfterEqualSign** (QString String);
 
 **[*]** разное
 
-**3.0*
+**3.1**
+
+**[-]** Исправление в функциях по поиску разделителя между папками в полных именах файлах.
+
+**3.0**
 
 **[*]** Из библиотеки убраны функции (и сопутствующие файлы) для отображения информации в QWebView. Все эти функции перенесены в отдельную библиотеку QtHarrixLibraryForQWebView, которую можно найти по адресу: https://github.com/Harrix/QtHarrixLibraryForQWebView
 
