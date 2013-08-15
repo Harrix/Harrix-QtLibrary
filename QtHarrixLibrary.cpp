@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.1.
+//Сборник функций для Qt. Версия v.3.2
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -908,3 +908,28 @@ QString HQt_TextAfterEqualSign (QString String)
     return VMHL_Result;
 }
 //---------------------------------------------------------------------------
+
+QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String)
+{
+    /*
+    Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+    Входные параметры:
+     StringList - QStringList, в который мы добавляем строку (добавление в возвращаемом элементе);
+     String - добавляемая строка.
+    Возвращаемое значение:
+     Отсутствует.
+    */
+    bool in=false;
+
+    for (int i=0;i<StringList.count();i++)
+    {
+        if (StringList.at(i)==String)
+            in=true;
+    }
+
+    if (!in) StringList << String;
+
+    return StringList;
+}
+//---------------------------------------------------------------------------
+

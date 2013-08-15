@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.1.
+Сборник функций для Qt. Версия v.3.2.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -133,6 +133,10 @@ QString **HQt_TextBeforeEqualSign** (QString String);
 QString **HQt_TextAfterEqualSign** (QString String);  
 Функция возвращает текст строки после первого знака =.
 
+QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);  
+Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+
+
 
 История проекта
 ---------------
@@ -142,6 +146,10 @@ QString **HQt_TextAfterEqualSign** (QString String);
 **[+]** добавление
 
 **[*]** разное
+
+**3.2**
+
+**[+]** Добавлена функция HQt_AddUniqueQStringInQStringList.
 
 **3.1**
 
