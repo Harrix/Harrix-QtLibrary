@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.2.
+Сборник функций для Qt. Версия v.3.6.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -133,9 +133,11 @@ QString **HQt_TextBeforeEqualSign** (QString String);
 QString **HQt_TextAfterEqualSign** (QString String);  
 Функция возвращает текст строки после первого знака =.
 
-QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);  
+QStringList **HQt_AddUniqueQStringInQStringList** (QStringList StringList, QString String);  
 Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
 
+int **HQt_SearchQStringInQStringList** (QStringList StringList, QString String);  
+Функция ищет в QStringList строку QString (номер первого вхождения).
 
 
 История проекта
@@ -146,6 +148,22 @@ QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString S
 **[+]** добавление
 
 **[*]** разное
+
+**3.6**
+
+**[+]** Добавлена функция HQt_SearchQStringInQStringList.  
+
+**3.5**
+
+**[-]** Удалены функции HQt_ReadNumberOfParametersFromHarrixOptimizationTesting, HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting и HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting ввиду перехода на класс DataOfHarrixOptimizationTesting.
+
+**3.4**
+
+**[+]** Добавлена функции HQt_ReadNumberOfParametersFromHarrixOptimizationTesting.
+
+**3.3**
+
+**[+]** Добавлена функции HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting и HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting.
 
 **3.2**
 

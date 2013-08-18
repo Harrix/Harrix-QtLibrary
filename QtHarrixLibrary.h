@@ -11,6 +11,7 @@
 #include <QDateTime>
 #include <QApplication>
 #include <typeinfo>
+#include <QXmlStreamReader>
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ОБЪЯВЛЕНИЯ ФУНКЦИЙ
@@ -58,6 +59,8 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString
 QString HQt_TextBeforeEqualSign (QString String);//Функция возвращает текст строки до первого знака =.
 QString HQt_TextAfterEqualSign (QString String);//Функция возвращает текст строки после первого знака =.
 QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);//Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+int HQt_SearchQStringInQStringList (QStringList StringList, QString String);//Функция ищет в QStringList строку QString (номер первого вхождения).
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
