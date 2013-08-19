@@ -31,6 +31,7 @@ bool HQt_FileExists(QString filename);//Функция проверяет сущ
 QString HQt_GetNameFromFilename(QString filename);//Функция получает имя файла без расширения по его имени.
 bool HQt_CopyFile(QString filename, QString dir);//Функция копирует файл filename в папку dir.
 bool HQt_CopyFile(QString filename, QString dir, bool overwrite);//Функция копирует файл filename в папку dir, с возможносью перезаписи.
+bool HQt_RenameFile(QString filename, QString newfilename);//Функция переименовывает файл filename в newfilename.
 QString HQt_GetFilenameFromFullFilename(QString filename);//Функция получает имя файла по полному пути.
 QString HQt_WriteTime(int t);//Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
 QString HQt_UniqueName ();//Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
