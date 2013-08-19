@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.6
+//Сборник функций для Qt. Версия v.3.7
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -955,5 +955,62 @@ int HQt_SearchQStringInQStringList (QStringList StringList, QString String)
     }
 
     return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_StringForLaTeX (QString String)
+{
+    /*
+    Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
+    Входные параметры:
+     String - обрабатываемая строка.
+    Возвращаемое значение:
+     Обработанная строка.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result=String.replace("_","\\_");
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_StringToLabelForLaTeX (QString String)
+{
+    /*
+    Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+    Входные параметры:
+     String - обрабатываемая строка.
+    Возвращаемое значение:
+     Обработанная строка.
+    */
+    QString VMHL_Result;
+
+    VMHL_Result=String.replace("_","");
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_RenameFile(QString filename, QString newfilename)
+{
+    /*
+    Функция переименовывает файл filename в newfilename.
+    Входные параметры:
+     filename - имя файла (с полным путем),
+     newfilename - новое имя файла (без полного пути).
+    Возвращаемое значение:
+     true - если скопировалось удачно,
+     false - если скопировалось неудачно.
+    */
+    QString Separator;
+    if (filename.contains(QDir::separator())) Separator=QDir::separator();
+    if (filename.contains("\\")) Separator="\\";
+    if (filename.contains("/")) Separator="/";
+
+    QString refilename = filename.mid(0,filename.lastIndexOf(Separator)+1) + newfilename;
+
+    bool result = QFile::rename(filename,refilename);
+    return result;
 }
 //---------------------------------------------------------------------------

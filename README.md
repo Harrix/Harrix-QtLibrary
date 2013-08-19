@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.6.
+Сборник функций для Qt. Версия v.3.7.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -51,6 +51,9 @@ bool **HQt_CopyFile**(QString filename, QString dir);
 
 bool **HQt_CopyFile**(QString filename, QString dir, bool overwrite);  
 Функция копирует файл filename в папку dir, с возможностью перезаписи.
+
+bool **HQt_RenameFile**(QString filename, QString newfilename);  
+Функция переименовывает файл filename в newfilename.
 
 QString **HQt_GetFilenameFromFullFilename**(QString filename);  
 Функция получает имя файла по полному пути.
@@ -139,6 +142,12 @@ QStringList **HQt_AddUniqueQStringInQStringList** (QStringList StringList, QStri
 int **HQt_SearchQStringInQStringList** (QStringList StringList, QString String);  
 Функция ищет в QStringList строку QString (номер первого вхождения).
 
+QString **HQt_StringForLaTeX** (QString String);  
+Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
+
+QString HQt_StringToLabelForLaTeX (QString String);  
+Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+
 
 История проекта
 ---------------
@@ -148,6 +157,10 @@ int **HQt_SearchQStringInQStringList** (QStringList StringList, QString String);
 **[+]** добавление
 
 **[*]** разное
+
+**3.7**
+
+**[+]** Добавлены функции QString HQt_StringForLaTeX, HQt_StringToLabelForLaTeX, HQt_RenameFile.
 
 **3.6**
 

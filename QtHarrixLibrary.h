@@ -60,8 +60,8 @@ QString HQt_TextBeforeEqualSign (QString String);//Функция возвращ
 QString HQt_TextAfterEqualSign (QString String);//Функция возвращает текст строки после первого знака =.
 QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);//Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
 int HQt_SearchQStringInQStringList (QStringList StringList, QString String);//Функция ищет в QStringList строку QString (номер первого вхождения).
-
-
+QString HQt_StringForLaTeX (QString String);//Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
+QString HQt_StringToLabelForLaTeX (QString String);//Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
