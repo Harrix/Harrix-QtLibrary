@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.8.
+Сборник функций для Qt. Версия v.3.9.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -145,7 +145,7 @@ int **HQt_SearchQStringInQStringList** (QStringList StringList, QString String);
 QString **HQt_StringForLaTeX** (QString String);  
 Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
 
-QString HQt_StringToLabelForLaTeX (QString String);  
+QString **HQt_StringToLabelForLaTeX** (QString String);  
 Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
 
 int **HQt_GetTypeCharRus**(QString x);  
@@ -157,6 +157,22 @@ bool **HQt_CheckRus**(QString S);
 bool **HQt_CheckLetterFromWord**(QString x);  
 Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание.
 
+QStringList **HQt_CutToWords**(QString S);  
+Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+
+QStringList **HQt_CutToWordsWithWordWrap**(QString S);  
+Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+
+int **HQt_GetTypeCharEng**(QString x);  
+Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+QStringList **HQt_BreakdownOfTextWithWordWrap**(QString S, int length);  
+Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+
+bool **HQt_CheckIntolerablePunctuation**(QString x);  
+Является ли символом знаком пунктуации, который нельзя переносить.
+
+
 История проекта
 ---------------
 
@@ -165,6 +181,12 @@ bool **HQt_CheckLetterFromWord**(QString x);
 **[+]** добавление
 
 **[*]** разное
+
+**3.9**
+
+**[+]** Добавлены функции HQt_CutToWords, HQt_CutToWordsWithWordWrap, HQt_GetTypeCharEng, HQt_BreakdownOfTextWithWordWrap, HQt_CheckIntolerablePunctuation.
+
+**[-]** Дополнены некоторые функции в своем теле.
 
 **3.8**
 

@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.8
+//Сборник функций для Qt. Версия v.3.9
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -1208,7 +1208,7 @@ bool HQt_CheckLetterFromWord(QString x)
 {
     /*
     Является ли буква символом из слова. Считается, что это или латинские буквы, или русские,
-    или цифры или нижнее подчеркивание.
+    или цифры или нижнее подчеркивание. Плюc некоторые знаки препинания, так как их нельзя переносить.
     Входные параметры:
      x - некая буква.
     Возвращаемое значение:
@@ -1346,6 +1346,529 @@ bool HQt_CheckLetterFromWord(QString x)
     if (x=="8") VMHL_Result=true;
     if (x=="9") VMHL_Result=true;
     if (x=="_") VMHL_Result=true;
+    if (x==".") VMHL_Result=true;
+    if (x==",") VMHL_Result=true;
+    if (x==":") VMHL_Result=true;
+    if (x=="!") VMHL_Result=true;
+    if (x=="?") VMHL_Result=true;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+
+QStringList HQt_CutToWords(QString S)
+{
+    /*
+    Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+    Входные параметры:
+     S - разбиваемая строка.
+    Возвращаемое значение:
+     Список подстрок, на которые можно разбить слово.
+    Примечание:
+     Если кроме русского и английского языка у вас могут слова других языков, то дополните функцию HQt_CheckLetterFromWord.
+    */
+    QStringList VMHL_Result;
+
+    QString F;
+
+    int N=S.count();
+    int type=-1;
+    int typebefore=-1;
+    int len=0;
+
+    for (int i=0;i<N;i++)
+    {
+        if (i==N-1)
+        {
+            typebefore=type;
+            type=int(HQt_CheckLetterFromWord(S.at(i)));
+            if (type==typebefore)
+            {
+                F+=S.at(i);
+                VMHL_Result<<F;
+            }
+            else
+            {
+                VMHL_Result<<F;
+                F.clear();
+                F=S.at(i);
+                VMHL_Result<<F;
+            }
+        }
+        else
+        {
+            if (i<=1)
+            {
+                if (i==0)
+                {
+                    F=S.at(i);
+                    type=int(HQt_CheckLetterFromWord(S.at(i)));
+                    len++;
+                }
+                if (i==1)
+                {
+                    typebefore=type;
+                    type=int(HQt_CheckLetterFromWord(S.at(i)));
+                    if (type==typebefore)
+                    {
+                        F+=S.at(i);
+                        len++;
+                    }
+                    else
+                    {
+                        VMHL_Result<<F;
+                        F.clear();
+                        F=S.at(i);
+                        len=1;
+                    }
+                }
+            }
+            else
+            {
+                typebefore=type;
+                type=int(HQt_CheckLetterFromWord(S.at(i)));
+                if (len==0)
+                {
+                    F+=S.at(i);
+                    len++;
+                }
+                else
+                {
+                    if (type!=typebefore)
+                    {
+                        VMHL_Result<<F;
+                        F.clear();
+                        F=S.at(i);
+                        len=1;
+                    }
+                    else
+                    {
+                        F+=S.at(i);
+                        len++;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QStringList HQt_CutToWordsWithWordWrap(QString S)
+{
+    /*
+    Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+    Входные параметры:
+     S - разбиваемая строка.
+    Возвращаемое значение:
+     Список подстрок, на которые можно разбить слово.
+    Примечание:
+     Если кроме русского и английского языка у вас могут слова других языков, то дополните функцию HQt_CheckLetterFromWord.
+    Примечание:
+     Перевод слов производится по алгоритму П.Хpистова в модификации Дымченко и Ваpсанофьева.
+    */
+    QStringList VMHL_Result;
+
+    QString F;
+
+    int N=S.count();
+    int type=-1;
+    int typebefore=-1;
+    int len=0;
+
+    for (int i=0;i<N;i++)
+    {
+        if (i==N-1)
+        {
+            typebefore=type;
+            type=int(HQt_CheckLetterFromWord(S.at(i)));
+            if (type==typebefore)
+            {
+                F+=S.at(i);
+                VMHL_Result<<F;
+            }
+            else
+            {
+                VMHL_Result<<F;
+                F.clear();
+                F=S.at(i);
+                VMHL_Result<<F;
+            }
+        }
+        else
+        {
+            if (i<=1)
+            {
+                if (i==0)
+                {
+                    F=S.at(i);
+                    type=int(HQt_CheckLetterFromWord(S.at(i)));
+                    len++;
+                }
+                if (i==1)
+                {
+                    typebefore=type;
+                    type=int(HQt_CheckLetterFromWord(S.at(i)));
+                    if (type==typebefore)
+                    {
+                        F+=S.at(i);
+                        len++;
+                    }
+                    else
+                    {
+                        VMHL_Result<<F;
+                        F.clear();
+                        F=S.at(i);
+                        len=1;
+                    }
+                }
+            }
+            else
+            {
+                typebefore=type;
+                type=int(HQt_CheckLetterFromWord(S.at(i)));
+                if (len==0)
+                {
+                    F+=S.at(i);
+                    len++;
+                }
+                else
+                {
+                    if (type!=typebefore)
+                    {
+                        VMHL_Result<<F;
+                        F.clear();
+                        F=S.at(i);
+                        len=1;
+                    }
+                    else
+                    {
+                        if (len>=1)
+                        {
+                            bool cut=false;
+
+                            //«Х-»
+                            if ((i>=1)&&(i!=N-1))
+                            {
+                                if ((HQt_GetTypeCharRus(S.at(i-1))==3)&&(HQt_GetTypeCharRus(S.at(i))!=0)&&(HQt_GetTypeCharRus(S.at(i+1))!=0))
+                                    cut=true;
+                            }
+
+                            //«Г-Г»
+                            if ((i>=1)&&(i!=N-1))
+                            {
+                                if ((HQt_GetTypeCharRus(S.at(i-1))==1)&&(HQt_GetTypeCharRus(S.at(i))==1)&&(HQt_GetTypeCharRus(S.at(i+1))!=0))
+                                    cut=true;
+                            }
+
+                            //«ГС-СГ»
+                            if ((i>=2)&&(i<=N-2))
+                            {
+                                if ((HQt_GetTypeCharRus(S.at(i-2))==1)&&(HQt_GetTypeCharRus(S.at(i-1))==2)&&(HQt_GetTypeCharRus(S.at(i))==2)&&(HQt_GetTypeCharRus(S.at(i+1))==1))
+                                    cut=true;
+                            }
+
+                            //«СГ-СГ»
+                            if ((i>=2)&&(i<=N-2))
+                            {
+                                if ((HQt_GetTypeCharRus(S.at(i-2))==2)&&(HQt_GetTypeCharRus(S.at(i-1))==1)&&(HQt_GetTypeCharRus(S.at(i))==2)&&(HQt_GetTypeCharRus(S.at(i+1))==1))
+                                    cut=true;
+                            }
+
+                            //«ГС-ССГ»
+                            if ((i>=2)&&(i<=N-3))
+                            {
+                                if ((HQt_GetTypeCharRus(S.at(i-2))==1)&&(HQt_GetTypeCharRus(S.at(i-1))==2)&&(HQt_GetTypeCharRus(S.at(i))==2)&&(HQt_GetTypeCharRus(S.at(i+1))==2)&&(HQt_GetTypeCharRus(S.at(i+2))==1))
+                                    cut=true;
+                            }
+
+                            //«ГСС-ССГ»
+                            if ((i>=3)&&(i<=N-3))
+                            {
+                                if ((HQt_GetTypeCharRus(S.at(i-3))==1)&&(HQt_GetTypeCharRus(S.at(i-2))==2)&&(HQt_GetTypeCharRus(S.at(i-1))==2)&&(HQt_GetTypeCharRus(S.at(i))==2)&&(HQt_GetTypeCharRus(S.at(i+1))==2)&&(HQt_GetTypeCharRus(S.at(i+2))==1))
+                                    cut=true;
+                            }
+
+                            //Для английского
+                            //«Г-Г»
+                            if ((i>=1)&&(i!=N-1))
+                            {
+                                if ((HQt_GetTypeCharEng(S.at(i-1))==1)&&(HQt_GetTypeCharEng(S.at(i))==1)&&(HQt_GetTypeCharEng(S.at(i+1))!=0))
+                                    cut=true;
+                            }
+
+                            //«ГС-СГ»
+                            if ((i>=2)&&(i<=N-2))
+                            {
+                                if ((HQt_GetTypeCharEng(S.at(i-2))==1)&&(HQt_GetTypeCharEng(S.at(i-1))==2)&&(HQt_GetTypeCharEng(S.at(i))==2)&&(HQt_GetTypeCharEng(S.at(i+1))==1))
+                                    cut=true;
+                            }
+
+                            //«СГ-СГ»
+                            if ((i>=2)&&(i<=N-2))
+                            {
+                                if ((HQt_GetTypeCharEng(S.at(i-2))==2)&&(HQt_GetTypeCharEng(S.at(i-1))==1)&&(HQt_GetTypeCharEng(S.at(i))==2)&&(HQt_GetTypeCharEng(S.at(i+1))==1))
+                                    cut=true;
+                            }
+
+                            //«ГС-ССГ»
+                            if ((i>=2)&&(i<=N-3))
+                            {
+                                if ((HQt_GetTypeCharEng(S.at(i-2))==1)&&(HQt_GetTypeCharEng(S.at(i-1))==2)&&(HQt_GetTypeCharEng(S.at(i))==2)&&(HQt_GetTypeCharEng(S.at(i+1))==2)&&(HQt_GetTypeCharEng(S.at(i+2))==1))
+                                    cut=true;
+                            }
+
+                            //«ГСС-ССГ»
+                            if ((i>=3)&&(i<=N-3))
+                            {
+                                if ((HQt_GetTypeCharEng(S.at(i-3))==1)&&(HQt_GetTypeCharEng(S.at(i-2))==2)&&(HQt_GetTypeCharEng(S.at(i-1))==2)&&(HQt_GetTypeCharEng(S.at(i))==2)&&(HQt_GetTypeCharEng(S.at(i+1))==2)&&(HQt_GetTypeCharEng(S.at(i+2))==1))
+                                    cut=true;
+                            }
+
+                            if (cut==false)
+                            {
+                                F+=S.at(i);
+                                len++;
+                            }
+                            else
+                            {
+                                VMHL_Result<<F;
+                                F.clear();
+                                F=S.at(i);
+                                len=1;
+                            }
+
+                        }
+                        else
+                        {
+                            F+=S.at(i);
+                            len++;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+int HQt_GetTypeCharEng(QString x)
+{
+    /*
+    Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+    Входные параметры:
+     x - некая буква.
+    Возвращаемое значение:
+     1 - гласная;
+     2 - согласная;
+     0 - иначе.
+    */
+    int VMHL_Result=0;
+
+    if (x=="A") VMHL_Result=1;
+    if (x=="a") VMHL_Result=1;
+
+    if (x=="B") VMHL_Result=2;
+    if (x=="b") VMHL_Result=2;
+    if (x=="C") VMHL_Result=2;
+    if (x=="c") VMHL_Result=2;
+    if (x=="D") VMHL_Result=2;
+    if (x=="d") VMHL_Result=2;
+
+    if (x=="E") VMHL_Result=1;
+    if (x=="e") VMHL_Result=1;
+
+    if (x=="F") VMHL_Result=2;
+    if (x=="f") VMHL_Result=2;
+    if (x=="G") VMHL_Result=2;
+    if (x=="g") VMHL_Result=2;
+    if (x=="H") VMHL_Result=2;
+    if (x=="h") VMHL_Result=2;
+
+    if (x=="I") VMHL_Result=1;
+    if (x=="i") VMHL_Result=1;
+
+    if (x=="J") VMHL_Result=2;
+    if (x=="j") VMHL_Result=2;
+    if (x=="K") VMHL_Result=2;
+    if (x=="k") VMHL_Result=2;
+    if (x=="L") VMHL_Result=2;
+    if (x=="l") VMHL_Result=2;
+    if (x=="M") VMHL_Result=2;
+    if (x=="m") VMHL_Result=2;
+    if (x=="N") VMHL_Result=2;
+    if (x=="n") VMHL_Result=2;
+
+    if (x=="O") VMHL_Result=1;
+    if (x=="o") VMHL_Result=1;
+
+    if (x=="P") VMHL_Result=2;
+    if (x=="p") VMHL_Result=2;
+    if (x=="Q") VMHL_Result=2;
+    if (x=="q") VMHL_Result=2;
+    if (x=="R") VMHL_Result=2;
+    if (x=="r") VMHL_Result=2;
+    if (x=="S") VMHL_Result=2;
+    if (x=="s") VMHL_Result=2;
+    if (x=="T") VMHL_Result=2;
+    if (x=="t") VMHL_Result=2;
+
+    if (x=="U") VMHL_Result=1;
+    if (x=="u") VMHL_Result=1;
+
+    if (x=="V") VMHL_Result=2;
+    if (x=="v") VMHL_Result=2;
+    if (x=="W") VMHL_Result=2;
+    if (x=="w") VMHL_Result=2;
+    if (x=="X") VMHL_Result=2;
+    if (x=="x") VMHL_Result=2;
+
+    if (x=="Y") VMHL_Result=1;
+    if (x=="y") VMHL_Result=1;
+
+    if (x=="Z") VMHL_Result=2;
+    if (x=="z") VMHL_Result=2;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+QStringList HQt_BreakdownOfTextWithWordWrap(QString S, int length)
+{
+    /*
+    Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+    Входные параметры:
+     S - проверяемая строка,
+     length -  длина строки.
+    Возвращаемое значение:
+     Список строк, на которые разбивается текст.
+    Примечание:
+     Перевод слов производится по алгоритму П.Хpистова в модификации Дымченко и Ваpсанофьева.
+    */
+    QStringList VMHL_Result;
+
+    QStringList Temp=HQt_CutToWordsWithWordWrap(S);
+
+    QString F;
+    QString now,after;
+    int typenow, typeafter;
+    QString Te;
+
+    for (int i=0;i<Temp.count();i++)
+    {
+        if ((F+Temp.at(i)).length()<length)
+        {
+            F+=Temp.at(i);
+        }
+        else
+        {
+
+            if (i!=0)
+            {
+                after=Temp.at(i-1);
+                now=Temp.at(i);
+                typeafter=HQt_CheckLetterFromWord(after.at(after.length()-1));
+                typenow=HQt_CheckLetterFromWord(now.at(0));
+
+                if ((typeafter==typenow)&&(typeafter==1)) F+="-";
+
+                bool dl=false;
+                if (typeafter!=typenow)
+                {
+                    if (Temp.at(i).length()>length/3)
+                    {
+                        dl=true;
+                        Te=F+Temp.at(i);
+                        int mm;
+                        QString nn;
+                        if (typenow==1) mm=length-1;else mm=length;
+                        if (typenow==1) nn="-";else nn="";
+                        while (Te.length()>mm)
+                        {
+                            F=Te.mid(0,mm)+nn;
+                            VMHL_Result << F;
+                            Te=Te.mid(mm);
+                        }
+                        F=Te;
+                    }
+
+                }
+
+                if (dl==false)
+                {
+                    VMHL_Result << F;
+                F.clear();
+                F=Temp.at(i);
+                }
+
+
+            }
+            else
+            {
+                Te=F+Temp.at(i);
+                while (Te.length()>length-1)
+                {
+                    F=Te.mid(0,length-1)+"-";
+                    VMHL_Result << F;
+                    Te=Te.mid(length-1);
+                }
+                F=Te;
+            }
+
+        }
+
+    }
+
+    if (F.length()!=0)
+    {
+        if (F.length()>length-1)
+        {
+            Te=F;
+            while (Te.length()>length-1)
+            {
+                F=Te.mid(0,length-1)+"-";
+                VMHL_Result << F;
+                Te=Te.mid(length-1);
+            }
+            F=Te;
+        }
+        else
+        {
+            VMHL_Result << F;
+        }
+    }
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_CheckIntolerablePunctuation(QString x)
+{
+    /*
+    Является ли символом знаком пунктуации, который нельзя переносить.
+    Входные параметры:
+     x - некий символ.
+    Возвращаемое значение:
+     true - символ есть неперносимый символ;
+     false - не из слова.
+    */
+    bool VMHL_Result=false;
+
+    if (x==".") VMHL_Result=true;
+    if (x==",") VMHL_Result=true;
+    if (x==":") VMHL_Result=true;
+    if (x=="!") VMHL_Result=true;
+    if (x=="?") VMHL_Result=true;
 
     return VMHL_Result;
 }
