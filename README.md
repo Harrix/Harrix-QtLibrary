@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.7.
+Сборник функций для Qt. Версия v.3.8.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -148,6 +148,14 @@ QString **HQt_StringForLaTeX** (QString String);
 QString HQt_StringToLabelForLaTeX (QString String);  
 Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
 
+int **HQt_GetTypeCharRus**(QString x);  
+Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+bool **HQt_CheckRus**(QString S);  
+Функция проверяет наличие русских букв в строке.
+
+bool **HQt_CheckLetterFromWord**(QString x);  
+Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание.
 
 История проекта
 ---------------
@@ -157,6 +165,10 @@ QString HQt_StringToLabelForLaTeX (QString String);
 **[+]** добавление
 
 **[*]** разное
+
+**3.8**
+
+**[+]** Добавлены функции HQt_GetTypeCharRus(QString x), HQt_CheckRus, HQt_CheckLetterFromWord.
 
 **3.7**
 

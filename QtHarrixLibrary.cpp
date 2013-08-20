@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.7
+//Сборник функций для Qt. Версия v.3.8
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -1012,5 +1012,341 @@ bool HQt_RenameFile(QString filename, QString newfilename)
 
     bool result = QFile::rename(filename,refilename);
     return result;
+}
+//---------------------------------------------------------------------------
+
+int HQt_GetTypeCharRus(QString x)
+{
+    /*
+    Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+    Входные параметры:
+     x - некая буква.
+    Возвращаемое значение:
+     1 - гласная;
+     2 - согласная;
+     3 - буква из множества ьъй;
+     0 - иначе (английские или какие-то иные).
+    */
+    int VMHL_Result=0;
+
+    if (x=="А") VMHL_Result=1;
+    if (x=="а") VMHL_Result=1;
+
+    if (x=="Б") VMHL_Result=2;
+    if (x=="б") VMHL_Result=2;
+    if (x=="В") VMHL_Result=2;
+    if (x=="в") VMHL_Result=2;
+    if (x=="Г") VMHL_Result=2;
+    if (x=="г") VMHL_Result=2;
+    if (x=="Д") VMHL_Result=2;
+    if (x=="д") VMHL_Result=2;
+
+    if (x=="Е") VMHL_Result=1;
+    if (x=="е") VMHL_Result=1;
+    if (x=="Ё") VMHL_Result=1;
+    if (x=="ё") VMHL_Result=1;
+
+    if (x=="Ж") VMHL_Result=2;
+    if (x=="ж") VMHL_Result=2;
+    if (x=="З") VMHL_Result=2;
+    if (x=="з") VMHL_Result=2;
+
+    if (x=="И") VMHL_Result=1;
+    if (x=="и") VMHL_Result=1;
+
+    if (x=="Й") VMHL_Result=3;
+    if (x=="й") VMHL_Result=3;
+
+    if (x=="К") VMHL_Result=2;
+    if (x=="к") VMHL_Result=2;
+    if (x=="Л") VMHL_Result=2;
+    if (x=="л") VMHL_Result=2;
+    if (x=="М") VMHL_Result=2;
+    if (x=="м") VMHL_Result=2;
+    if (x=="Н") VMHL_Result=2;
+    if (x=="н") VMHL_Result=2;
+
+    if (x=="О") VMHL_Result=1;
+    if (x=="о") VMHL_Result=1;
+
+    if (x=="П") VMHL_Result=2;
+    if (x=="п") VMHL_Result=2;
+    if (x=="Р") VMHL_Result=2;
+    if (x=="р") VMHL_Result=2;
+    if (x=="С") VMHL_Result=2;
+    if (x=="с") VMHL_Result=2;
+    if (x=="Т") VMHL_Result=2;
+    if (x=="т") VMHL_Result=2;
+
+    if (x=="У") VMHL_Result=1;
+    if (x=="у") VMHL_Result=1;
+
+    if (x=="Ф") VMHL_Result=2;
+    if (x=="ф") VMHL_Result=2;
+    if (x=="Х") VMHL_Result=2;
+    if (x=="х") VMHL_Result=2;
+    if (x=="Ц") VMHL_Result=2;
+    if (x=="ц") VMHL_Result=2;
+    if (x=="Ч") VMHL_Result=2;
+    if (x=="ч") VMHL_Result=2;
+    if (x=="Ш") VMHL_Result=2;
+    if (x=="ш") VMHL_Result=2;
+    if (x=="Щ") VMHL_Result=2;
+    if (x=="щ") VMHL_Result=2;
+
+    if (x=="Ъ") VMHL_Result=3;
+    if (x=="ъ") VMHL_Result=3;
+
+    if (x=="Ы") VMHL_Result=1;
+    if (x=="ы") VMHL_Result=1;
+
+    if (x=="Ь") VMHL_Result=3;
+    if (x=="ь") VMHL_Result=3;
+
+    if (x=="Э") VMHL_Result=1;
+    if (x=="э") VMHL_Result=1;
+    if (x=="Ю") VMHL_Result=1;
+    if (x=="ю") VMHL_Result=1;
+    if (x=="Я") VMHL_Result=1;
+    if (x=="я") VMHL_Result=1;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_CheckRus(QString S)
+{
+    /*
+    Функция проверяет наличие русских букв в строке.
+    Входные параметры:
+     S - проверяемая строка.
+    Возвращаемое значение:
+     true - естm буквы русские;
+     false - нет букв русских.
+    */
+    bool VMHL_Result=false;
+
+    QString x;
+
+    for (int i=0;i<S.count();i++)
+    {
+        x=S.at(i);
+
+        if (x=="А") VMHL_Result=true;
+        if (x=="а") VMHL_Result=true;
+        if (x=="Б") VMHL_Result=true;
+        if (x=="б") VMHL_Result=true;
+        if (x=="В") VMHL_Result=true;
+        if (x=="в") VMHL_Result=true;
+        if (x=="Г") VMHL_Result=true;
+        if (x=="г") VMHL_Result=true;
+        if (x=="Д") VMHL_Result=true;
+        if (x=="д") VMHL_Result=true;
+        if (x=="Е") VMHL_Result=true;
+        if (x=="е") VMHL_Result=true;
+        if (x=="Ё") VMHL_Result=true;
+        if (x=="ё") VMHL_Result=true;
+        if (x=="Ж") VMHL_Result=true;
+        if (x=="ж") VMHL_Result=true;
+        if (x=="З") VMHL_Result=true;
+        if (x=="з") VMHL_Result=true;
+        if (x=="И") VMHL_Result=true;
+        if (x=="и") VMHL_Result=true;
+        if (x=="Й") VMHL_Result=true;
+        if (x=="й") VMHL_Result=true;
+        if (x=="К") VMHL_Result=true;
+        if (x=="к") VMHL_Result=true;
+        if (x=="Л") VMHL_Result=true;
+        if (x=="л") VMHL_Result=true;
+        if (x=="М") VMHL_Result=true;
+        if (x=="м") VMHL_Result=true;
+        if (x=="Н") VMHL_Result=true;
+        if (x=="н") VMHL_Result=true;
+        if (x=="О") VMHL_Result=true;
+        if (x=="о") VMHL_Result=true;
+        if (x=="П") VMHL_Result=true;
+        if (x=="п") VMHL_Result=true;
+        if (x=="Р") VMHL_Result=true;
+        if (x=="р") VMHL_Result=true;
+        if (x=="С") VMHL_Result=true;
+        if (x=="с") VMHL_Result=true;
+        if (x=="Т") VMHL_Result=true;
+        if (x=="т") VMHL_Result=true;
+        if (x=="У") VMHL_Result=true;
+        if (x=="у") VMHL_Result=true;
+        if (x=="Ф") VMHL_Result=true;
+        if (x=="ф") VMHL_Result=true;
+        if (x=="Х") VMHL_Result=true;
+        if (x=="х") VMHL_Result=true;
+        if (x=="Ц") VMHL_Result=true;
+        if (x=="ц") VMHL_Result=true;
+        if (x=="Ч") VMHL_Result=true;
+        if (x=="ч") VMHL_Result=true;
+        if (x=="Ш") VMHL_Result=true;
+        if (x=="ш") VMHL_Result=true;
+        if (x=="Щ") VMHL_Result=true;
+        if (x=="щ") VMHL_Result=true;
+        if (x=="Ъ") VMHL_Result=true;
+        if (x=="ъ") VMHL_Result=true;
+        if (x=="Ы") VMHL_Result=true;
+        if (x=="ы") VMHL_Result=true;
+        if (x=="Ь") VMHL_Result=true;
+        if (x=="ь") VMHL_Result=true;
+        if (x=="Э") VMHL_Result=true;
+        if (x=="э") VMHL_Result=true;
+        if (x=="Ю") VMHL_Result=true;
+        if (x=="ю") VMHL_Result=true;
+        if (x=="Я") VMHL_Result=true;
+        if (x=="я") VMHL_Result=true;
+    }
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_CheckLetterFromWord(QString x)
+{
+    /*
+    Является ли буква символом из слова. Считается, что это или латинские буквы, или русские,
+    или цифры или нижнее подчеркивание.
+    Входные параметры:
+     x - некая буква.
+    Возвращаемое значение:
+     true - буква из слова;
+     false - не из слова.
+    */
+    bool VMHL_Result=false;
+
+    if (x=="А") VMHL_Result=true;
+    if (x=="а") VMHL_Result=true;
+    if (x=="Б") VMHL_Result=true;
+    if (x=="б") VMHL_Result=true;
+    if (x=="В") VMHL_Result=true;
+    if (x=="в") VMHL_Result=true;
+    if (x=="Г") VMHL_Result=true;
+    if (x=="г") VMHL_Result=true;
+    if (x=="Д") VMHL_Result=true;
+    if (x=="д") VMHL_Result=true;
+    if (x=="Е") VMHL_Result=true;
+    if (x=="е") VMHL_Result=true;
+    if (x=="Ё") VMHL_Result=true;
+    if (x=="ё") VMHL_Result=true;
+    if (x=="Ж") VMHL_Result=true;
+    if (x=="ж") VMHL_Result=true;
+    if (x=="З") VMHL_Result=true;
+    if (x=="з") VMHL_Result=true;
+    if (x=="И") VMHL_Result=true;
+    if (x=="и") VMHL_Result=true;
+    if (x=="Й") VMHL_Result=true;
+    if (x=="й") VMHL_Result=true;
+    if (x=="К") VMHL_Result=true;
+    if (x=="к") VMHL_Result=true;
+    if (x=="Л") VMHL_Result=true;
+    if (x=="л") VMHL_Result=true;
+    if (x=="М") VMHL_Result=true;
+    if (x=="м") VMHL_Result=true;
+    if (x=="Н") VMHL_Result=true;
+    if (x=="н") VMHL_Result=true;
+    if (x=="О") VMHL_Result=true;
+    if (x=="о") VMHL_Result=true;
+    if (x=="П") VMHL_Result=true;
+    if (x=="п") VMHL_Result=true;
+    if (x=="Р") VMHL_Result=true;
+    if (x=="р") VMHL_Result=true;
+    if (x=="С") VMHL_Result=true;
+    if (x=="с") VMHL_Result=true;
+    if (x=="Т") VMHL_Result=true;
+    if (x=="т") VMHL_Result=true;
+    if (x=="У") VMHL_Result=true;
+    if (x=="у") VMHL_Result=true;
+    if (x=="Ф") VMHL_Result=true;
+    if (x=="ф") VMHL_Result=true;
+    if (x=="Х") VMHL_Result=true;
+    if (x=="х") VMHL_Result=true;
+    if (x=="Ц") VMHL_Result=true;
+    if (x=="ц") VMHL_Result=true;
+    if (x=="Ч") VMHL_Result=true;
+    if (x=="ч") VMHL_Result=true;
+    if (x=="Ш") VMHL_Result=true;
+    if (x=="ш") VMHL_Result=true;
+    if (x=="Щ") VMHL_Result=true;
+    if (x=="щ") VMHL_Result=true;
+    if (x=="Ъ") VMHL_Result=true;
+    if (x=="ъ") VMHL_Result=true;
+    if (x=="Ы") VMHL_Result=true;
+    if (x=="ы") VMHL_Result=true;
+    if (x=="Ь") VMHL_Result=true;
+    if (x=="ь") VMHL_Result=true;
+    if (x=="Э") VMHL_Result=true;
+    if (x=="э") VMHL_Result=true;
+    if (x=="Ю") VMHL_Result=true;
+    if (x=="ю") VMHL_Result=true;
+    if (x=="Я") VMHL_Result=true;
+    if (x=="я") VMHL_Result=true;
+    if (x=="A") VMHL_Result=true;
+    if (x=="a") VMHL_Result=true;
+    if (x=="B") VMHL_Result=true;
+    if (x=="b") VMHL_Result=true;
+    if (x=="C") VMHL_Result=true;
+    if (x=="c") VMHL_Result=true;
+    if (x=="D") VMHL_Result=true;
+    if (x=="d") VMHL_Result=true;
+    if (x=="E") VMHL_Result=true;
+    if (x=="e") VMHL_Result=true;
+    if (x=="F") VMHL_Result=true;
+    if (x=="f") VMHL_Result=true;
+    if (x=="G") VMHL_Result=true;
+    if (x=="g") VMHL_Result=true;
+    if (x=="H") VMHL_Result=true;
+    if (x=="h") VMHL_Result=true;
+    if (x=="I") VMHL_Result=true;
+    if (x=="i") VMHL_Result=true;
+    if (x=="J") VMHL_Result=true;
+    if (x=="j") VMHL_Result=true;
+    if (x=="K") VMHL_Result=true;
+    if (x=="k") VMHL_Result=true;
+    if (x=="L") VMHL_Result=true;
+    if (x=="l") VMHL_Result=true;
+    if (x=="M") VMHL_Result=true;
+    if (x=="m") VMHL_Result=true;
+    if (x=="N") VMHL_Result=true;
+    if (x=="n") VMHL_Result=true;
+    if (x=="O") VMHL_Result=true;
+    if (x=="o") VMHL_Result=true;
+    if (x=="P") VMHL_Result=true;
+    if (x=="p") VMHL_Result=true;
+    if (x=="Q") VMHL_Result=true;
+    if (x=="q") VMHL_Result=true;
+    if (x=="R") VMHL_Result=true;
+    if (x=="r") VMHL_Result=true;
+    if (x=="S") VMHL_Result=true;
+    if (x=="s") VMHL_Result=true;
+    if (x=="T") VMHL_Result=true;
+    if (x=="t") VMHL_Result=true;
+    if (x=="U") VMHL_Result=true;
+    if (x=="u") VMHL_Result=true;
+    if (x=="V") VMHL_Result=true;
+    if (x=="v") VMHL_Result=true;
+    if (x=="W") VMHL_Result=true;
+    if (x=="w") VMHL_Result=true;
+    if (x=="X") VMHL_Result=true;
+    if (x=="x") VMHL_Result=true;
+    if (x=="Y") VMHL_Result=true;
+    if (x=="y") VMHL_Result=true;
+    if (x=="Z") VMHL_Result=true;
+    if (x=="z") VMHL_Result=true;
+    if (x=="0") VMHL_Result=true;
+    if (x=="1") VMHL_Result=true;
+    if (x=="2") VMHL_Result=true;
+    if (x=="3") VMHL_Result=true;
+    if (x=="4") VMHL_Result=true;
+    if (x=="5") VMHL_Result=true;
+    if (x=="6") VMHL_Result=true;
+    if (x=="7") VMHL_Result=true;
+    if (x=="8") VMHL_Result=true;
+    if (x=="9") VMHL_Result=true;
+    if (x=="_") VMHL_Result=true;
+
+    return VMHL_Result;
 }
 //---------------------------------------------------------------------------

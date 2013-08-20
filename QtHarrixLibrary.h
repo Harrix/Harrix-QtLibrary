@@ -63,6 +63,11 @@ QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString S
 int HQt_SearchQStringInQStringList (QStringList StringList, QString String);//Функция ищет в QStringList строку QString (номер первого вхождения).
 QString HQt_StringForLaTeX (QString String);//Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
 QString HQt_StringToLabelForLaTeX (QString String);//Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+int HQt_GetTypeCharRus(QString x);//Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+bool HQt_CheckRus(QString S);//Функция проверяет наличие русских букв в строке.
+bool HQt_CheckLetterFromWord(QString x);//Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание.
+
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // РЕАЛИЗАЦИЯ ШАБЛОНОВ
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
