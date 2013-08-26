@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.9.
+Сборник функций для Qt. Версия v.3.10.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -172,6 +172,18 @@ QStringList **HQt_BreakdownOfTextWithWordWrap**(QString S, int length);
 bool **HQt_CheckIntolerablePunctuation**(QString x);  
 Является ли символом знаком пунктуации, который нельзя переносить.
 
+int **HQt_MaxCountOfQStringList**(QStringList x);  
+Функция выдает длину максимальной по длине строки в QStringList.
+
+bool **HQt_IsNumeric**(QString x);  
+Функция проверяет - является ли строка числом.
+
+double **THQt_QStringToNumber** (QString x);  
+Функция выводит строку x в число.
+
+double **THQt_QStringToNumber** (QString x, bool checkcomma);  
+Функция выводит строку x в число с учетом возможности нахождения запятой.
+
 
 История проекта
 ---------------
@@ -181,6 +193,10 @@ bool **HQt_CheckIntolerablePunctuation**(QString x);
 **[+]** добавление
 
 **[*]** разное
+
+**3.10**
+
+**[+]** Добавлены функции HQt_MaxCountOfQStringList, HQt_IsNumeric, THQt_QStringToNumber (2 варианта).
 
 **3.9**
 

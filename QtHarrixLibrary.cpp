@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.9
+//Сборник функций для Qt. Версия v.3.10
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -950,7 +950,7 @@ int HQt_SearchQStringInQStringList (QStringList StringList, QString String)
     while ((i<StringList.count())&&(in!=true))
     {
         if (StringList.at(i)==String)
-           VMHL_Result=i;
+            VMHL_Result=i;
         i++;
     }
 
@@ -1807,8 +1807,8 @@ QStringList HQt_BreakdownOfTextWithWordWrap(QString S, int length)
                 if (dl==false)
                 {
                     VMHL_Result << F;
-                F.clear();
-                F=Temp.at(i);
+                    F.clear();
+                    F=Temp.at(i);
                 }
 
 
@@ -1869,6 +1869,85 @@ bool HQt_CheckIntolerablePunctuation(QString x)
     if (x==":") VMHL_Result=true;
     if (x=="!") VMHL_Result=true;
     if (x=="?") VMHL_Result=true;
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+int HQt_MaxCountOfQStringList(QStringList x)
+{
+    /*
+    Функция выдает длину макимальной по длине строки в QStringList.
+    Входные параметры:
+     x - список строк.
+    Возвращаемое значение:
+     Длина макимальной по длине строки.
+    */
+    int VMHL_Result=0;
+
+    VMHL_Result=x.at(0).count();
+
+    for (int i=1;i<x.count();i++)
+    {
+        if (x.at(i).count()>VMHL_Result) VMHL_Result=x.at(i).count();
+    }
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+bool HQt_IsNumeric(QString x)
+{
+    /*
+    Функция проверяет - является ли строка числом.
+    Входные параметры:
+     x - проверяемая строка.
+    Возвращаемое значение:
+     true - является числом;
+     false - нt является числом.
+    */
+    bool VMHL_Result;
+
+    x=x.replace(",",".");
+
+    x.toDouble(&VMHL_Result);
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+double HQt_QStringToNumber (QString x)
+{
+    /*
+    Функция выводит строку x в число.
+    Входные параметры:
+     VMHL_X - строка.
+    Возвращаемое значение:
+     Число из строки.
+    */
+    double VMHL_Result;
+
+    VMHL_Result=x.toDouble();
+
+    return VMHL_Result;
+}
+//---------------------------------------------------------------------------
+
+double HQt_QStringToNumber (QString x, bool checkcomma)
+{
+    /*
+    Функция выводит строку x в число.
+    Входные параметры:
+     VMHL_X - строка;
+     checkcomma - проверять наличие запятой.
+    Возвращаемое значение:
+     Число из строки.
+    */
+    double VMHL_Result;
+
+    if (checkcomma) x=x.replace(",",".");
+
+    VMHL_Result=x.toDouble();
 
     return VMHL_Result;
 }
