@@ -1,4 +1,4 @@
-//Сборник функций для Qt. Версия v.3.10
+//Сборник функций для Qt. Версия v.3.11
 //https://github.com/Harrix/QtHarrixLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -210,7 +210,7 @@ bool HQt_FileExists(QString filename)
      filename - имя файла.
     Возвращаемое значение:
      false - если файл не существует,
-     true - если файл существует
+     true - если файл существует.
     */
     QFile file(filename);
     if(!file.exists()){
@@ -220,6 +220,57 @@ bool HQt_FileExists(QString filename)
         file.close();
         return true;
     }
+}
+//---------------------------------------------------------------------------
+
+bool HQt_DirExists(QString path)
+{
+    /*
+    Функция проверяет сущестование директории.
+    Входные параметры:
+     path - полный путь к папке.
+    Возвращаемое значение:
+     false - если папка не существует,
+     true - если папка существует.
+    */
+    QDir dir(path);
+    if(dir.exists())
+       return true;
+    else
+      return false;
+}
+//---------------------------------------------------------------------------
+
+void HQt_DirMake(QString path)
+{
+    /*
+    Функция проверяет сущестование директории, и если ее нет, то создает.
+    Входные параметры:
+     path - полный путь к папке.
+    Возвращаемое значение:
+     Отсутствует.
+    */
+    QString Separator;
+    if (path.contains(QDir::separator())) Separator=QDir::separator();
+    if (path.contains("\\")) Separator="\\";
+    if (path.contains("/")) Separator="/";
+
+    QString Sub;
+    QString Subpath;
+
+    while(path.indexOf(Separator)>0)
+    {
+    Sub=path.mid(0,path.indexOf(Separator)+1);
+    path=path.mid(path.indexOf(Separator)+1);
+
+    Subpath+=Sub;
+    QDir dir(Subpath);
+    if(!dir.exists()) dir.mkdir(Subpath);
+    }
+
+    Subpath+=path;
+    QDir dir(Subpath);
+    if(!dir.exists()) dir.mkdir(Subpath);
 }
 //---------------------------------------------------------------------------
 

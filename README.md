@@ -1,7 +1,7 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.10.
+Сборник функций для Qt. Версия v.3.11.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -42,6 +42,12 @@ QString **HQt_QStringListToQString**(QStringList lines);
 
 bool **HQt_FileExists**(QString filename);  
 Функция проверяет существование файла.
+
+bool **HQt_DirExists**(QString path);  
+Функция проверяет сущестование директории.
+
+void **HQt_DirMake**(QString path);  
+Функция проверяет сущестование директории, и если ее нет, то создает.
 
 QString **HQt_GetNameFromFilename**(QString filename);  
 Функция получает имя файла без расширения по его имени.
@@ -193,6 +199,10 @@ double **THQt_QStringToNumber** (QString x, bool checkcomma);
 **[+]** добавление
 
 **[*]** разное
+
+**3.11**
+
+**[+]** Добавлены функции HQt_DirExists, HQt_DirMake.
 
 **3.10**
 
