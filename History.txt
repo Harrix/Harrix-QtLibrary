@@ -1,4 +1,4 @@
-QtHarrixLibrary
+HarrixQtLibrary
 =================
 
 История проекта
@@ -9,6 +9,14 @@ QtHarrixLibrary
 [+] добавление
 
 [*] разное
+
+3.12
+
+[*] Переименование проекта из QtHarrixLibrary в HarrixQtLibrary.
+
+[*] Полная история перенесена в History.txt.
+
+[*] Изменен внешний вид README.md.
 
 3.11
 
@@ -58,6 +66,6 @@ QtHarrixLibrary
 
 3.0
 
-[*] Из библиотеки убраны функции (и сопутствующие файлы) для отображения информации в QWebView. Все эти функции перенесены в отдельную библиотеку QtHarrixLibraryForQWebView, которую можно найти по адресу: https://github.com/Harrix/QtHarrixLibraryForQWebView
+[*] Из библиотеки убраны функции (и сопутствующие файлы) для отображения информации в QWebView. Все эти функции перенесены в отдельную библиотеку HarrixQtLibraryForQWebView, которую можно найти по адресу: https://github.com/Harrix/HarrixQtLibraryForQWebView
 
 [+] В библиотеке теперь 41  функция.

@@ -1,8 +1,8 @@
-//Сборник функций для Qt. Версия v.3.11
-//https://github.com/Harrix/QtHarrixLibrary
+//Сборник функций для Qt. Версия v.3.12
+//https://github.com/Harrix/HarrixQtLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
 
-#include "QtHarrixLibrary.h"
+#include "HarrixQtLibrary.h"
 
 QString HQt_ReadFile(QString filename)
 {

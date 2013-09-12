@@ -1,5 +1,5 @@
-#ifndef QTHARRIXLIBRARY_H
-#define QTHARRIXLIBRARY_H
+#ifndef HARRIXQTLIBRARY_H
+#define HARRIXQTLIBRARY_H
 
 #include <QDebug>
 #include <QFile>
@@ -350,4 +350,4 @@ delete [] X;
 }
 //---------------------------------------------------------------------------
 
-#endif // QTHARRIXLIBRARY_H
+#endif // HARRIXQTLIBRARY_H

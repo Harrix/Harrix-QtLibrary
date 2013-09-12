@@ -1,11 +1,11 @@
-QtHarrixLibrary
+HarrixQtLibrary
 =================
 
-v.3.11
+v.3.12
 
 Сборник функций для Qt.
 
-https://github.com/Harrix/QtHarrixLibrary
+https://github.com/Harrix/HarrixQtLibrary
 
 Библиотека распространяется по лицензии Apache License, Version 2.0.
 
@@ -256,9 +256,13 @@ https://github.com/Harrix/QtHarrixLibrary
 Изменения в последней версии
 ---------------
 
-3.11
+3.12
 
-[+] Добавлены функции HQt_DirExists, HQt_DirMake.
+[*] Переименование проекта из QtHarrixLibrary в HarrixQtLibrary.
+
+[*] Полная история перенесена в History.txt.
+
+[*] Изменен внешний вид README.md.
 
 Подробный список изменений в файле History.txt.
 
