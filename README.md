@@ -1,7 +1,9 @@
 QtHarrixLibrary
 =================
 
-Сборник функций для Qt. Версия v.3.11.
+v.3.11
+
+Сборник функций для Qt.
 
 https://github.com/Harrix/QtHarrixLibrary
 
@@ -10,247 +12,255 @@ https://github.com/Harrix/QtHarrixLibrary
 Функции
 ---------------
 
-QString **HQt_ReadFile**(QString filename);  
-Функция считывает текстовой файл в QString.
+- Функция считывает текстовой файл в QString.
 
-QStringList **HQt_ReadFileToQStringList**(QString filename);  
-Функция считывает текстовой файл в QStringList.
+        QString HQt_ReadFile(QString filename);  
 
-void **HQt_SaveFile**(QString line, QString filename);  
-Функция сохраняет QString в текстовой файл.
+- Функция считывает текстовой файл в QStringList.
 
-QString **HQt_ListFilesInDir**(QString path);  
-Функция считывает список файлов (включая скрытые) в директории в QString.
+        QStringList HQt_ReadFileToQStringList(QString filename);  
 
-QStringList **HQt_ListFilesInDirQStringList**(QString path);  
-Функция считывает список файлов (включая скрытые) в директории в QStringList.
+- Функция сохраняет QString в текстовой файл.
 
-QString **HQt_ListDirsInDir**(QString path);  
-Функция считывает список директорий в директории в QString.
+        void HQt_SaveFile(QString line, QString filename);  
 
-QStringList **HQt_ListDirsInDirQStringList**(QString path);  
-Функция считывает список директорий в директории в QStringList.
+- Функция считывает список файлов (включая скрытые) в директории в QString.
 
-QString **HQt_GetExpFromFilename**(QString filename);  
-Функция получает расширение файла по его имени.
+        QString HQt_ListFilesInDir(QString path);  
 
-QStringList **HQt_QStringToQStringList**(QString line);  
-Функция переводит QString в QStringList.
+- Функция считывает список файлов (включая скрытые) в директории в QStringList.
 
-QString **HQt_QStringListToQString**(QStringList lines);  
-Функция переводит QStringList в QString.
+        QStringList HQt_ListFilesInDirQStringList(QString path);  
 
-bool **HQt_FileExists**(QString filename);  
-Функция проверяет существование файла.
+- Функция считывает список директорий в директории в QString.
 
-bool **HQt_DirExists**(QString path);  
-Функция проверяет сущестование директории.
+        QString HQt_ListDirsInDir(QString path);  
 
-void **HQt_DirMake**(QString path);  
-Функция проверяет сущестование директории, и если ее нет, то создает.
+- Функция считывает список директорий в директории в QStringList.
 
-QString **HQt_GetNameFromFilename**(QString filename);  
-Функция получает имя файла без расширения по его имени.
+        QStringList HQt_ListDirsInDirQStringList(QString path);  
 
-bool **HQt_CopyFile**(QString filename, QString dir);  
-Функция копирует файл filename в папку dir.
+- Функция получает расширение файла по его имени.
 
-bool **HQt_CopyFile**(QString filename, QString dir, bool overwrite);  
-Функция копирует файл filename в папку dir, с возможностью перезаписи.
+        QString HQt_GetExpFromFilename(QString filename);  
 
-bool **HQt_RenameFile**(QString filename, QString newfilename);  
-Функция переименовывает файл filename в newfilename.
+- Функция переводит QString в QStringList.
 
-QString **HQt_GetFilenameFromFullFilename**(QString filename);  
-Функция получает имя файла по полному пути.
+        QStringList HQt_QStringToQStringList(QString line);  
 
-QString **HQt_WriteTime**(int t)
-Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
+- Функция переводит QStringList в QString.
 
-QString **HQt_UniqueName** ();
-Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
+        QString HQt_QStringListToQString(QStringList lines);  
 
-QString **HQt_UniqueName** (QString BeginString);  
-Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
+- Функция проверяет существование файла.
 
-QString **HQt_UniqueNameOnlyNumbers** ();  
-Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры.
+        bool HQt_FileExists(QString filename);  
 
-void **HQt_Delay**(int MSecs);  
-Функция делает задержку в MSecs миллисекунд.
+- Функция проверяет сущестование директории.
 
-QString **HQt_RandomString**(int Length);  
-Функция генерирует случайную строку из английских больших и малых букв.
+        bool HQt_DirExists(QString path);  
 
-int **HQt_DaysBetweenDates**(QDate BeginDate, QDate EndDate);  
-Функция определяет сколько дней между двумя датами.
+- Функция проверяет сущестование директории, и если ее нет, то создает.
 
-int **HQt_DaysBetweenDates**(QString BeginDate, QString EndDate);  
-Функция определяет сколько дней между двумя датами.
+        void HQt_DirMake(QString path);  
 
-template <class T> void **THQt_ReadVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult);  
-Функция считывает данные из QStringList в вектор.
+- Функция получает имя файла без расширения по его имени.
 
-template <class T> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);  
-Функция считывает данные из QStringList в два вектора.
+        QString HQt_GetNameFromFilename(QString filename);  
 
-template <class T> void **THQt_ReadTwoVectorFromQStringList**(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);  
-Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
+- Функция копирует файл filename в папку dir.
 
-template <class T> void **THQt_ReadMatrixFromQStringList**(QStringList QStringListFromFile, T **VMHL_MatrixResult);  
-Функция считывает данные из QStringList в матрицу.
+        bool HQt_CopyFile(QString filename, QString dir);  
 
-template <class T> void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);  
-Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+- Функция копирует файл filename в папку dir, с возможностью перезаписи.
 
-void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);  
-Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+        bool HQt_CopyFile(QString filename, QString dir, bool overwrite);  
 
-void **THQt_ReadColFromQStringList**(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);  
-Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+- Функция переименовывает файл filename в newfilename.
 
-int **HQt_CountOfColsFromQStringList**(QStringList QStringListFromFile);  
-Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+        bool HQt_RenameFile(QString filename, QString newfilename);  
 
-int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile);  
-Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+- Функция получает имя файла по полному пути.
 
-int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile, int k);  
-Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
+        QString HQt_GetFilenameFromFullFilename(QString filename);  
 
-int **HQt_CountOfRowsFromQStringList**(QStringList QStringListFromFile, int *VMHL_ResultVector);  
-Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
+- Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
 
-QString **THQt_ThreeNumbersToRGBString**(int R, int G, int B);  
-Функция переводит три числа в строку RGB типа #25ffb5, как в Photoshop или HTML.
+        QString HQt_WriteTime(int t)
 
-void **THQt_RGBStringToThreeNumbers**(QString RGB, int *R, int *G, int *B);  
-Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
+- Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
 
-QString **THQt_GiveRainbowColorRGB**(double position);  
-Функция выдает код RGB из градиента радуги для любой позиции от 0 до 1 из этого градиента.
+        QString HQt_UniqueName ();
 
-QString **THQt_ColorFromGradient**(double position, QString FirstRGB, QString SecondRGB);  
-Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
+- Функция возвращает уникальную строку, которую можно использовать как некий идентификатор.
 
-QString **THQt_AlphaBlendingColorToColor**(double alpha, QString FirstRGB, QString SecondRGB);  
-Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+        QString HQt_UniqueName (QString BeginString);  
 
-QString **HQt_TextBeforeEqualSign** (QString String);  
-Функция возвращает текст строки до первого знака =.
+- Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры.
 
-QString **HQt_TextAfterEqualSign** (QString String);  
-Функция возвращает текст строки после первого знака =.
+        QString HQt_UniqueNameOnlyNumbers ();  
 
-QStringList **HQt_AddUniqueQStringInQStringList** (QStringList StringList, QString String);  
-Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+- Функция делает задержку в MSecs миллисекунд.
 
-int **HQt_SearchQStringInQStringList** (QStringList StringList, QString String);  
-Функция ищет в QStringList строку QString (номер первого вхождения).
+        void HQt_Delay(int MSecs);  
 
-QString **HQt_StringForLaTeX** (QString String);  
-Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
+- Функция генерирует случайную строку из английских больших и малых букв.
 
-QString **HQt_StringToLabelForLaTeX** (QString String);  
-Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+        QString HQt_RandomString(int Length);  
 
-int **HQt_GetTypeCharRus**(QString x);  
-Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+- Функция определяет сколько дней между двумя датами.
 
-bool **HQt_CheckRus**(QString S);  
-Функция проверяет наличие русских букв в строке.
+        int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);  
 
-bool **HQt_CheckLetterFromWord**(QString x);  
-Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание.
+- Функция определяет сколько дней между двумя датами.
 
-QStringList **HQt_CutToWords**(QString S);  
-Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+        int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);  
 
-QStringList **HQt_CutToWordsWithWordWrap**(QString S);  
-Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+- Функция считывает данные из QStringList в вектор.
 
-int **HQt_GetTypeCharEng**(QString x);  
-Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+        template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);  
 
-QStringList **HQt_BreakdownOfTextWithWordWrap**(QString S, int length);  
-Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+- Функция считывает данные из QStringList в два вектора.
 
-bool **HQt_CheckIntolerablePunctuation**(QString x);  
-Является ли символом знаком пунктуации, который нельзя переносить.
+        template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);  
 
-int **HQt_MaxCountOfQStringList**(QStringList x);  
-Функция выдает длину максимальной по длине строки в QStringList.
+- Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
 
-bool **HQt_IsNumeric**(QString x);  
-Функция проверяет - является ли строка числом.
+        template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);  
 
-double **THQt_QStringToNumber** (QString x);  
-Функция выводит строку x в число.
+- Функция считывает данные из QStringList в матрицу.
 
-double **THQt_QStringToNumber** (QString x, bool checkcomma);  
-Функция выводит строку x в число с учетом возможности нахождения запятой.
+        template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T VMHL_MatrixResult);  
+
+- Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+
+        template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);  
+
+- Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+
+        void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);  
+
+- Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
+
+        void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);  
+
+- Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+
+        int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile);  
+
+- Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile.
+
+        int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);  
+
+- Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile.
+
+        int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);  
+
+- Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
+
+        int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);  
+
+- Функция переводит три числа в строку RGB типа #25ffb5, как в Photoshop или HTML.
+
+        QString THQt_ThreeNumbersToRGBString(int R, int G, int B);  
+
+- Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
+
+        void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B);  
+
+- Функция выдает код RGB из градиента радуги для любой позиции от 0 до 1 из этого градиента.
+
+        QString THQt_GiveRainbowColorRGB(double position);  
+
+- Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
+
+        QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB);  
+
+- Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+
+        QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB);  
+
+- Функция возвращает текст строки до первого знака =.
+
+        QString HQt_TextBeforeEqualSign (QString String);  
+
+- Функция возвращает текст строки после первого знака =.
+
+        QString HQt_TextAfterEqualSign (QString String);  
+
+- Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+
+        QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);  
+
+- Функция ищет в QStringList строку QString (номер первого вхождения).
+
+        int HQt_SearchQStringInQStringList (QStringList StringList, QString String);  
+
+- Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
+
+        QString HQt_StringForLaTeX (QString String);  
+
+- Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+
+        QString HQt_StringToLabelForLaTeX (QString String);  
+
+- Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+        int HQt_GetTypeCharRus(QString x);  
+
+- Функция проверяет наличие русских букв в строке.
+
+        bool HQt_CheckRus(QString S);  
+
+- Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание.
+
+        bool HQt_CheckLetterFromWord(QString x);  
+
+- Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+
+        QStringList HQt_CutToWords(QString S);  
+
+- Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+
+        QStringList HQt_CutToWordsWithWordWrap(QString S);  
+
+- Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+        int HQt_GetTypeCharEng(QString x);  
+
+- Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+
+        QStringList HQt_BreakdownOfTextWithWordWrap(QString S, int length);  
+
+- Является ли символом знаком пунктуации, который нельзя переносить.
+
+        bool HQt_CheckIntolerablePunctuation(QString x);  
+
+- Функция выдает длину максимальной по длине строки в QStringList.
+
+        int HQt_MaxCountOfQStringList(QStringList x);  
+
+- Функция проверяет - является ли строка числом.
+
+        bool HQt_IsNumeric(QString x);  
+
+- Функция выводит строку x в число.
+
+        double THQt_QStringToNumber (QString x);  
+
+- Функция выводит строку x в число с учетом возможности нахождения запятой.
+
+        double THQt_QStringToNumber (QString x, bool checkcomma);  
 
 
-История проекта
+Изменения в последней версии
 ---------------
 
-**[-]** исправление
+3.11
 
-**[+]** добавление
+[+] Добавлены функции HQt_DirExists, HQt_DirMake.
 
-**[*]** разное
-
-**3.11**
-
-**[+]** Добавлены функции HQt_DirExists, HQt_DirMake.
-
-**3.10**
-
-**[+]** Добавлены функции HQt_MaxCountOfQStringList, HQt_IsNumeric, THQt_QStringToNumber (2 варианта).
-
-**3.9**
-
-**[+]** Добавлены функции HQt_CutToWords, HQt_CutToWordsWithWordWrap, HQt_GetTypeCharEng, HQt_BreakdownOfTextWithWordWrap, HQt_CheckIntolerablePunctuation.
-
-**[-]** Дополнены некоторые функции в своем теле.
-
-**3.8**
-
-**[+]** Добавлены функции HQt_GetTypeCharRus(QString x), HQt_CheckRus, HQt_CheckLetterFromWord.
-
-**3.7**
-
-**[+]** Добавлены функции QString HQt_StringForLaTeX, HQt_StringToLabelForLaTeX, HQt_RenameFile.
-
-**3.6**
-
-**[+]** Добавлена функция HQt_SearchQStringInQStringList.  
-
-**3.5**
-
-**[-]** Удалены функции HQt_ReadNumberOfParametersFromHarrixOptimizationTesting, HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting и HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting ввиду перехода на класс DataOfHarrixOptimizationTesting.
-
-**3.4**
-
-**[+]** Добавлена функции HQt_ReadNumberOfParametersFromHarrixOptimizationTesting.
-
-**3.3**
-
-**[+]** Добавлена функции HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting и HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting.
-
-**3.2**
-
-**[+]** Добавлена функция HQt_AddUniqueQStringInQStringList.
-
-**3.1**
-
-**[-]** Исправление в функциях по поиску разделителя между папками в полных именах файлах.
-
-**3.0**
-
-**[*]** Из библиотеки убраны функции (и сопутствующие файлы) для отображения информации в QWebView. Все эти функции перенесены в отдельную библиотеку QtHarrixLibraryForQWebView, которую можно найти по адресу: https://github.com/Harrix/QtHarrixLibraryForQWebView
-
-**[+]** В библиотеке теперь 41  функция.
+Подробный список изменений в файле History.txt.
 
 Контакты
 ---------------
