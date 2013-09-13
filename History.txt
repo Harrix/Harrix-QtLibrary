@@ -10,9 +10,13 @@ HarrixQtLibrary
 
 [*] разное
 
+3.13
+
+[-] Исправлены ошибки в некоторых функциях.
+
 3.12
 
-[*] Переименование проекта из QtHarrixLibrary в HarrixQtLibrary.
+[*] Переименование проекта из HarrixQtLibrary в HarrixQtLibrary.
 
 [*] Полная история перенесена в History.txt.
 
