@@ -50,7 +50,7 @@ HarrixQtLibrary
 
 3.5
 
-[-] Удалены функции HQt_ReadNumberOfParametersFromHarrixOptimizationTesting, HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting и HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting ввиду перехода на класс DataOfHarrixOptimizationTesting.
+[-] Удалены функции HQt_ReadNumberOfParametersFromHarrixOptimizationTesting, HQt_ReadNumberOfExperimentsFromHarrixOptimizationTesting и HQt_ReadNumberOfMeasuringFromHarrixOptimizationTesting ввиду перехода на класс HarrixClass_DataOfHarrixOptimizationTesting.
 
 3.4
 
