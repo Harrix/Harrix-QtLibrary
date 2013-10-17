@@ -7,7 +7,7 @@ HarrixQtLibrary
 
 https://github.com/Harrix/HarrixQtLibrary
 
-Библиотека распространяется по лицензии Apache License, Version 2.0.
+Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
 Функции
 -------
