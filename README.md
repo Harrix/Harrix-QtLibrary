@@ -56,11 +56,11 @@ https://github.com/Harrix/HarrixQtLibrary
 
         bool HQt_FileExists(QString filename);  
 
-- Функция проверяет сущестование директории.
+- Функция проверяет существование директории.
 
         bool HQt_DirExists(QString path);  
 
-- Функция проверяет сущестование директории, и если ее нет, то создает.
+- Функция проверяет существование директории, и если ее нет, то создает.
 
         void HQt_DirMake(QString path);  
 
@@ -196,11 +196,11 @@ https://github.com/Harrix/HarrixQtLibrary
 
         int HQt_SearchQStringInQStringList (QStringList StringList, QString String);  
 
-- Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX.
+- Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX.
 
         QString HQt_StringForLaTeX (QString String);  
 
-- Функция обрабатывает строку String так, чтобы она подходила длz публикации в LaTeX в виде label.
+- Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX в виде label.
 
         QString HQt_StringToLabelForLaTeX (QString String);  
 
@@ -250,7 +250,12 @@ https://github.com/Harrix/HarrixQtLibrary
 
 - Функция выводит строку x в число с учетом возможности нахождения запятой.
 
-        double THQt_QStringToNumber (QString x, bool checkcomma);  
+        double THQt_QStringToNumber (QString x, bool checkcomma); 
+
+Скриншоты примеров использования функций
+----------------------------------------
+
+![alt text](../master/images/example.png "Пример применения функции переноса текста")
 
 
 История проекта
