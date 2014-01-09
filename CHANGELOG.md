@@ -1,6 +1,10 @@
 HarrixQtLibrary
 ===============
 
+3.15
+----
+ * Исправлена ошибка в функции HQt_RandomString.
+
 3.14
 ----
  * Добавлена функция HQt_WriteTime для qint64.
