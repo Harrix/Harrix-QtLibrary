@@ -9,6 +9,11 @@ https://github.com/Harrix/HarrixQtLibrary
 
 Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
+Установка
+---------
+
+Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1186.
+
 Функции
 -------
 
@@ -261,6 +266,10 @@ https://github.com/Harrix/HarrixQtLibrary
 
 ![alt text](../master/images/example.png "Пример применения функции переноса текста")
 
+Использованные технологии
+-------------------------
+
+- Qt.
 
 История проекта
 ---------------
