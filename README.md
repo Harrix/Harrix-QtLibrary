@@ -269,7 +269,7 @@ https://github.com/Harrix/HarrixQtLibrary
 Использованные технологии
 -------------------------
 
-- Qt.
+- [Qt](http://qt-project.org/).
 
 История проекта
 ---------------
