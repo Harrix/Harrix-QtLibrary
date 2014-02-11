@@ -1,7 +1,7 @@
 HarrixQtLibrary
 ===============
 
-Версия 3.17
+Версия 3.18
 
 Сборник функций для Qt.
 
@@ -260,6 +260,14 @@ https://github.com/Harrix/HarrixQtLibrary
 - Функция выводит строку x в число с учетом возможности нахождения запятой.
 
         double THQt_QStringToNumber (QString x, bool checkcomma); 
+		
+- Функция сравнивает две строки и определяет какая строчка идет первой. Служебная функция для сортировки строк в обычном стиле, когда строки: z1, z10, z2 сортируются как z1, z2, z10.
+
+        bool HQt_NaturalCompareTwoQStrings(const QString& s1,const QString& s2);
+
+- Функция сортировки строк в сортировки строк QStringList в натуральном виде, например, строки: z1, z10, z2 сортируются как z1, z2, z10.
+
+        QStringList HQt_NaturalSortingQStringList (QStringList StringList);
 
 Скриншоты примеров использования функций
 ----------------------------------------
