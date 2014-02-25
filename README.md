@@ -5,14 +5,14 @@ HarrixQtLibrary
 
 Сборник функций для Qt.
 
-https://github.com/Harrix/HarrixQtLibrary
+[https://github.com/Harrix/HarrixQtLibrary](https://github.com/Harrix/HarrixQtLibrary)
 
-Библиотека распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
+Библиотека распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/HarrixQtLibrary/blob/master/LICENSE.txt).
 
 Установка
 ---------
 
-Подробно о установке с подробным примером можно прочитать тут http://blog.harrix.org/?p=1186.
+Подробно о установке с подробным примером можно прочитать тут [http://blog.harrix.org/?p=1186](http://blog.harrix.org/?p=1186).
 
 Функции
 -------
@@ -272,7 +272,7 @@ https://github.com/Harrix/HarrixQtLibrary
 Скриншоты примеров использования функций
 ----------------------------------------
 
-![alt text](../master/images/example.png "Пример применения функции переноса текста")
+![alt text](https://raw.github.com/Harrix/HarrixQtLibrary/master/images/example.png "Пример применения функции переноса текста")
 
 Использованные технологии
 -------------------------
@@ -282,7 +282,7 @@ https://github.com/Harrix/HarrixQtLibrary
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](../master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/HarrixQtLibrary/blob/master/CHANGELOG.md).
 
 Контакты
 --------
