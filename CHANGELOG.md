@@ -1,6 +1,10 @@
 HarrixQtLibrary
 ===============
 
+3.19
+----
+ * Добавлена функция THQt_VectorToQStringList.
+
 3.18
 ----
  * Добавлены функции HQt_NaturalCompareTwoQStrings и HQt_NaturalSortingQStringList для сортировки строк с учетом возможных чисел в них. Так называемая Natural sort.

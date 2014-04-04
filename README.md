@@ -1,7 +1,7 @@
 HarrixQtLibrary
 ===============
 
-Версия 3.18
+Версия 3.19
 
 Сборник функций для Qt.
 
@@ -393,6 +393,12 @@ bool HQt_NaturalCompareTwoQStrings(const QString& s1,const QString& s2);
 
 ```
 QStringList HQt_NaturalSortingQStringList (QStringList StringList);
+```
+
+- Функция переводит вектор чисел в QStringList.
+
+```
+template <class T> void THQt_VectorToQStringList(T *x, int N);
 ```
 
 Скриншоты примеров использования функций
