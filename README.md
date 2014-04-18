@@ -1,7 +1,7 @@
 HarrixQtLibrary
 ===============
 
-Версия 3.20
+Версия 3.21
 
 Сборник функций для Qt.
 
@@ -399,6 +399,17 @@ QStringList HQt_NaturalSortingQStringList (QStringList StringList);
 
 ```
 template <class T> void THQt_VectorToQStringList(T *x, int N);
+```
+
+- Функция переводит переменную, принимающую значения "0" и "1" в слова.
+
+```
+QString HQt_BoolToWord(QString Bool);
+QString HQt_BoolToWord(QString Bool, QString No, QString Yes);
+QString HQt_BoolToWord(bool Bool);
+QString HQt_BoolToWord(bool Bool, QString No, QString Yes);
+QString HQt_BoolToWord(int Bool);
+QString HQt_BoolToWord(int Bool, QString No, QString Yes);
 ```
 
 Скриншоты примеров использования функций
