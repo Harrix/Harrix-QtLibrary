@@ -1,7 +1,7 @@
 HarrixQtLibrary
 ===============
 
-Версия 3.22
+Версия 3.23
 
 Сборник функций для Qt.
 
@@ -93,6 +93,12 @@ bool HQt_DirExists(QString path);
 
 ```
 void HQt_DirMake(QString path);  
+```
+
+- Функция удаляет директорию и всё ее содержимое.
+
+```
+bool HQt_DirDelete(QString path);
 ```
 
 - Функция получает имя файла без расширения по его имени.
