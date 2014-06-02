@@ -3,7 +3,7 @@
 \input{packages}
 \input{styles}
 
-\title{HarrixQtLibrary v.3.24}
+\title{HarrixQtLibrary v.3.25}
 \author{А.\,Б. Сергиенко}
 \date{\today}
 
@@ -65,6 +65,8 @@
 \item \textbf{\hyperref[HQt_BoolToWord]{HQt\_BoolToWord}} --- Функция переводит переменную, принимающую значения "0" и "1" в слова.
 
 \item \textbf{\hyperref[HQt_RandomString]{HQt\_RandomString}} --- Функция генерирует случайную строку из английских больших и малых букв.
+
+\item \textbf{\hyperref[HQt_TryingReduceString]{HQt\_TryingReduceString}} --- Функция старается сократить строку длиной больше MaxSize символов, сокращая слова. Функция старается сократить строку длиной больше 40 символов, сокращая слова.
 
 \item \textbf{\hyperref[HQt_UniqueName]{HQt\_UniqueName}} --- Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. Собирается из "HQt\_" + текущее время или из BeginString+"\_" + текущее время.
 
@@ -535,8 +537,6 @@ Bool --- исходная переменная.
 
 Слово, которое характеризует переменную.
 
-\textbf{Примечание:}
-
 
 \subsubsection{HQt\_RandomString}\label{HQt_RandomString}
 
@@ -560,6 +560,27 @@ Length --- длина строки, которую надо сгенериров
 Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand.
 
 Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+
+\subsubsection{HQt\_TryingReduceString}\label{HQt_TryingReduceString}
+
+Функция старается сократить строку длиной больше MaxSize символов, сокращая слова. Функция старается сократить строку длиной больше 40 символов, сокращая слова.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_TryingReduceString,caption=Синтаксис]
+QString HQt_TryingReduceString(QString text, int MaxSize);
+QString HQt_TryingReduceString(QString text);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+text --- сокращаемая строка;
+ 
+	MaxSize --- с какого количества символов сокращаем строку (необязательно).
+
+\textbf{Возвращаемое значение:}
+
+Сокращенная строка. Обратите внмиание, что строка сокращенная может быть длиннее MaxSize.
 
 
 \subsubsection{HQt\_UniqueName}\label{HQt_UniqueName}

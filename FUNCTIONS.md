@@ -70,6 +70,13 @@ QString HQt_BoolToWord(int Bool, QString No, QString Yes);
 QString HQt_RandomString(int Length);
 ```
 
+- Функция старается сократить строку длиной больше MaxSize символов, сокращая слова. Функция старается сократить строку длиной больше 40 символов, сокращая слова.
+
+```cpp
+QString HQt_TryingReduceString(QString text, int MaxSize);
+QString HQt_TryingReduceString(QString text);
+```
+
 - Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. Собирается из "HQt_" + текущее время или из BeginString+"_" + текущее время.
 
 ```cpp
@@ -380,4 +387,3 @@ template <class T> void THQt_VectorToQStringList(T *x, int N);
 ```cpp
 void HQt_Delay(int MSecs);
 ```
-
