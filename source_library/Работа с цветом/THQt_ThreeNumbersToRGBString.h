@@ -1,0 +1,1 @@
+QString THQt_ThreeNumbersToRGBString(int R, int G, int B);

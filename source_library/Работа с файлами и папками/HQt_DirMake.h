@@ -1,0 +1,1 @@
+void HQt_DirMake(QString path);

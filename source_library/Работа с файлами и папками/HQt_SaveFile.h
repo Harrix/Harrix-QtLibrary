@@ -1,0 +1,1 @@
+void HQt_SaveFile(QString line, QString filename);

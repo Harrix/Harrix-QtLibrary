@@ -1,0 +1,1 @@
+bool HQt_CheckRus(QString S);

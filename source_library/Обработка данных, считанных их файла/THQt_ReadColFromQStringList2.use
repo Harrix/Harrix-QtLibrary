@@ -1,0 +1,15 @@
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
+int N;
+N=HQt_CountOfRowsFromQStringList(List,k);
+
+double *X;
+X=new double[N];
+
+int k=2;//номер столбца
+
+THQt_ReadColFromQStringList(List, k, X);
+
+delete [] X;

@@ -1,0 +1,1 @@
+template <class T> void THQt_VectorToQStringList(T *x, int N);

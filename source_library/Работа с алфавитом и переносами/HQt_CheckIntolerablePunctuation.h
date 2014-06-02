@@ -1,0 +1,1 @@
+bool HQt_CheckIntolerablePunctuation(QString x);

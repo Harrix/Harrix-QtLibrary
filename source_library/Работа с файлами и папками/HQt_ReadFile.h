@@ -1,0 +1,1 @@
+QString HQt_ReadFile(QString filename);

@@ -1,0 +1,1 @@
+QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB);

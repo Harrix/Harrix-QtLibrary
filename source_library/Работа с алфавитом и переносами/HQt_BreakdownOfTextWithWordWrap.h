@@ -1,0 +1,1 @@
+QStringList HQt_BreakdownOfTextWithWordWrap(QString S, int length);

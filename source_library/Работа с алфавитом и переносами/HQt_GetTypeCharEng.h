@@ -1,0 +1,1 @@
+int HQt_GetTypeCharEng(QString x);

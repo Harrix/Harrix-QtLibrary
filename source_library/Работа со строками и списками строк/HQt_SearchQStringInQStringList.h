@@ -1,0 +1,1 @@
+int HQt_SearchQStringInQStringList (QStringList StringList, QString String);

@@ -1,0 +1,1 @@
+QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB);

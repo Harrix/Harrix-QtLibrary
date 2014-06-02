@@ -1,0 +1,1 @@
+QString HQt_GetFilenameFromFullFilename(QString filename);

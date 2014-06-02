@@ -1,0 +1,1 @@
+void HQt_Delay(int MSecs);

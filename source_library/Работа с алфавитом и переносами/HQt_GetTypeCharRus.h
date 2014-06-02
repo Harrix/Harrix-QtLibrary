@@ -1,0 +1,1 @@
+int HQt_GetTypeCharRus(QString x);

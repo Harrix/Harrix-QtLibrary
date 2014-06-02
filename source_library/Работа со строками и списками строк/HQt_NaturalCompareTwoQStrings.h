@@ -1,0 +1,1 @@
+bool HQt_NaturalCompareTwoQStrings(const QString& s1,const QString& s2);

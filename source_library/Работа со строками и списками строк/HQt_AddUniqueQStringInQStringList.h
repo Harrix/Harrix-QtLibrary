@@ -1,0 +1,1 @@
+QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);

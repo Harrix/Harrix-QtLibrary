@@ -1,0 +1,1529 @@
+\documentclass[a4paper,12pt]{article}
+
+\input{packages}
+\input{styles}
+
+\title{HarrixQtLibrary v.3.24}
+\author{А.\,Б. Сергиенко}
+\date{\today}
+
+
+\begin{document}
+
+\input{names}
+
+\maketitle
+
+\begin{abstract}
+Библиотека HarrixQtLibrary --- сборник функций для Qt.
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Введение}
+
+Библиотека HarrixQtLibrary --- это сборник функций для Qt.
+
+Последнюю версию документа можно найти по адресу:
+
+\href{https://github.com/Harrix/HarrixQtLibrary}{https://github.com/Harrix/HarrixQtLibrary}
+
+Об установке библиотеки можно прочитать тут:
+
+\href{http://blog.harrix.org/?p=1186}{http://blog.harrix.org/?p=1186}
+
+С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
+
+Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+\newpage
+\section{Список функций}\label{section_listfunctions}
+\textbf{Обработка данных, считанных их файла}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_CountOfColsFromQStringList]{HQt\_CountOfColsFromQStringList}} --- Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+
+\item \textbf{\hyperref[HQt_CountOfRowsFromQStringList]{HQt\_CountOfRowsFromQStringList}} --- Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile. Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile. Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
+
+\item \textbf{\hyperref[THQt_ReadColFromQStringList]{THQt\_ReadColFromQStringList}} --- Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Для строк.
+
+\item \textbf{\hyperref[THQt_ReadColFromQStringList2]{THQt\_ReadColFromQStringList2}} --- Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+
+\item \textbf{\hyperref[THQt_ReadMatrixFromQStringList]{THQt\_ReadMatrixFromQStringList}} --- Функция считывает данные из QStringList в матрицу.
+
+\item \textbf{\hyperref[THQt_ReadTwoVectorFromQStringList]{THQt\_ReadTwoVectorFromQStringList}} --- Функция считывает данные из QStringList в два вектора.
+
+\item \textbf{\hyperref[THQt_ReadVectorFromQStringList]{THQt\_ReadVectorFromQStringList}} --- Функция считывает данные из QStringList в вектор.
+
+\end{enumerate}
+
+\textbf{Получение строк-выводов по данным}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_BoolToWord]{HQt\_BoolToWord}} --- Функция переводит переменную, принимающую значения "0" и "1" в слова.
+
+\item \textbf{\hyperref[HQt_RandomString]{HQt\_RandomString}} --- Функция генерирует случайную строку из английских больших и малых букв.
+
+\item \textbf{\hyperref[HQt_UniqueName]{HQt\_UniqueName}} --- Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. Собирается из "HQt\_" + текущее время или из BeginString+"\_" + текущее время.
+
+\item \textbf{\hyperref[HQt_UniqueNameOnlyNumbers]{HQt\_UniqueNameOnlyNumbers}} --- Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры. Собирается из текущего времени.
+
+\item \textbf{\hyperref[HQt_WriteTime]{HQt\_WriteTime}} --- Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
+
+\end{enumerate}
+
+\textbf{Работа с алфавитом и переносами}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_BreakdownOfTextWithWordWrap]{HQt\_BreakdownOfTextWithWordWrap}} --- Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+
+\item \textbf{\hyperref[HQt_CheckIntolerablePunctuation]{HQt\_CheckIntolerablePunctuation}} --- Является ли символом знаком пунктуации, который нельзя переносить.
+
+\item \textbf{\hyperref[HQt_CheckLetterFromWord]{HQt\_CheckLetterFromWord}} --- Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание. Плюc некоторые знаки препинания, так как их нельзя переносить.
+
+\item \textbf{\hyperref[HQt_CheckRus]{HQt\_CheckRus}} --- Функция проверяет наличие русских букв в строке.
+
+\item \textbf{\hyperref[HQt_CutToWords]{HQt\_CutToWords}} --- Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+
+\item \textbf{\hyperref[HQt_CutToWordsWithWordWrap]{HQt\_CutToWordsWithWordWrap}} --- Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+
+\item \textbf{\hyperref[HQt_GetTypeCharEng]{HQt\_GetTypeCharEng}} --- Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+\item \textbf{\hyperref[HQt_GetTypeCharRus]{HQt\_GetTypeCharRus}} --- Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+\end{enumerate}
+
+\textbf{Работа с датами}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_DaysBetweenDates]{HQt\_DaysBetweenDates}} --- Функция определяет сколько дней между двумя датами.
+
+\end{enumerate}
+
+\textbf{Работа с файлами и папками}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_CopyFile]{HQt\_CopyFile}} --- Функция копирует файл filename в папку dir. Функция копирует файл filename в папку dir, с возможностью перезаписи (в функции-перегрузке).
+
+\item \textbf{\hyperref[HQt_DirDelete]{HQt\_DirDelete}} --- Функция удаляет директорию и всё ее содержимое.
+
+\item \textbf{\hyperref[HQt_DirExists]{HQt\_DirExists}} --- Функция проверяет существование директории.
+
+\item \textbf{\hyperref[HQt_DirMake]{HQt\_DirMake}} --- Функция проверяет существование директории, и если ее нет, то создает.
+
+\item \textbf{\hyperref[HQt_FileExists]{HQt\_FileExists}} --- Функция проверяет существование файла.
+
+\item \textbf{\hyperref[HQt_GetExpFromFilename]{HQt\_GetExpFromFilename}} --- Функция получает расширение файла по его имени.
+
+\item \textbf{\hyperref[HQt_GetFilenameFromFullFilename]{HQt\_GetFilenameFromFullFilename}} --- Функция получает имя файла по полному пути.
+
+\item \textbf{\hyperref[HQt_GetNameFromFilename]{HQt\_GetNameFromFilename}} --- Функция получает имя файла без расширения по его имени.
+
+\item \textbf{\hyperref[HQt_ListDirsInDir]{HQt\_ListDirsInDir}} --- Функция считывает список директорий в директории в QString.
+
+\item \textbf{\hyperref[HQt_ListDirsInDirQStringList]{HQt\_ListDirsInDirQStringList}} --- Функция считывает список директорий в директории в QStringList..
+
+\item \textbf{\hyperref[HQt_ListFilesInDir]{HQt\_ListFilesInDir}} --- Функция считывает список файлов (включая скрытые) в директории в QString.
+
+\item \textbf{\hyperref[HQt_ListFilesInDirQStringList]{HQt\_ListFilesInDirQStringList}} --- Функция считывает список файлов (включая скрытые) в директории в QStringList.
+
+\item \textbf{\hyperref[HQt_ReadFile]{HQt\_ReadFile}} --- Функция считывает текстовой файл в QString.
+
+\item \textbf{\hyperref[HQt_ReadFileToQStringList]{HQt\_ReadFileToQStringList}} --- Функция считывает текстовой файл в QStringList.
+
+\item \textbf{\hyperref[HQt_RenameFile]{HQt\_RenameFile}} --- Функция переименовывает файл filename в newfilename.
+
+\item \textbf{\hyperref[HQt_SaveFile]{HQt\_SaveFile}} --- Функция сохраняет QString в текстовой файл.
+
+\end{enumerate}
+
+\textbf{Работа с цветом}
+\begin{enumerate}
+
+\item \textbf{\hyperref[THQt_AlphaBlendingColorToColor]{THQt\_AlphaBlendingColorToColor}} --- Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+
+\item \textbf{\hyperref[THQt_ColorFromGradient]{THQt\_ColorFromGradient}} --- Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
+
+\item \textbf{\hyperref[THQt_GiveRainbowColorRGB]{THQt\_GiveRainbowColorRGB}} --- Функция выдает код RGB из градиента радуги для любой позиции от 0 до 1 из этого градиента.
+
+\item \textbf{\hyperref[THQt_RGBStringToThreeNumbers]{THQt\_RGBStringToThreeNumbers}} --- Функция переводит строку RGB типа \#25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
+
+\item \textbf{\hyperref[THQt_ThreeNumbersToRGBString]{THQt\_ThreeNumbersToRGBString}} --- Функция переводит три числа в строку RGB типа \#25ffb5, как в Photoshop или HTML.
+
+\end{enumerate}
+
+\textbf{Работа со строками и списками строк}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_AddUniqueQStringInQStringList]{HQt\_AddUniqueQStringInQStringList}} --- Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+
+\item \textbf{\hyperref[HQt_IsNumeric]{HQt\_IsNumeric}} --- Функция проверяет - является ли строка числом.
+
+\item \textbf{\hyperref[HQt_MaxCountOfQStringList]{HQt\_MaxCountOfQStringList}} --- Функция выдает длину макимальной по длине строки в QStringList.
+
+\item \textbf{\hyperref[HQt_NaturalCompareTwoQStrings]{HQt\_NaturalCompareTwoQStrings}} --- Функция сравнивает две строки и определяет какая строчка идет первой. Служебная функция для сортировки строк в обычном стиле, когда строки: z1, z10, z2 сортируются как z1, z2, z10.
+
+\item \textbf{\hyperref[HQt_NaturalSortingQStringList]{HQt\_NaturalSortingQStringList}} --- Функция сортировки строк в сортировки строк QStringList в натуральном виде, например, строки: z1, z10, z2 сортируются как z1, z2, z10.
+
+\item \textbf{\hyperref[HQt_QStringListToQString]{HQt\_QStringListToQString}} --- Функция переводит QStringList в QString.
+
+\item \textbf{\hyperref[HQt_QStringToNumber]{HQt\_QStringToNumber}} --- Функция выводит строку x в число.
+
+\item \textbf{\hyperref[HQt_QStringToQStringList]{HQt\_QStringToQStringList}} --- Функция переводит QString в QStringList.
+
+\item \textbf{\hyperref[HQt_SearchQStringInQStringList]{HQt\_SearchQStringInQStringList}} --- Функция ищет в QStringList строку QString (номер первого вхождения).
+
+\item \textbf{\hyperref[HQt_StringForLaTeX]{HQt\_StringForLaTeX}} --- Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX.
+
+\item \textbf{\hyperref[HQt_StringToLabelForLaTeX]{HQt\_StringToLabelForLaTeX}} --- Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX в виде label.
+
+\item \textbf{\hyperref[HQt_TextAfterEqualSign]{HQt\_TextAfterEqualSign}} --- Функция возвращает текст строки после первого знака =.
+
+\item \textbf{\hyperref[HQt_TextBeforeEqualSign]{HQt\_TextBeforeEqualSign}} --- Функция возвращает текст строки до первого знака =.
+
+\item \textbf{\hyperref[THQt_VectorToQStringList]{THQt\_VectorToQStringList}} --- Функция переводит вектор чисел в QStringList.
+
+\end{enumerate}
+
+\textbf{Служебные функции}
+\begin{enumerate}
+
+\item \textbf{\hyperref[HQt_Delay]{HQt\_Delay}} --- Функция делает задержку в MSecs миллисекунд.
+
+\end{enumerate}
+
+
+\newpage
+\section{Функции}
+\subsection{Обработка данных, считанных их файла}
+
+\subsubsection{HQt\_CountOfColsFromQStringList}\label{HQt_CountOfColsFromQStringList}
+
+Функция подсчитывает сколько столбцов в текстовом файле, который скопировали в QStringListFromFile.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CountOfColsFromQStringList,caption=Синтаксис]
+int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+QStringListFromFile - непосредственно сам файл (его содержимое).
+
+\textbf{Возвращаемое значение:}
+
+Число столбцов (по первой строке).
+
+\textbf{Пример содержимого QStringListFromFile:}
+
+1	2.2
+
+2.8	9
+
+Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию, а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов. Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих элементов ставится знак «-».
+
+
+\subsubsection{HQt\_CountOfRowsFromQStringList}\label{HQt_CountOfRowsFromQStringList}
+
+Функция подсчитывает сколько строк в текстовом файле, который скопировали в QStringListFromFile. Функция подсчитывает сколько строк в k столбце из текстового файла, который скопировали в QStringListFromFile. Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CountOfRowsFromQStringList,caption=Синтаксис]
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+QStringListFromFile --- непосредственно сам файл (его содержимое).
+
+k --- номер столбца (необзяательно).
+
+ VMHL\_ResultVector --- сюда количество строк заносится (необязательно).
+
+\textbf{Возвращаемое значение:}
+
+Число строк.
+
+\textbf{Пример содержимого QStringListFromFile:}
+
+1	2.2
+
+2.8	9
+
+Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию, а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов. Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих элементов ставится знак «-».
+
+
+\subsubsection{THQt\_ReadColFromQStringList}\label{THQt_ReadColFromQStringList}
+
+Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Для строк.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ReadColFromQStringList,caption=Синтаксис]
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+QStringListFromFile --- отсюда берем информацию;
+ 
+    k --- номер столбца, начиная с нуля, который считываем;
+ 
+    VMHL\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
+	
+\textbf{Входные параметры 2:}
+	
+	 QStringListFromFile --- отсюда берем информацию;
+ 
+    k --- номер столбца, начиная с нуля, который считываем;
+ 
+    VMHL\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
+
+\textbf{Возвращаемое значение:}
+
+Число строк.
+
+\textbf{Пример содержимого QStringListFromFile:}
+
+1	2013.04.05	6
+
+52	2013.02.25	96
+
+6.4	2013.01.15	4
+
+Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию, а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов. Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих элементов ставится знак «-».
+
+
+\subsubsection{THQt\_ReadColFromQStringList2}\label{THQt_ReadColFromQStringList2}
+
+Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ReadColFromQStringList2,caption=Синтаксис]
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+QStringListFromFile --- отсюда берем информацию;
+
+     k --- номер столбца, начиная с нуля, который считываем;
+	 
+     VMHL\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
+
+\textbf{Возвращаемое значение:}
+
+Количество элементов в столбце. Как только встречает вместо числа символ «-», то функция считает, что вектор закончился.
+
+\textbf{Пример содержимого QStringListFromFile:}
+
+1	2	6
+
+52	3	96
+
+6.4	7	4
+
+    Второй пример содержимого VMHL\_VectorResult.
+	
+1	2	6	5
+
+52	3	96	5
+
+-	-	4   2
+
+Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию, а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов. Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих элементов ставится знак «-».
+
+
+\begin{lstlisting}[label=code_use_THQt_ReadColFromQStringList2,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+
+QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
+int N;
+N=HQt_CountOfRowsFromQStringList(List,k);
+
+double *X;
+X=new double[N];
+
+int k=2;//номер столбца
+
+THQt_ReadColFromQStringList(List, k, X);
+
+delete [] X;
+\end{lstlisting}
+
+\subsubsection{THQt\_ReadMatrixFromQStringList}\label{THQt_ReadMatrixFromQStringList}
+
+Функция считывает данные из QStringList в матрицу.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ReadMatrixFromQStringList,caption=Синтаксис]
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+ 
+QStringListFromFile --- отсюда берем информацию;
+
+VMHL\_MatrixResult --- сюда будем записывать результат считывания матрицы.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+\textbf{Пример содержимого:}
+
+1	2	6
+
+52	3	96
+
+6.4	7	4
+
+    Второй пример содержимого:
+	
+1	2	6	5
+
+52	3	96	5
+
+-	-	4   2
+
+Десятичные числа должны разделяться точкой.
+
+
+\begin{lstlisting}[label=code_use_THQt_ReadMatrixFromQStringList,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+QStringList List = HQt_ReadFileToQStringList(path+"5.txt");
+
+int N,M;
+M=HQt_CountOfColsFromQStringList(List);
+N=HQt_CountOfRowsFromQStringList(List);
+
+double **X;
+X=new double*[N];
+for (int i=0;i<N;i++) X[i]=new double[M];
+
+THQt_ReadMatrixFromQStringList(List, X);
+
+for (int i=0;i<N;i++) delete [] X[i];
+delete [] X;
+\end{lstlisting}
+
+\subsubsection{THQt\_ReadTwoVectorFromQStringList}\label{THQt_ReadTwoVectorFromQStringList}
+
+Функция считывает данные из QStringList в два вектора.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ReadTwoVectorFromQStringList,caption=Синтаксис]
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+QStringListFromFile --- отсюда берем информацию;
+ 
+    VMHL\_VectorResult1 --- сюда будем записывать результат первого вектора;
+ 
+    VMHL\_VectorResult2 --- сюда будем записывать результат второго вектора.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+\textbf{Пример содержимого:}
+
+1	2
+
+52	3
+
+6.4	7
+
+Десятичные числа должны разделяться точкой.
+
+
+\begin{lstlisting}[label=code_use_THQt_ReadTwoVectorFromQStringList,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+int N;
+double *x,*y;
+QStringList List = HQt_ReadFileToQStringList(path+"2.txt");
+N=HQt_CountOfRowsFromQStringList(List);
+x=new double [N];
+y=new double [N];
+
+THQt_ReadTwoVectorFromQStringList(List,x,y);
+
+delete [] y;
+delete [] x;
+\end{lstlisting}
+
+\subsubsection{THQt\_ReadVectorFromQStringList}\label{THQt_ReadVectorFromQStringList}
+
+Функция считывает данные из QStringList в вектор.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ReadVectorFromQStringList,caption=Синтаксис]
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+QStringListFromFile --- отсюда берем информацию;
+
+     VMHL\_VectorResult --- сюда будем записывать результат.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+\textbf{Пример содержимого:}
+
+1
+
+52
+
+6.45
+
+Десятичные числа должны разделяться точкой.
+
+
+\begin{lstlisting}[label=code_use_THQt_ReadVectorFromQStringList,caption=Пример использования]
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+int N;
+double *y;
+QStringList List = HQt_ReadFileToQStringList(path+"1.txt");
+N=HQt_CountOfRowsFromQStringList(List);
+y=new double [N];
+
+THQt_ReadVectorFromQStringList(List,y);//считываем
+
+delete [] y;
+\end{lstlisting}
+
+\subsection{Получение строк-выводов по данным}
+
+\subsubsection{HQt\_BoolToWord}\label{HQt_BoolToWord}
+
+Функция переводит переменную, принимающую значения "0" и "1" в слова.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_BoolToWord,caption=Синтаксис]
+QString HQt_BoolToWord(QString Bool);
+QString HQt_BoolToWord(QString Bool, QString No, QString Yes);
+QString HQt_BoolToWord(bool Bool);
+QString HQt_BoolToWord(bool Bool, QString No, QString Yes);
+QString HQt_BoolToWord(int Bool);
+QString HQt_BoolToWord(int Bool, QString No, QString Yes);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Bool --- исходная переменная.
+ 
+	No --- слово, которое означает 0 (необязательно).
+ 
+    Yes --- слово, которое означает 1 (необязательно).
+
+\textbf{Возвращаемое значение:}
+
+Слово, которое характеризует переменную.
+
+\textbf{Примечание:}
+
+
+\subsubsection{HQt\_RandomString}\label{HQt_RandomString}
+
+Функция генерирует случайную строку из английских больших и малых букв.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_RandomString,caption=Синтаксис]
+QString HQt_RandomString(int Length);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Length --- длина строки, которую надо сгенерировать.
+
+\textbf{Возвращаемое значение:}
+
+Случайная строка.
+
+\textbf{Примечание:}
+
+Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand.
+
+Рекомендую так: qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+
+
+\subsubsection{HQt\_UniqueName}\label{HQt_UniqueName}
+
+Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. Собирается из "HQt\_" + текущее время или из BeginString+"\_" + текущее время.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_UniqueName,caption=Синтаксис]
+QString HQt_UniqueName ();
+QString HQt_UniqueName (QString BeginString);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+BeginString --- Приставка вначале строки (необязательно).
+
+\textbf{Возвращаемое значение:}
+
+Уникальная строка.
+
+
+\subsubsection{HQt\_UniqueNameOnlyNumbers}\label{HQt_UniqueNameOnlyNumbers}
+
+Функция возвращает уникальную строку, которую можно использовать как некий идентификатор. В строке только цифры. Собирается из текущего времени.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_UniqueNameOnlyNumbers,caption=Синтаксис]
+QString HQt_UniqueNameOnlyNumbers ();
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+Отсутствуют.
+
+\textbf{Возвращаемое значение:}
+
+Уникальная строка.
+
+
+\subsubsection{HQt\_WriteTime}\label{HQt_WriteTime}
+
+Функция переводит миллисекунды в строку с описанием сколько это минут, секунд и др.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_WriteTime,caption=Синтаксис]
+QString HQt_WriteTime(int t);
+QString HQt_WriteTime(qint64 t);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+t --- миллисекунды.
+
+\textbf{Возвращаемое значение:}
+
+Строка в виде текста --- сколько секунд, минут и так далее было.
+
+
+\subsection{Работа с алфавитом и переносами}
+
+\subsubsection{HQt\_BreakdownOfTextWithWordWrap}\label{HQt_BreakdownOfTextWithWordWrap}
+
+Функция разбивает текст на строки длиной не более length. Если может, то ставит переносы.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_BreakdownOfTextWithWordWrap,caption=Синтаксис]
+QStringList HQt_BreakdownOfTextWithWordWrap(QString S, int length);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+S --- проверяемая строка,
+
+length ---  длина строки.
+
+\textbf{Возвращаемое значение:}
+ 
+Список строк, на которые разбивается текст.
+
+\textbf{Примечание:}
+
+Перевод слов производится по алгоритму П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+
+\subsubsection{HQt\_CheckIntolerablePunctuation}\label{HQt_CheckIntolerablePunctuation}
+
+Является ли символом знаком пунктуации, который нельзя переносить.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CheckIntolerablePunctuation,caption=Синтаксис]
+bool HQt_CheckIntolerablePunctuation(QString x);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- некий символ.
+
+\textbf{Возвращаемое значение:}
+ 
+true --- символ есть непереносимый символ;
+
+false --- не из слова.
+
+
+\subsubsection{HQt\_CheckLetterFromWord}\label{HQt_CheckLetterFromWord}
+
+Является ли буква символом из слова. Считается, что это или латинские буквы, или русские, или цифры или нижнее подчеркивание. Плюc некоторые знаки препинания, так как их нельзя переносить.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CheckLetterFromWord,caption=Синтаксис]
+bool HQt_CheckLetterFromWord(QString x);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- некая буква.
+
+\textbf{Возвращаемое значение:}
+ 
+true --- буква из слова;
+
+false --- не из слова.
+
+
+\subsubsection{HQt\_CheckRus}\label{HQt_CheckRus}
+
+Функция проверяет наличие русских букв в строке.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CheckRus,caption=Синтаксис]
+bool HQt_CheckRus(QString S);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+S --- проверяемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+true --- естm буквы русские;
+ 
+    false --- нет букв русских.
+
+
+\subsubsection{HQt\_CutToWords}\label{HQt_CutToWords}
+
+Функция разбивает строку на слова и те, части, между которыми они находятся. Слова с дефисом считаются за несколько слов.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CutToWords,caption=Синтаксис]
+QStringList HQt_CutToWords(QString S);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+S - разбиваемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+Список подстрок, на которые можно разбить слово.
+
+\textbf{Примечание:}
+
+     Если кроме русского и английского языка у вас могут слова других языков, то дополните функцию HQt\_CheckLetterFromWord.
+
+
+\subsubsection{HQt\_CutToWordsWithWordWrap}\label{HQt_CutToWordsWithWordWrap}
+
+Функция разбивает строку на слова и те, части, между которыми они находятся. А русские и английские слова разделяет по переносам. Слова с дефисом считаются за несколько слов.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CutToWordsWithWordWrap,caption=Синтаксис]
+QStringList HQt_CutToWordsWithWordWrap(QString S);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+S - разбиваемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+Список подстрок, на которые можно разбить слово.
+
+\textbf{Примечание:}
+
+     Если кроме русского и английского языка у вас могут слова других языков, то дополните функцию HQt\_CheckLetterFromWord.
+	 
+	 Перевод слов производится по алгоритму П. Хpистова в модификации Дымченко и Ваpсанофьева.
+
+
+\subsubsection{HQt\_GetTypeCharEng}\label{HQt_GetTypeCharEng}
+
+Функция выдает тип вводимого QString (считая, что это буква английская). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_GetTypeCharEng,caption=Синтаксис]
+int HQt_GetTypeCharEng(QString x);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- некая буква.
+
+\textbf{Возвращаемое значение:}
+
+     1 --- гласная;
+	 
+     2 --- согласная;
+	 
+     0 --- иначе.
+
+
+\subsubsection{HQt\_GetTypeCharRus}\label{HQt_GetTypeCharRus}
+
+Функция выдает тип вводимого QString (считая, что это буква). Нужно для алгоритма переноса строк П.Хpистова в модификации Дымченко и Ваpсанофьева.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_GetTypeCharRus,caption=Синтаксис]
+int HQt_GetTypeCharRus(QString x);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- некая буква.
+
+\textbf{Возвращаемое значение:}
+
+    1 --- гласная;
+ 
+    2 --- согласная;
+ 
+    3 --- буква из множества ьъй;
+ 
+    0 --- иначе (английские или какие---то иные).
+
+
+\subsection{Работа с датами}
+
+\subsubsection{HQt\_DaysBetweenDates}\label{HQt_DaysBetweenDates}
+
+Функция определяет сколько дней между двумя датами.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_DaysBetweenDates,caption=Синтаксис]
+int HQt_DaysBetweenDates(QDate BeginDate, QDate EndDate);
+int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+BeginDate --- первая дата.
+
+EndDate --- вторая дата.
+
+\textbf{Возвращаемое значение:}
+
+Число дней между датами.
+
+
+\subsection{Работа с файлами и папками}
+
+\subsubsection{HQt\_CopyFile}\label{HQt_CopyFile}
+
+Функция копирует файл filename в папку dir. Функция копирует файл filename в папку dir, с возможностью перезаписи (в функции-перегрузке).
+
+
+\begin{lstlisting}[label=code_syntax_HQt_CopyFile,caption=Синтаксис]
+bool HQt_CopyFile(QString filename, QString dir);
+bool HQt_CopyFile(QString filename, QString dir, bool overwrite);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- имя файла (с полным путем),
+ 
+dir --- путь к папке, куда нужно скопировать файл.
+
+overwrite - если true, то перезаписывать, если false, то не перезаписывать (необязательный параметр).
+
+\textbf{Возвращаемое значение:}
+
+true --- если скопировалось удачно,
+ 
+false --- если скопировалось неудачно.
+
+
+\subsubsection{HQt\_DirDelete}\label{HQt_DirDelete}
+
+Функция удаляет директорию и всё ее содержимое.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_DirDelete,caption=Синтаксис]
+bool HQt_DirDelete(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- полный путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+true --- если удаление прошло нормально.
+
+false ---  если удаление прошло не нормально.
+
+
+\subsubsection{HQt\_DirExists}\label{HQt_DirExists}
+
+Функция проверяет существование директории.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_DirExists,caption=Синтаксис]
+bool HQt_DirExists(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- полный путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+false --- если папка не существует;
+
+true --- если папка существует.
+
+
+\subsubsection{HQt\_DirMake}\label{HQt_DirMake}
+
+Функция проверяет существование директории, и если ее нет, то создает.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_DirMake,caption=Синтаксис]
+void HQt_DirMake(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- полный путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{HQt\_FileExists}\label{HQt_FileExists}
+
+Функция проверяет существование файла.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_FileExists,caption=Синтаксис]
+bool HQt_FileExists(QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- имя файла.
+
+\textbf{Возвращаемое значение:}
+
+false --- если файл не существует;
+
+true --- если файл существует.
+
+
+\subsubsection{HQt\_GetExpFromFilename}\label{HQt_GetExpFromFilename}
+
+Функция получает расширение файла по его имени.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_GetExpFromFilename,caption=Синтаксис]
+QString HQt_GetExpFromFilename(QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+filename --- имя файла.
+
+\textbf{Возвращаемое значение:}
+
+Строка значением расширения файла в нижнем регистре.
+
+
+\subsubsection{HQt\_GetFilenameFromFullFilename}\label{HQt_GetFilenameFromFullFilename}
+
+Функция получает имя файла по полному пути.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_GetFilenameFromFullFilename,caption=Синтаксис]
+QString HQt_GetFilenameFromFullFilename(QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+filename --- имя файла с путем.
+
+\textbf{Возвращаемое значение:}
+
+Строка с именем файла.
+
+
+\subsubsection{HQt\_GetNameFromFilename}\label{HQt_GetNameFromFilename}
+
+Функция получает имя файла без расширения по его имени.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_GetNameFromFilename,caption=Синтаксис]
+QString HQt_GetNameFromFilename(QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- имя файла (можно и с полным путем).
+
+\textbf{Возвращаемое значение:}
+
+Строка с именем файла без расширения.
+
+
+\subsubsection{HQt\_ListDirsInDir}\label{HQt_ListDirsInDir}
+
+Функция считывает список директорий в директории в QString.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ListDirsInDir,caption=Синтаксис]
+QString HQt_ListDirsInDir(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+ Строка со списком директорий в директории, разделенные \\n в алфавитном порядке.
+
+
+\subsubsection{HQt\_ListDirsInDirQStringList}\label{HQt_ListDirsInDirQStringList}
+
+Функция считывает список директорий в директории в QStringList..
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ListDirsInDirQStringList,caption=Синтаксис]
+QStringList HQt_ListDirsInDirQStringList(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+Список строк со списком директорий в директории в алфавитном порядке.
+
+
+\subsubsection{HQt\_ListFilesInDir}\label{HQt_ListFilesInDir}
+
+Функция считывает список файлов (включая скрытые) в директории в QString.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ListFilesInDir,caption=Синтаксис]
+QString HQt_ListFilesInDir(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+Строка со списком файлов в директории, разделенные \\n в алфавитном порядке.
+
+
+\subsubsection{HQt\_ListFilesInDirQStringList}\label{HQt_ListFilesInDirQStringList}
+
+Функция считывает список файлов (включая скрытые) в директории в QStringList.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ListFilesInDirQStringList,caption=Синтаксис]
+QStringList HQt_ListFilesInDirQStringList(QString path);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+path --- путь к папке.
+
+\textbf{Возвращаемое значение:}
+
+Список строк файлов в директории в алфавитном порядке.
+
+
+\subsubsection{HQt\_ReadFile}\label{HQt_ReadFile}
+
+Функция считывает текстовой файл в QString.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ReadFile,caption=Синтаксис]
+QString HQt_ReadFile(QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- имя файла.
+
+\textbf{Возвращаемое значение:}
+
+Строка со всем содержимым текстового файла.
+
+
+\subsubsection{HQt\_ReadFileToQStringList}\label{HQt_ReadFileToQStringList}
+
+Функция считывает текстовой файл в QStringList.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_ReadFileToQStringList,caption=Синтаксис]
+QStringList HQt_ReadFileToQStringList(QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- имя файла.
+
+\textbf{Возвращаемое значение:}
+
+QStringList со всем содержимым текстового файла.
+
+
+\subsubsection{HQt\_RenameFile}\label{HQt_RenameFile}
+
+Функция переименовывает файл filename в newfilename.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_RenameFile,caption=Синтаксис]
+bool HQt_RenameFile(QString filename, QString newfilename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+filename --- имя файла (с полным путем),
+ 
+    newfilename --- новое имя файла (без полного пути).
+
+\textbf{Возвращаемое значение:}
+
+true --- если переименовалось удачно,
+ 
+    false --- если переименовалось неудачно.
+
+
+\subsubsection{HQt\_SaveFile}\label{HQt_SaveFile}
+
+Функция сохраняет QString в текстовой файл.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_SaveFile,caption=Синтаксис]
+void HQt_SaveFile(QString line, QString filename);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+line --- содержимое, которое нужно сохранить;
+ 
+filename --- имя файла.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsection{Работа с цветом}
+
+\subsubsection{THQt\_AlphaBlendingColorToColor}\label{THQt_AlphaBlendingColorToColor}
+
+Функция накладывает сверху на цвет другой цвет с определенной прозрачностью.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_AlphaBlendingColorToColor,caption=Синтаксис]
+QString THQt_AlphaBlendingColorToColor(double alpha, QString FirstRGB, QString SecondRGB);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+alpha --- прозрачность второго накладываемого цвета из интервала [0;1];
+ 
+    FirstRGB --- строка RGB кода первого цвета градиента, например: \#63ddb2;
+ 
+    SecondRGB --- строка RGB кода последнего цвета градиента, например: \#5845da.
+
+\textbf{Возвращаемое значение:}
+
+Строка содержащая код цвета, например: \#25ffb5.
+
+
+\subsubsection{THQt\_ColorFromGradient}\label{THQt_ColorFromGradient}
+
+Функция выдает код RGB из градиента от одного цвета FirstRGB к другому цвету SecondRGB согласно позиции от 0 до 1.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ColorFromGradient,caption=Синтаксис]
+QString THQt_ColorFromGradient(double position, QString FirstRGB, QString SecondRGB);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+position --- позиция из интервала [0;1], которая говорит какой цвет выдать из градиента;
+ 
+    FirstRGB --- строка RGB кода первого цвета градиента, например: \#63ddb2;
+ 
+    SecondRGB --- строка RGB кода последнего цвета градиента, например: \#5845da.
+
+\textbf{Возвращаемое значение:}
+
+Строка содержащая код цвета, например: \#25ffb5.
+
+
+\subsubsection{THQt\_GiveRainbowColorRGB}\label{THQt_GiveRainbowColorRGB}
+
+Функция выдает код RGB из градиента радуги для любой позиции от 0 до 1 из этого градиента.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_GiveRainbowColorRGB,caption=Синтаксис]
+QString THQt_GiveRainbowColorRGB(double position);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+position --- позиция из интервала [0;1], которая говорит какой цвет выдать из радуги.
+
+\textbf{Возвращаемое значение:}
+
+Строка содержащая код цвета, например: \#25ffb5.
+
+
+\subsubsection{THQt\_RGBStringToThreeNumbers}\label{THQt_RGBStringToThreeNumbers}
+
+Функция переводит строку RGB типа \#25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_RGBStringToThreeNumbers,caption=Синтаксис]
+void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+RGB --- строка, которая содержит код RGB цвета вида: \#25ffb5.
+ 
+    R --- число от 0 до 255 включительно означающее красный цвет;
+ 
+    G --- число от 0 до 255 включительно означающее зеленый цвет;
+ 
+    B --- число от 0 до 255 включительно означающее синий цвет.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствует.
+
+
+\subsubsection{THQt\_ThreeNumbersToRGBString}\label{THQt_ThreeNumbersToRGBString}
+
+Функция переводит три числа в строку RGB типа \#25ffb5, как в Photoshop или HTML.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_ThreeNumbersToRGBString,caption=Синтаксис]
+QString THQt_ThreeNumbersToRGBString(int R, int G, int B);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+int R --- число от 0 до 255 включительно означающее красный цвет;
+ 
+    int G --- число от 0 до 255 включительно означающее зеленый цвет;
+ 
+    int B --- число от 0 до 255 включительно означающее синий цвет.
+
+\textbf{Возвращаемое значение:}
+
+Строка содержащая код цвета, например: \#25ffb5.
+
+
+\subsection{Работа со строками и списками строк}
+
+\subsubsection{HQt\_AddUniqueQStringInQStringList}\label{HQt_AddUniqueQStringInQStringList}
+
+Функция добавляет в QStringList строку QString. Но если такая строка уже присутствует, то добавление не происходит.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_AddUniqueQStringInQStringList,caption=Синтаксис]
+QStringList HQt_AddUniqueQStringInQStringList (QStringList StringList, QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+StringList --- QStringList, в который мы добавляем строку (добавление в возвращаемом элементе);
+
+     String --- добавляемая строка.
+
+\textbf{Возвращаемое значение:}
+
+Список строк с добавленной строкой.
+
+
+\subsubsection{HQt\_IsNumeric}\label{HQt_IsNumeric}
+
+Функция проверяет - является ли строка числом.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_IsNumeric,caption=Синтаксис]
+bool HQt_IsNumeric(QString x);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- проверяемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+true --- является числом;
+
+false --- не является числом.
+
+
+\subsubsection{HQt\_MaxCountOfQStringList}\label{HQt_MaxCountOfQStringList}
+
+Функция выдает длину макимальной по длине строки в QStringList.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_MaxCountOfQStringList,caption=Синтаксис]
+int HQt_MaxCountOfQStringList(QStringList x);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+x --- список строк.
+
+\textbf{Возвращаемое значение:}
+
+Длина макимальной по длине строки.
+
+
+\subsubsection{HQt\_NaturalCompareTwoQStrings}\label{HQt_NaturalCompareTwoQStrings}
+
+Функция сравнивает две строки и определяет какая строчка идет первой. Служебная функция для сортировки строк в обычном стиле, когда строки: z1, z10, z2 сортируются как z1, z2, z10.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_NaturalCompareTwoQStrings,caption=Синтаксис]
+bool HQt_NaturalCompareTwoQStrings(const QString& s1,const QString& s2);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+     s1 --- первая строка;
+	 
+     s2 --- вторая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+false --- когда вторая строка должна быть первой;
+
+true --- когда первая строка должна быть первой.
+
+
+\subsubsection{HQt\_NaturalSortingQStringList}\label{HQt_NaturalSortingQStringList}
+
+Функция сортировки строк в сортировки строк QStringList в натуральном виде, например, строки: z1, z10, z2 сортируются как z1, z2, z10.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_NaturalSortingQStringList,caption=Синтаксис]
+QStringList HQt_NaturalSortingQStringList (QStringList StringList);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+StringList --- сортируемый список строк.
+
+\textbf{Возвращаемое значение:}
+ 
+Отсортированный список строк.
+
+
+\subsubsection{HQt\_QStringListToQString}\label{HQt_QStringListToQString}
+
+Функция переводит QStringList в QString.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_QStringListToQString,caption=Синтаксис]
+QString HQt_QStringListToQString(QStringList lines);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+lines --- список строк.
+
+\textbf{Возвращаемое значение:}
+
+Строка с разделениями \\n.
+
+
+\subsubsection{HQt\_QStringToNumber}\label{HQt_QStringToNumber}
+
+Функция выводит строку x в число.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_QStringToNumber,caption=Синтаксис]
+double HQt_QStringToNumber (QString x);
+double HQt_QStringToNumber (QString x, bool checkcomma);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- строка.
+
+checkcomma --- проверять наличие запятой (необязательно).
+
+\textbf{Возвращаемое значение:}
+ 
+Число из строки.
+
+
+\subsubsection{HQt\_QStringToQStringList}\label{HQt_QStringToQStringList}
+
+Функция переводит QString в QStringList.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_QStringToQStringList,caption=Синтаксис]
+QStringList HQt_QStringToQStringList(QString line);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+line --- строка.
+
+\textbf{Возвращаемое значение:}
+
+Список строк.
+
+
+\subsubsection{HQt\_SearchQStringInQStringList}\label{HQt_SearchQStringInQStringList}
+
+Функция ищет в QStringList строку QString (номер первого вхождения).
+
+
+\begin{lstlisting}[label=code_syntax_HQt_SearchQStringInQStringList,caption=Синтаксис]
+int HQt_SearchQStringInQStringList (QStringList StringList, QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+StringList --- QStringList, в который мы ищем строку;
+
+String - добавляемая строка.
+
+\textbf{Возвращаемое значение:}
+
+Номер найденной строки. Если не найдено, то возвращается -1.
+
+
+\subsubsection{HQt\_StringForLaTeX}\label{HQt_StringForLaTeX}
+
+Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_StringForLaTeX,caption=Синтаксис]
+QString HQt_StringForLaTeX (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+String --- обрабатываемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+Обработанная строка.
+
+
+\subsubsection{HQt\_StringToLabelForLaTeX}\label{HQt_StringToLabelForLaTeX}
+
+Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX в виде label.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_StringToLabelForLaTeX,caption=Синтаксис]
+QString HQt_StringToLabelForLaTeX (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+String --- обрабатываемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+Обработанная строка.
+
+
+\subsubsection{HQt\_TextAfterEqualSign}\label{HQt_TextAfterEqualSign}
+
+Функция возвращает текст строки после первого знака =.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_TextAfterEqualSign,caption=Синтаксис]
+QString HQt_TextAfterEqualSign (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+String --- строка вида: Title = Пример
+
+\textbf{Возвращаемое значение:}
+
+Текст строки после первого знака =.
+
+
+\subsubsection{HQt\_TextBeforeEqualSign}\label{HQt_TextBeforeEqualSign}
+
+Функция возвращает текст строки до первого знака =.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_TextBeforeEqualSign,caption=Синтаксис]
+QString HQt_TextBeforeEqualSign (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+ 
+String --- строка вида: Title = Пример
+
+\textbf{Возвращаемое значение:}
+
+Текст строки до первого знака =.
+
+
+\subsubsection{THQt\_VectorToQStringList}\label{THQt_VectorToQStringList}
+
+Функция переводит вектор чисел в QStringList.
+
+
+\begin{lstlisting}[label=code_syntax_THQt_VectorToQStringList,caption=Синтаксис]
+template <class T> void THQt_VectorToQStringList(T *x, int N);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+x --- переводимый массив.
+
+     N --- Количество элементов в массиве.
+
+\textbf{Возвращаемое значение:}
+ 
+Список строк.
+
+
+\subsection{Служебные функции}
+
+\subsubsection{HQt\_Delay}\label{HQt_Delay}
+
+Функция делает задержку в MSecs миллисекунд.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_Delay,caption=Синтаксис]
+void HQt_Delay(int MSecs);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+MSecs --- миллисекунды, сколько надо подержать работу Qt. Не меньше пяти миллисекунд должно быть.
+
+\textbf{Возвращаемое значение:}
+
+Отсутствуют.
+
+\end{document}

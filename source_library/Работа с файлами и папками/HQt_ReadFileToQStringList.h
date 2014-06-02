@@ -1,0 +1,1 @@
+QStringList HQt_ReadFileToQStringList(QString filename);

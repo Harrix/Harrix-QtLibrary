@@ -1,0 +1,1 @@
+QStringList HQt_CutToWords(QString S);

@@ -1,0 +1,1 @@
+QString THQt_GiveRainbowColorRGB(double position);

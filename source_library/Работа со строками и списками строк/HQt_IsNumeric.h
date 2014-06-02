@@ -1,0 +1,1 @@
+bool HQt_IsNumeric(QString x);

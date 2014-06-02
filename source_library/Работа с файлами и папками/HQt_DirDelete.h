@@ -1,0 +1,1 @@
+bool HQt_DirDelete(QString path);

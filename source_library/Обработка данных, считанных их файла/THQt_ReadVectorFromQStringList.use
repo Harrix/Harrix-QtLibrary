@@ -1,0 +1,11 @@
+QString DS=QDir::separator();
+QString path=QGuiApplication::applicationDirPath()+DS;//путь к папке
+int N;
+double *y;
+QStringList List = HQt_ReadFileToQStringList(path+"1.txt");
+N=HQt_CountOfRowsFromQStringList(List);
+y=new double [N];
+
+THQt_ReadVectorFromQStringList(List,y);//считываем
+
+delete [] y;

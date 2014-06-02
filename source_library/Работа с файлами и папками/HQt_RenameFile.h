@@ -1,0 +1,1 @@
+bool HQt_RenameFile(QString filename, QString newfilename);
