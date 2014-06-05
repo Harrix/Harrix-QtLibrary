@@ -3,7 +3,7 @@
 \input{packages}
 \input{styles}
 
-\title{HarrixQtLibrary v.3.25}
+\title{HarrixQtLibrary v.3.26}
 \author{А.\,Б. Сергиенко}
 \date{\today}
 
@@ -850,15 +850,18 @@ EndDate --- вторая дата.
 \begin{lstlisting}[label=code_syntax_HQt_CopyFile,caption=Синтаксис]
 bool HQt_CopyFile(QString filename, QString dir);
 bool HQt_CopyFile(QString filename, QString dir, bool overwrite);
+bool HQt_CopyFile(QString filename, QString dir, bool overwrite, bool dirmake);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
 
-filename --- имя файла (с полным путем),
+filename --- имя файла (с полным путем);
  
-dir --- путь к папке, куда нужно скопировать файл.
+dir --- путь к папке, куда нужно скопировать файл;
 
-overwrite - если true, то перезаписывать, если false, то не перезаписывать (необязательный параметр).
+overwrite --- если true, то перезаписывать, если false, то не перезаписывать (необязательный параметр);
+
+dirmake --- если true, то если нет директории, то она создается (необязательный параметр).
 
 \textbf{Возвращаемое значение:}
 

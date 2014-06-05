@@ -166,6 +166,7 @@ int HQt_DaysBetweenDates(QString BeginDate, QString EndDate);
 ```cpp
 bool HQt_CopyFile(QString filename, QString dir);
 bool HQt_CopyFile(QString filename, QString dir, bool overwrite);
+bool HQt_CopyFile(QString filename, QString dir, bool overwrite, bool dirmake);
 ```
 
 - Функция удаляет директорию и всё ее содержимое.
