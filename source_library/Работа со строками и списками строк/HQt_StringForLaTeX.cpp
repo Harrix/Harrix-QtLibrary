@@ -9,7 +9,7 @@ QString HQt_StringForLaTeX (QString String)
     */
     QString VMHL_Result;
 
-    VMHL_Result=String.replace("_","\\_").replace("#","\\#");
+    VMHL_Result=String.replace("_","\\_").replace("#","\\#").replace("~", "\\~");
 
     return VMHL_Result;
 }
