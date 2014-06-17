@@ -1,6 +1,10 @@
 HarrixQtLibrary
 ===============
 
+3.29
+----
+ * Исправлены функции HQt_StringFromLaTeX и HQt_StringForLaTeX.
+
 3.28
 ----
  * Добавлена функция HQt_StringFromLaTeX.
