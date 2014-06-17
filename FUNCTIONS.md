@@ -356,6 +356,12 @@ int HQt_SearchQStringInQStringList (QStringList StringList, QString String);
 QString HQt_StringForLaTeX (QString String);
 ```
 
+- Функция обрабатывает строку String из переделки функции HQt_StringForLaTeX в нормальную строку. Еще удаляются знаки \, которые обрамляют формулы.
+
+```cpp
+QString HQt_StringFromLaTeX (QString String);
+```
+
 - Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX в виде label.
 
 ```cpp

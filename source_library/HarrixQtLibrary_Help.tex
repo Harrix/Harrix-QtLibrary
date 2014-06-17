@@ -3,7 +3,7 @@
 \input{packages}
 \input{styles}
 
-\title{HarrixQtLibrary v.3.27}
+\title{HarrixQtLibrary v.3.28}
 \author{А.\,Б. Сергиенко}
 \date{\today}
 
@@ -37,6 +37,8 @@
 С автором можно связаться по адресу \href{mailto:sergienkoanton@mail.ru}{sergienkoanton@mail.ru} или  \href{http://vk.com/harrix}{http://vk.com/harrix}.
 
 Сайт автора, где публикуются последние новости: \href{http://blog.harrix.org/}{http://blog.harrix.org/}, а проекты располагаются по адресу \href{http://harrix.org/}{http://harrix.org/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ВСТАВЛЯТЬ НИЖЕ
 
 \newpage
 \section{Список функций}\label{section_listfunctions}
@@ -178,6 +180,8 @@
 \item \textbf{\hyperref[HQt_SearchQStringInQStringList]{HQt\_SearchQStringInQStringList}} --- Функция ищет в QStringList строку QString (номер первого вхождения).
 
 \item \textbf{\hyperref[HQt_StringForLaTeX]{HQt\_StringForLaTeX}} --- Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX.
+
+\item \textbf{\hyperref[HQt_StringFromLaTeX]{HQt\_StringFromLaTeX}} --- Функция обрабатывает строку String из переделки функции HQt\_StringForLaTeX в нормальную строку. Еще удаляются знаки \$, которые обрамляют формулы.
 
 \item \textbf{\hyperref[HQt_StringToLabelForLaTeX]{HQt\_StringToLabelForLaTeX}} --- Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX в виде label.
 
@@ -1457,6 +1461,24 @@ String --- обрабатываемая строка.
 Обработанная строка.
 
 
+\subsubsection{HQt\_StringFromLaTeX}\label{HQt_StringFromLaTeX}
+
+Функция обрабатывает строку String из переделки функции HQt\_StringForLaTeX в нормальную строку. Еще удаляются знаки \$, которые обрамляют формулы.
+
+
+\begin{lstlisting}[label=code_syntax_HQt_StringFromLaTeX,caption=Синтаксис]
+QString HQt_StringFromLaTeX (QString String);
+\end{lstlisting}
+
+\textbf{Входные параметры:}
+
+String --- обрабатываемая строка.
+
+\textbf{Возвращаемое значение:}
+ 
+Обработанная строка.
+
+
 \subsubsection{HQt\_StringToLabelForLaTeX}\label{HQt_StringToLabelForLaTeX}
 
 Функция обрабатывает строку String так, чтобы она подходила для публикации в LaTeX в виде label.
@@ -1549,5 +1571,7 @@ MSecs --- миллисекунды, сколько надо подержать �
 \textbf{Возвращаемое значение:}
 
 Отсутствуют.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
