@@ -14,7 +14,7 @@ HarrixQtLibrary
 
 Подробно о установке с подробным примером можно прочитать тут [http://blog.harrix.org/?p=1186](http://blog.harrix.org/?p=1186).
 
-Функции
+Функции о смысле жизни
 -------
 
 Список функций смотреть тут: [FUNCTIONS.md](https://github.com/Harrix/HarrixQtLibrary/blob/master/FUNCTIONS.md).
