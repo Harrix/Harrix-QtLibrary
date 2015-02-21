@@ -11,7 +11,7 @@ QString HQt_RandomString(int Length)
      Рекомендую так:
      qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
     static const char alphanum[] =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             "abcdefghijklmnopqrstuvwxyz";
@@ -25,9 +25,9 @@ QString HQt_RandomString(int Length)
 
     s[Length] = 0;
 
-    VMHL_Result = QString(s);
+    VHQt_Result = QString(s);
 
     delete [] s;
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

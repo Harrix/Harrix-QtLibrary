@@ -14,9 +14,9 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile)
 1	2.2
 2.8	9
     */
-    int VMHL_Result_N=QStringListFromFile.count();
+    int VHQt_Result_N=QStringListFromFile.count();
 
-    return VMHL_Result_N;
+    return VHQt_Result_N;
 }
 //---------------------------------------------------------------------------
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k)
@@ -53,16 +53,16 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k)
         X=X.trimmed();
     }
 
-    int VMHL_Result_N;
+    int VHQt_Result_N;
     if (X=="-")
-        VMHL_Result_N=i-1;
+        VHQt_Result_N=i-1;
     else
-        VMHL_Result_N=i;
+        VHQt_Result_N=i;
 
-    return VMHL_Result_N;
+    return VHQt_Result_N;
 }
 //---------------------------------------------------------------------------
-int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector)
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VHQt_ResultVector)
 {
     /*
     Функция подсчитывает сколько строк в каждом столбце из текстового файла с матрицей, который скопировали в QStringListFromFile.
@@ -72,7 +72,7 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_Re
     элементов ставится знак "-".
     Входные параметры:
      QStringListFromFile - непосредственно сам файл;
-     VMHL_ResultVector - сюда количество стро заносится.
+     VHQt_ResultVector - сюда количество стро заносится.
     Возвращаемое значение:
      Число строк в QStringListFromFile (в правильном файле это число равно максимальному числу строк в каком-нибудь столбце).
     Пример содержимого QStringListFromFile:
@@ -84,7 +84,7 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_Re
     int M=HQt_CountOfColsFromQStringList(QStringListFromFile);
     int N=QStringListFromFile.count();
 
-    for (j=0;j<M;j++) VMHL_ResultVector[j]=0;
+    for (j=0;j<M;j++) VHQt_ResultVector[j]=0;
 
     int *Stop=new int[M];
     for (j=0;j<M;j++) Stop[j]=0;
@@ -100,7 +100,7 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_Re
             A=A.trimmed();
             if ((X!="-")&&(Stop[j]==0))
             {
-                VMHL_ResultVector[j]++;
+                VHQt_ResultVector[j]++;
             }
             if ((X=="-"))
             {

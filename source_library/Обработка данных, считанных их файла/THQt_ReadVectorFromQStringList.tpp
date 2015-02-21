@@ -1,15 +1,15 @@
-template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult)
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult)
 {
     /*
     Функция считывает данные из QStringList в вектор.
     Входные параметры:
      QStringListFromFile - отсюда берем информацию;
-     VMHL_VectorResult - сюда будем записывать результат.
+     VHQt_VectorResult - сюда будем записывать результат.
     Возвращаемое значение:
      Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 1
 52
 6.45
@@ -37,6 +37,6 @@ delete [] y;
     {
         A=QStringListFromFile.at(i);
         A=A.trimmed();
-        VMHL_VectorResult[i]=A.toDouble();
+        VHQt_VectorResult[i]=A.toDouble();
     }
 }

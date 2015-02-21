@@ -8,11 +8,11 @@ QString HQt_TextAfterEqualSign (QString String)
     Возвращаемое значение:
      Текст строки после первого знака =.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result=String.mid(String.indexOf("=")+1);
+    VHQt_Result=String.mid(String.indexOf("=")+1);
 
-    VMHL_Result=VMHL_Result.trimmed();
+    VHQt_Result=VHQt_Result.trimmed();
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

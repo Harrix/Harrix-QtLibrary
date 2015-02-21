@@ -8,13 +8,13 @@ bool HQt_CheckIntolerablePunctuation(QString x)
      true - символ есть непереносимый символ;
      false - не из слова.
     */
-    bool VMHL_Result=false;
+    bool VHQt_Result=false;
 
-    if (x==".") VMHL_Result=true;
-    if (x==",") VMHL_Result=true;
-    if (x==":") VMHL_Result=true;
-    if (x=="!") VMHL_Result=true;
-    if (x=="?") VMHL_Result=true;
+    if (x==".") VHQt_Result=true;
+    if (x==",") VHQt_Result=true;
+    if (x==":") VHQt_Result=true;
+    if (x=="!") VHQt_Result=true;
+    if (x=="?") VHQt_Result=true;
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

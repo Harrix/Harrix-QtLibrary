@@ -7,9 +7,9 @@ QString HQt_StringForLaTeX (QString String)
     Возвращаемое значение:
      Обработанная строка.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result=String.replace("_","\\_").replace("#","\\#").replace("~", "$\\sim$");
+    VHQt_Result=String.replace("_","\\_").replace("#","\\#").replace("~", "$\\sim$");
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

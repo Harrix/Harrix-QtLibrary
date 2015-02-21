@@ -3,7 +3,7 @@
 \input{packages}
 \input{styles}
 
-\title{HarrixQtLibrary v.3.29}
+\title{HarrixQtLibrary v.3.30}
 \author{А.\,Б. Сергиенко}
 \date{\today}
 
@@ -239,7 +239,7 @@ QStringListFromFile - непосредственно сам файл (его с�
 \begin{lstlisting}[label=code_syntax_HQt_CountOfRowsFromQStringList,caption=Синтаксис]
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);
-int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VHQt_ResultVector);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
@@ -248,7 +248,7 @@ QStringListFromFile --- непосредственно сам файл (его �
 
 k --- номер столбца (необзяательно).
 
- VMHL\_ResultVector --- сюда количество строк заносится (необязательно).
+ VHQt\_ResultVector --- сюда количество строк заносится (необязательно).
 
 \textbf{Возвращаемое значение:}
 
@@ -269,8 +269,8 @@ k --- номер столбца (необзяательно).
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ReadColFromQStringList,caption=Синтаксис]
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VHQt_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VHQt_VectorResult);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
@@ -279,7 +279,7 @@ QStringListFromFile --- отсюда берем информацию;
  
     k --- номер столбца, начиная с нуля, который считываем;
  
-    VMHL\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
+    VHQt\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
 	
 \textbf{Входные параметры 2:}
 	
@@ -287,7 +287,7 @@ QStringListFromFile --- отсюда берем информацию;
  
     k --- номер столбца, начиная с нуля, который считываем;
  
-    VMHL\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
+    VHQt\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
 
 \textbf{Возвращаемое значение:}
 
@@ -310,7 +310,7 @@ QStringListFromFile --- отсюда берем информацию;
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ReadColFromQStringList2,caption=Синтаксис]
-template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VHQt_VectorResult);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
@@ -319,7 +319,7 @@ QStringListFromFile --- отсюда берем информацию;
 
      k --- номер столбца, начиная с нуля, который считываем;
 	 
-     VMHL\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
+     VHQt\_VectorResult --- сюда будем записывать результат считывания столбца из матрицы.
 
 \textbf{Возвращаемое значение:}
 
@@ -333,7 +333,7 @@ QStringListFromFile --- отсюда берем информацию;
 
 6.4	7	4
 
-    Второй пример содержимого VMHL\_VectorResult.
+    Второй пример содержимого VHQt\_VectorResult.
 	
 1	2	6	5
 
@@ -368,7 +368,7 @@ delete [] X;
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ReadMatrixFromQStringList,caption=Синтаксис]
-template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VHQt_MatrixResult);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
@@ -376,7 +376,7 @@ template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFr
  
 QStringListFromFile --- отсюда берем информацию;
 
-VMHL\_MatrixResult --- сюда будем записывать результат считывания матрицы.
+VHQt\_MatrixResult --- сюда будем записывать результат считывания матрицы.
 
 \textbf{Возвращаемое значение:}
 
@@ -426,17 +426,17 @@ delete [] X;
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ReadTwoVectorFromQStringList,caption=Синтаксис]
-template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);
-template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult1, T *VHQt_VectorResult2);
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult1, QDate *VHQt_VectorResult2);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
  
 QStringListFromFile --- отсюда берем информацию;
  
-    VMHL\_VectorResult1 --- сюда будем записывать результат первого вектора;
+    VHQt\_VectorResult1 --- сюда будем записывать результат первого вектора;
  
-    VMHL\_VectorResult2 --- сюда будем записывать результат второго вектора.
+    VHQt\_VectorResult2 --- сюда будем записывать результат второго вектора.
 
 \textbf{Возвращаемое значение:}
 
@@ -475,14 +475,14 @@ delete [] x;
 
 
 \begin{lstlisting}[label=code_syntax_THQt_ReadVectorFromQStringList,caption=Синтаксис]
-template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult);
 \end{lstlisting}
 
 \textbf{Входные параметры:}
 
 QStringListFromFile --- отсюда берем информацию;
 
-     VMHL\_VectorResult --- сюда будем записывать результат.
+     VHQt\_VectorResult --- сюда будем записывать результат.
 
 \textbf{Возвращаемое значение:}
 
@@ -533,9 +533,9 @@ QString HQt_BoolToWord(int Bool, QString No, QString Yes);
 
 Bool --- исходная переменная.
  
-	No --- слово, которое означает 0 (необязательно).
+No --- слово, которое означает 0 (необязательно).
  
-    Yes --- слово, которое означает 1 (необязательно).
+Yes --- слово, которое означает 1 (необязательно).
 
 \textbf{Возвращаемое значение:}
 

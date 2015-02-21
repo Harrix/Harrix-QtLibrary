@@ -1,1 +1,1 @@
-template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult);

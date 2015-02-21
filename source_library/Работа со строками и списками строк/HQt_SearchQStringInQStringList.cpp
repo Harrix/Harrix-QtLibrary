@@ -8,16 +8,16 @@ int HQt_SearchQStringInQStringList (QStringList StringList, QString String)
     Возвращаемое значение:
      Номер найденной строки. Если не найдено, то возвращается -1.
     */
-    int VMHL_Result = -1;
+    int VHQt_Result = -1;
     bool in=false;
     int i=0;
 
     while ((i<StringList.count())&&(in!=true))
     {
         if (StringList.at(i)==String)
-            VMHL_Result=i;
+            VHQt_Result=i;
         i++;
     }
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

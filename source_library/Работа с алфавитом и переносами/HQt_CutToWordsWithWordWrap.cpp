@@ -11,7 +11,7 @@ QStringList HQt_CutToWordsWithWordWrap(QString S)
     Примечание:
      Перевод слов производится по алгоритму П. Хpистова в модификации Дымченко и Ваpсанофьева.
     */
-    QStringList VMHL_Result;
+    QStringList VHQt_Result;
 
     QString F;
 
@@ -29,14 +29,14 @@ QStringList HQt_CutToWordsWithWordWrap(QString S)
             if (type==typebefore)
             {
                 F+=S.at(i);
-                VMHL_Result<<F;
+                VHQt_Result<<F;
             }
             else
             {
-                VMHL_Result<<F;
+                VHQt_Result<<F;
                 F.clear();
                 F=S.at(i);
-                VMHL_Result<<F;
+                VHQt_Result<<F;
             }
         }
         else
@@ -60,7 +60,7 @@ QStringList HQt_CutToWordsWithWordWrap(QString S)
                     }
                     else
                     {
-                        VMHL_Result<<F;
+                        VHQt_Result<<F;
                         F.clear();
                         F=S.at(i);
                         len=1;
@@ -80,7 +80,7 @@ QStringList HQt_CutToWordsWithWordWrap(QString S)
                 {
                     if (type!=typebefore)
                     {
-                        VMHL_Result<<F;
+                        VHQt_Result<<F;
                         F.clear();
                         F=S.at(i);
                         len=1;
@@ -176,7 +176,7 @@ QStringList HQt_CutToWordsWithWordWrap(QString S)
                             }
                             else
                             {
-                                VMHL_Result<<F;
+                                VHQt_Result<<F;
                                 F.clear();
                                 F=S.at(i);
                                 len=1;
@@ -197,5 +197,5 @@ QStringList HQt_CutToWordsWithWordWrap(QString S)
 
     }
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

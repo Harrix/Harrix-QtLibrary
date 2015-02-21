@@ -1,19 +1,19 @@
-template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult)
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VHQt_MatrixResult)
 {
     /*
     Функция считывает данные из QStringList в матрицу.
     Входные параметры:
      QStringListFromFile - отсюда берем информацию;
-     VMHL_MatrixResult - сюда будем записывать результат считывания матрицы.
+     VHQt_MatrixResult - сюда будем записывать результат считывания матрицы.
     Возвращаемое значение:
      Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 1	2	6
 52	3	96
 6.4	7	4
-    Второй пример содержимого VMHL_VectorResult.
+    Второй пример содержимого VHQt_VectorResult.
 1	2	6	5
 52	3	96	5
 -	-	4   2
@@ -46,7 +46,7 @@ delete [] X;
 
     for (i=0;i<N;i++)
         for (j=0;j<M;j++)
-            VMHL_MatrixResult[i][j]=0;
+            VHQt_MatrixResult[i][j]=0;
 
     for (i=0;i<N;i++)
     {
@@ -57,7 +57,7 @@ delete [] X;
             X=A.mid(0,A.indexOf("\t"));
             A=A.mid(A.indexOf("\t")+1);
             A=A.trimmed();
-            VMHL_MatrixResult[i][j]=X.toDouble();
+            VHQt_MatrixResult[i][j]=X.toDouble();
         }
     }
 }

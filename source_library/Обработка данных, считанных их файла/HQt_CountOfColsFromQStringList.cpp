@@ -16,7 +16,7 @@ int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile)
     */
     QString A=QStringListFromFile.at(0);
 
-    int VMHL_Result_M=A.count("\t")+1;
+    int VHQt_Result_M=A.count("\t")+1;
 
-    return VMHL_Result_M;
+    return VHQt_Result_M;
 }

@@ -1,20 +1,20 @@
-template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult)
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VHQt_VectorResult)
 {
     /*
     Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
     Входные параметры:
      QStringListFromFile - отсюда берем информацию;
      k - номер столбца, начиная с нуля, который считываем;
-     VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
+     VHQt_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
     Возвращаемое значение:
      Количество элементов в столбце. Как только встречает вместо числа символ "-", то функция считает, что вектор закончился.
     Примечание:
      Десятичные числа должны разделяться точкой.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 1	2	6
 52	3	96
 6.4	7	4
-    Второй пример содержимого VMHL_VectorResult.
+    Второй пример содержимого VHQt_VectorResult.
 1	2	6	5
 52	3	96	5
 -	-	4   2
@@ -53,6 +53,6 @@ delete [] X;
         }
         X=A.mid(0,A.indexOf("\t"));
         X=X.trimmed();
-        VMHL_VectorResult[i]=X.toDouble();
+        VHQt_VectorResult[i]=X.toDouble();
     }
 }

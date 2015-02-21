@@ -9,7 +9,7 @@ QStringList HQt_CutToWords(QString S)
     Примечание:
      Если кроме русского и английского языка у вас могут слова других языков, то дополните функцию HQt_CheckLetterFromWord.
     */
-    QStringList VMHL_Result;
+    QStringList VHQt_Result;
 
     QString F;
 
@@ -27,14 +27,14 @@ QStringList HQt_CutToWords(QString S)
             if (type==typebefore)
             {
                 F+=S.at(i);
-                VMHL_Result<<F;
+                VHQt_Result<<F;
             }
             else
             {
-                VMHL_Result<<F;
+                VHQt_Result<<F;
                 F.clear();
                 F=S.at(i);
-                VMHL_Result<<F;
+                VHQt_Result<<F;
             }
         }
         else
@@ -58,7 +58,7 @@ QStringList HQt_CutToWords(QString S)
                     }
                     else
                     {
-                        VMHL_Result<<F;
+                        VHQt_Result<<F;
                         F.clear();
                         F=S.at(i);
                         len=1;
@@ -78,7 +78,7 @@ QStringList HQt_CutToWords(QString S)
                 {
                     if (type!=typebefore)
                     {
-                        VMHL_Result<<F;
+                        VHQt_Result<<F;
                         F.clear();
                         F=S.at(i);
                         len=1;
@@ -96,5 +96,5 @@ QStringList HQt_CutToWords(QString S)
 
     }
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

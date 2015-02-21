@@ -15,39 +15,39 @@ int HQt_CountOfColsFromQStringList(QStringList QStringListFromFile);
 ```cpp
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile);
 int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int k);
-int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VMHL_ResultVector);
+int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile, int *VHQt_ResultVector);
 ```
 
 - Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Для строк.
 
 ```cpp
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VHQt_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VHQt_VectorResult);
 ```
 
 - Функция считывает данные какого-то k столбца из QStringList в виде матрицы.
 
 ```cpp
-template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VMHL_VectorResult);
+template <class T> void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, T *VHQt_VectorResult);
 ```
 
 - Функция считывает данные из QStringList в матрицу.
 
 ```cpp
-template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VMHL_MatrixResult);
+template <class T> void THQt_ReadMatrixFromQStringList(QStringList QStringListFromFile, T **VHQt_MatrixResult);
 ```
 
 - Функция считывает данные из QStringList в два вектора.
 
 ```cpp
-template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2);
-template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2);
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult1, T *VHQt_VectorResult2);
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult1, QDate *VHQt_VectorResult2);
 ```
 
 - Функция считывает данные из QStringList в вектор.
 
 ```cpp
-template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult);
+template <class T> void THQt_ReadVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult);
 ```
 
 Получение строк-выводов по данным
@@ -280,13 +280,13 @@ QString THQt_ColorFromGradient(double position, QString FirstRGB, QString Second
 QString THQt_GiveRainbowColorRGB(double position);
 ```
 
-- Функция переводит строку RGB типа \#25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
+- Функция переводит строку RGB типа #25ffb5 в три числа от 0 до 255, которые кодируют  цвета.
 
 ```cpp
 void THQt_RGBStringToThreeNumbers(QString RGB, int *R, int *G, int *B);
 ```
 
-- Функция переводит три числа в строку RGB типа \#25ffb5, как в Photoshop или HTML.
+- Функция переводит три числа в строку RGB типа #25ffb5, как в Photoshop или HTML.
 
 ```cpp
 QString THQt_ThreeNumbersToRGBString(int R, int G, int B);

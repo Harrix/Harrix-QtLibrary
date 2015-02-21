@@ -1,2 +1,2 @@
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult);
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VHQt_VectorResult);
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VHQt_VectorResult);

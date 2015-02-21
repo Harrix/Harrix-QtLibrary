@@ -7,9 +7,9 @@ QString HQt_StringToLabelForLaTeX (QString String)
     Возвращаемое значение:
      Обработанная строка.
     */
-    QString VMHL_Result;
+    QString VHQt_Result;
 
-    VMHL_Result=String.replace("_","").replace("#","\\#");
+    VHQt_Result=String.replace("_","").replace("#","\\#");
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

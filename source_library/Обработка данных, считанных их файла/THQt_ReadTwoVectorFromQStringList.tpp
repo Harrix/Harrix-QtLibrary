@@ -1,16 +1,16 @@
-template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, T *VMHL_VectorResult2)
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult1, T *VHQt_VectorResult2)
 {
     /*
     Функция считывает данные из QStringList в два вектора.
     Входные параметры:
      QStringListFromFile - отсюда берем информацию;
-     VMHL_VectorResult1 - сюда будем записывать результат первого вектора;
-     VMHL_VectorResult2 - сюда будем записывать результат второго вектора.
+     VHQt_VectorResult1 - сюда будем записывать результат первого вектора;
+     VHQt_VectorResult2 - сюда будем записывать результат второго вектора.
     Возвращаемое значение:
      Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 1	2
 52	3
 6.4	7
@@ -45,23 +45,23 @@ delete [] x;
         X1=X1.mid(0,X1.lastIndexOf("\t"));
         X2=X2.mid(X2.lastIndexOf("\t"));
 
-        VMHL_VectorResult1[i]=X1.toDouble();
-        VMHL_VectorResult2[i]=X2.toDouble();
+        VHQt_VectorResult1[i]=X1.toDouble();
+        VHQt_VectorResult2[i]=X2.toDouble();
     }
 }
 //---------------------------------------------------------------------------
-template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VMHL_VectorResult1, QDate *VMHL_VectorResult2)
+template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringListFromFile, T *VHQt_VectorResult1, QDate *VHQt_VectorResult2)
 {
     /*
     Функция считывает данные из QStringList в два вектора (второй вектор - это даты).
     Входные параметры:
-     VMHL_VectorResult1 - сюда будем записывать результат первого вектора;
-     VMHL_VectorResult2 - сюда будем записывать результат второго вектора (даты).
+     VHQt_VectorResult1 - сюда будем записывать результат первого вектора;
+     VHQt_VectorResult2 - сюда будем записывать результат второго вектора (даты).
     Возвращаемое значение:
      Отсутствует.
     Примечание:
      Десятичные числа должны разделяться точкой.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 33	21.08.2012
 32	24.07.2012
 31	20.06.2012
@@ -80,7 +80,7 @@ template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringLis
         X2=X2.mid(X2.lastIndexOf("\t"));
         X2=X2.trimmed();
 
-        VMHL_VectorResult1[i]=X1.toDouble();
+        VHQt_VectorResult1[i]=X1.toDouble();
 
         int p1=X2.lastIndexOf(".");
         int p2=X2.indexOf(".");
@@ -91,6 +91,6 @@ template <class T> void THQt_ReadTwoVectorFromQStringList(QStringList QStringLis
         else
             DBeginDate=QDate::fromString(X2, "dd.MM.yyyy");
 
-        VMHL_VectorResult2[i]=DBeginDate;
+        VHQt_VectorResult2[i]=DBeginDate;
     }
 }

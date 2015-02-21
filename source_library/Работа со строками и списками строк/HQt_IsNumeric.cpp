@@ -8,11 +8,11 @@ bool HQt_IsNumeric(QString x)
      true - является числом;
      false - не является числом.
     */
-    bool VMHL_Result;
+    bool VHQt_Result;
 
     x=x.replace(",",".");
 
-    x.toDouble(&VMHL_Result);
+    x.toDouble(&VHQt_Result);
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

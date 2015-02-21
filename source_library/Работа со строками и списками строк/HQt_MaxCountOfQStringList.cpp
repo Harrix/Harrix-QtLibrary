@@ -7,14 +7,14 @@ int HQt_MaxCountOfQStringList(QStringList x)
     Возвращаемое значение:
      Длина макимальной по длине строки.
     */
-    int VMHL_Result=0;
+    int VHQt_Result=0;
 
-    VMHL_Result=x.at(0).count();
+    VHQt_Result=x.at(0).count();
 
     for (int i=1;i<x.count();i++)
     {
-        if (x.at(i).count()>VMHL_Result) VMHL_Result=x.at(i).count();
+        if (x.at(i).count()>VHQt_Result) VHQt_Result=x.at(i).count();
     }
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

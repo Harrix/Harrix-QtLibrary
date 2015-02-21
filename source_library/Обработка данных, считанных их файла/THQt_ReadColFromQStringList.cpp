@@ -1,14 +1,14 @@
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VMHL_VectorResult)
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *VHQt_VectorResult)
 {
     /*
     Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы.
     Входные параметры:
      QStringListFromFile - отсюда берем информацию;
      k - номер столбца, начиная с нуля, который считываем;
-     VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
+     VHQt_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
     Возвращаемое значение:
      Отсутствует.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 1	2013.04.05	6
 52	2013.02.25	96
 6.4	2013.01.15	4
@@ -37,21 +37,21 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QDate *
             DBeginDate=QDate::fromString(X, "yyyy.MM.dd");
         else
             DBeginDate=QDate::fromString(X, "dd.MM.yyyy");
-        VMHL_VectorResult[i]=DBeginDate;
+        VHQt_VectorResult[i]=DBeginDate;
     }
 }
 //---------------------------------------------------------------------------
-void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VMHL_VectorResult)
+void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString *VHQt_VectorResult)
 {
     /*
     Функция считывает данные какого-то k столбца с датами из QStringList в виде матрицы. Для строк.
     Входные параметры:
      QStringListFromFile - отсюда берем информацию;
      k - номер столбца, начиная с нуля, который считываем;
-     VMHL_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
+     VHQt_VectorResult - сюда будем записывать результат считывания столбца из матрицы.
     Возвращаемое значение:
      Отсутствует.
-    Пример содержимого VMHL_VectorResult.
+    Пример содержимого VHQt_VectorResult.
 1	2013.04.05	6
 52	2013.02.25	96
 6.4	2013.01.15	4
@@ -72,6 +72,6 @@ void THQt_ReadColFromQStringList(QStringList QStringListFromFile, int k, QString
         }
         X=A.mid(0,A.indexOf("\t"));
 
-        VMHL_VectorResult[i]=X;
+        VHQt_VectorResult[i]=X;
     }
 }

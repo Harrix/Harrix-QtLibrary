@@ -10,88 +10,88 @@ int HQt_GetTypeCharRus(QString x)
      3 - буква из множества ьъй;
      0 - иначе (английские или какие-то иные).
     */
-    int VMHL_Result=0;
+    int VHQt_Result=0;
 
-    if (x=="А") VMHL_Result=1;
-    if (x=="а") VMHL_Result=1;
+    if (x=="А") VHQt_Result=1;
+    if (x=="а") VHQt_Result=1;
 
-    if (x=="Б") VMHL_Result=2;
-    if (x=="б") VMHL_Result=2;
-    if (x=="В") VMHL_Result=2;
-    if (x=="в") VMHL_Result=2;
-    if (x=="Г") VMHL_Result=2;
-    if (x=="г") VMHL_Result=2;
-    if (x=="Д") VMHL_Result=2;
-    if (x=="д") VMHL_Result=2;
+    if (x=="Б") VHQt_Result=2;
+    if (x=="б") VHQt_Result=2;
+    if (x=="В") VHQt_Result=2;
+    if (x=="в") VHQt_Result=2;
+    if (x=="Г") VHQt_Result=2;
+    if (x=="г") VHQt_Result=2;
+    if (x=="Д") VHQt_Result=2;
+    if (x=="д") VHQt_Result=2;
 
-    if (x=="Е") VMHL_Result=1;
-    if (x=="е") VMHL_Result=1;
-    if (x=="Ё") VMHL_Result=1;
-    if (x=="ё") VMHL_Result=1;
+    if (x=="Е") VHQt_Result=1;
+    if (x=="е") VHQt_Result=1;
+    if (x=="Ё") VHQt_Result=1;
+    if (x=="ё") VHQt_Result=1;
 
-    if (x=="Ж") VMHL_Result=2;
-    if (x=="ж") VMHL_Result=2;
-    if (x=="З") VMHL_Result=2;
-    if (x=="з") VMHL_Result=2;
+    if (x=="Ж") VHQt_Result=2;
+    if (x=="ж") VHQt_Result=2;
+    if (x=="З") VHQt_Result=2;
+    if (x=="з") VHQt_Result=2;
 
-    if (x=="И") VMHL_Result=1;
-    if (x=="и") VMHL_Result=1;
+    if (x=="И") VHQt_Result=1;
+    if (x=="и") VHQt_Result=1;
 
-    if (x=="Й") VMHL_Result=3;
-    if (x=="й") VMHL_Result=3;
+    if (x=="Й") VHQt_Result=3;
+    if (x=="й") VHQt_Result=3;
 
-    if (x=="К") VMHL_Result=2;
-    if (x=="к") VMHL_Result=2;
-    if (x=="Л") VMHL_Result=2;
-    if (x=="л") VMHL_Result=2;
-    if (x=="М") VMHL_Result=2;
-    if (x=="м") VMHL_Result=2;
-    if (x=="Н") VMHL_Result=2;
-    if (x=="н") VMHL_Result=2;
+    if (x=="К") VHQt_Result=2;
+    if (x=="к") VHQt_Result=2;
+    if (x=="Л") VHQt_Result=2;
+    if (x=="л") VHQt_Result=2;
+    if (x=="М") VHQt_Result=2;
+    if (x=="м") VHQt_Result=2;
+    if (x=="Н") VHQt_Result=2;
+    if (x=="н") VHQt_Result=2;
 
-    if (x=="О") VMHL_Result=1;
-    if (x=="о") VMHL_Result=1;
+    if (x=="О") VHQt_Result=1;
+    if (x=="о") VHQt_Result=1;
 
-    if (x=="П") VMHL_Result=2;
-    if (x=="п") VMHL_Result=2;
-    if (x=="Р") VMHL_Result=2;
-    if (x=="р") VMHL_Result=2;
-    if (x=="С") VMHL_Result=2;
-    if (x=="с") VMHL_Result=2;
-    if (x=="Т") VMHL_Result=2;
-    if (x=="т") VMHL_Result=2;
+    if (x=="П") VHQt_Result=2;
+    if (x=="п") VHQt_Result=2;
+    if (x=="Р") VHQt_Result=2;
+    if (x=="р") VHQt_Result=2;
+    if (x=="С") VHQt_Result=2;
+    if (x=="с") VHQt_Result=2;
+    if (x=="Т") VHQt_Result=2;
+    if (x=="т") VHQt_Result=2;
 
-    if (x=="У") VMHL_Result=1;
-    if (x=="у") VMHL_Result=1;
+    if (x=="У") VHQt_Result=1;
+    if (x=="у") VHQt_Result=1;
 
-    if (x=="Ф") VMHL_Result=2;
-    if (x=="ф") VMHL_Result=2;
-    if (x=="Х") VMHL_Result=2;
-    if (x=="х") VMHL_Result=2;
-    if (x=="Ц") VMHL_Result=2;
-    if (x=="ц") VMHL_Result=2;
-    if (x=="Ч") VMHL_Result=2;
-    if (x=="ч") VMHL_Result=2;
-    if (x=="Ш") VMHL_Result=2;
-    if (x=="ш") VMHL_Result=2;
-    if (x=="Щ") VMHL_Result=2;
-    if (x=="щ") VMHL_Result=2;
+    if (x=="Ф") VHQt_Result=2;
+    if (x=="ф") VHQt_Result=2;
+    if (x=="Х") VHQt_Result=2;
+    if (x=="х") VHQt_Result=2;
+    if (x=="Ц") VHQt_Result=2;
+    if (x=="ц") VHQt_Result=2;
+    if (x=="Ч") VHQt_Result=2;
+    if (x=="ч") VHQt_Result=2;
+    if (x=="Ш") VHQt_Result=2;
+    if (x=="ш") VHQt_Result=2;
+    if (x=="Щ") VHQt_Result=2;
+    if (x=="щ") VHQt_Result=2;
 
-    if (x=="Ъ") VMHL_Result=3;
-    if (x=="ъ") VMHL_Result=3;
+    if (x=="Ъ") VHQt_Result=3;
+    if (x=="ъ") VHQt_Result=3;
 
-    if (x=="Ы") VMHL_Result=1;
-    if (x=="ы") VMHL_Result=1;
+    if (x=="Ы") VHQt_Result=1;
+    if (x=="ы") VHQt_Result=1;
 
-    if (x=="Ь") VMHL_Result=3;
-    if (x=="ь") VMHL_Result=3;
+    if (x=="Ь") VHQt_Result=3;
+    if (x=="ь") VHQt_Result=3;
 
-    if (x=="Э") VMHL_Result=1;
-    if (x=="э") VMHL_Result=1;
-    if (x=="Ю") VMHL_Result=1;
-    if (x=="ю") VMHL_Result=1;
-    if (x=="Я") VMHL_Result=1;
-    if (x=="я") VMHL_Result=1;
+    if (x=="Э") VHQt_Result=1;
+    if (x=="э") VHQt_Result=1;
+    if (x=="Ю") VHQt_Result=1;
+    if (x=="ю") VHQt_Result=1;
+    if (x=="Я") VHQt_Result=1;
+    if (x=="я") VHQt_Result=1;
 
-    return VMHL_Result;
+    return VHQt_Result;
 }

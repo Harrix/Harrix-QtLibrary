@@ -7,11 +7,11 @@ double HQt_QStringToNumber (QString x)
     Возвращаемое значение:
      Число из строки.
     */
-    double VMHL_Result;
+    double VHQt_Result;
 
-    VMHL_Result=x.toDouble();
+    VHQt_Result=x.toDouble();
 
-    return VMHL_Result;
+    return VHQt_Result;
 }
 //---------------------------------------------------------------------------
 double HQt_QStringToNumber (QString x, bool checkcomma)
@@ -24,11 +24,11 @@ double HQt_QStringToNumber (QString x, bool checkcomma)
     Возвращаемое значение:
      Число из строки.
     */
-    double VMHL_Result;
+    double VHQt_Result;
 
     if (checkcomma) x=x.replace(",",".");
 
-    VMHL_Result=x.toDouble();
+    VHQt_Result=x.toDouble();
 
-    return VMHL_Result;
+    return VHQt_Result;
 }
