@@ -1,5 +1,5 @@
 //HarrixQtLibrary
-//Версия 3.30
+//Версия 3.31
 //Сборник функций для Qt.
 //https://github.com/Harrix/HarrixQtLibrary
 //Библиотека распространяется по лицензии Apache License, Version 2.0.
@@ -40,7 +40,7 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile)
     Считается, что файл правильный, ошибки не проверяются. В строке числа разделяются через табуляцию \t,
     а десятичные числа используют точку, а не запятую. Во всех столбцах должно быть одинаковое число элементов.
     Поэтому, если в одном столбце больше элементов, чем в других, то в остальные столбцы на место недостающих
-    элементов ставнится знак "-".
+    элементов ставится знак "-".
     Входные параметры:
      QStringListFromFile - непосредственно сам файл.
     Возвращаемое значение:
@@ -50,6 +50,7 @@ int HQt_CountOfRowsFromQStringList(QStringList QStringListFromFile)
 2.8	9
     */
     int VHQt_Result_N=QStringListFromFile.count();
+    {
 
     return VHQt_Result_N;
 }
@@ -324,6 +325,30 @@ QString HQt_BoolToWord(int Bool, QString No, QString Yes)
     if (Bool==1) Result=Yes;
 
     return Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_RandomRussianLetter()
+{
+    /*
+        Функция генерирует случайную русскую букву в нижнем регистре.
+        Входные параметры:
+         Отсутствуют.
+        Возвращаемое значение:
+         Случайная русская буква.
+        Примечание:
+         Используются случайные числа, так что рекомендуется вызвать в программе иницилизатор случайных чисел qsrand.
+         Рекомендую так:
+         qsrand(QDateTime::currentMSecsSinceEpoch () % 1000000);
+        */
+    QString VHQt_Result;
+    QString Alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+
+    int randomNumber = qrand() % Alphabet.length();
+
+    VHQt_Result = Alphabet.at(randomNumber);
+
+    return VHQt_Result;
 }
 //---------------------------------------------------------------------------
 
@@ -1397,6 +1422,24 @@ int HQt_GetTypeCharRus(QString x)
     if (x=="ю") VHQt_Result=1;
     if (x=="Я") VHQt_Result=1;
     if (x=="я") VHQt_Result=1;
+
+    return VHQt_Result;
+}
+//---------------------------------------------------------------------------
+
+QString HQt_RussianLetter(int i)
+{
+    /*
+        Функция генерирует русскую букву в нижнем регистре по номеру ее в алфавите.
+        Входные параметры:
+         i - номер буквы в русском алфавите (нумерация с нуля идет).
+        Возвращаемое значение:
+         Русская буква.
+        */
+    QString VHQt_Result;
+    QString Alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+
+    VHQt_Result = Alphabet.at(i);
 
     return VHQt_Result;
 }

@@ -64,6 +64,12 @@ QString HQt_BoolToWord(int Bool);
 QString HQt_BoolToWord(int Bool, QString No, QString Yes);
 ```
 
+- Функция генерирует случайную русскую букву в нижнем регистре.
+
+```cpp
+QString HQt_RandomRussianLetter();
+```
+
 - Функция генерирует случайную строку из английских больших и малых букв.
 
 ```cpp
@@ -146,6 +152,12 @@ int HQt_GetTypeCharEng(QString x);
 
 ```cpp
 int HQt_GetTypeCharRus(QString x);
+```
+
+- Функция генерирует русскую букву в нижнем регистре по номеру ее в алфавите.
+
+```cpp
+QString HQt_RussianLetter(int i);
 ```
 
 Работа с датами
